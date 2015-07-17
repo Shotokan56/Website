@@ -1,0 +1,129 @@
+﻿@model IEnumerable<S4T_HaTinh.Models.Dm_DonVi>
+@using S4T_HaTinh.Models;
+@{
+    ViewBag.Title = "DANH MỤC ĐƠN VỊ";
+    var listNhomDonVi = new SelectList(MvcApplication.ListNhomDonVi(), "DanhMuc_ID", "TenDanhMuc");
+    var listTrangThai = MvcApplication.ListTrangThai();
+    var listDonViCap1 = (IEnumerable<Dm_DonVi>) ViewBag.ListDonViCap1;
+    var slListDVCap1 = new SelectList(listDonViCap1, "DonVi_ID", "TenDonVi");
+    var listNganhNghe = MvcApplication.ListNganhNghe();
+    var listLoaiHinhDoanhNghiep = MvcApplication.ListLoaiHinhDoanhNghiep();
+}
+
+<h2>@ViewBag.Title</h2>
+
+<p>
+    @Html.ActionLink("Tạo mới", "Create", new { @class = "login_button" })
+</p>
+@using (Html.BeginForm("Index", "Dm_DonVi", FormMethod.Get))
+{
+    <p>
+        Nhóm đơn vị : @Html.DropDownList("ddlNhomDonVi", listNhomDonVi, "Tất cả", new { @onchange = "NhomDonVi_OnChange()" })
+        Đơn vị cấp 1 : @Html.DropDownList("ddlDonViCap1", slListDVCap1, "Tất cả")
+        <input type="text" name="status" value="1" style="display:none" />
+        <input type="submit" value="Tìm kiếm" />
+    </p>
+}
+<table class="tableDefault" id="tbData">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.DonVi_ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TenDonVi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NhomDonVi_ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DonViCap1_ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NganhNghe_ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LoaiHinhDoanhNghiep_ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TrangThai)
+        </th>
+        <th></th>
+    </tr>
+
+    @if(Model != null){
+        foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DonVi_ID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TenDonVi)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => listNhomDonVi.FirstOrDefault(o => o.Value == item.NhomDonVi_ID.ToString()).Text)
+                </td>
+                <td>
+                    @{
+                        var objDonVi = listDonViCap1.FirstOrDefault(o => o.DonVi_ID == item.DonViCap1_ID);
+                        @Html.Raw(objDonVi != null ? objDonVi.TenDonVi : "")
+                    }  
+                </td>
+                <td>
+                    @{
+                        var objNganhNghe = listNganhNghe.FirstOrDefault(o => o.DanhMuc_ID == item.NganhNghe_ID);
+                        @Html.Raw(objNganhNghe != null ? objNganhNghe.TenDanhMuc : "")
+                    }
+                </td>
+                <td>
+                    @{
+                        var objLoaiHinhDoanhNghiep = listLoaiHinhDoanhNghiep.FirstOrDefault(o => o.DanhMuc_ID == item.LoaiHinhDoanhNghiep_ID);
+                        @Html.Raw(objLoaiHinhDoanhNghiep != null ? objLoaiHinhDoanhNghiep.TenDanhMuc : "")
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => listTrangThai.FirstOrDefault(o => o.DanhMuc_ID == item.TrangThai).TenDanhMuc)
+                </td>
+                <td>
+                    @Html.ActionLink("Sửa", "Edit", new { id = item.DonVi_ID }) 
+                    @*| <a title="Xóa" onclick="Delete(@item.DonVi_ID)">Xóa</a>*@
+                </td>
+            </tr>
+        }
+    }
+</table>
+<script type="text/javascript">
+    // Lấy danh sách đơn vị cấp 1 theo nhóm đơn vị
+    function NhomDonVi_OnChange() {
+        if ($("#ddlNhomDonVi").val() != "") {
+            $.post("/Dm_DonVi/NhomDonVi_OnChange", { "ddlNhomDonVi": $("#ddlNhomDonVi").val() }).done(function (data) {
+                if (data.msg == null) {
+                    $("#ddlDonViCap1").html(data.danhSach);
+                } else {
+                    alert(data.msg);
+                }
+            });
+        } else {
+            $("#ddlDonViCap1").html("<option value=''>Tất cả</option>");
+        }
+    }
+
+    // Xóa đơn vị
+    function Delete(id) {
+        if (!confirm("Bạn có chắc chắn xóa dữ liệu này?")) return;
+
+        $.ajax({
+            type: 'POST',
+            url: "Dm_DonVi/Delete?id=" + id,
+            success: function (data) {
+                if (data.msg == "ok") {
+                    alert("Đã xóa thành công");
+                    location.reload();
+                } else {
+                    alert(data.msg);
+                }
+            },
+            async: true
+        });
+    }
+</script>

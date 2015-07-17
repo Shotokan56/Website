@@ -1,0 +1,1210 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="WebsiteModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="AspNetRoles">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+    <Property Name="TenHienThi" Type="nvarchar" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="AspNetUserClaims">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="ClaimType" Type="nvarchar(max)" />
+    <Property Name="ClaimValue" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="AspNetUserLogins">
+    <Key>
+      <PropertyRef Name="LoginProvider" />
+      <PropertyRef Name="ProviderKey" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetUserRoles">
+    <Key>
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetUsers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="HoVaTen" Type="nvarchar(max)" />
+    <Property Name="Email" Type="nvarchar" MaxLength="256" />
+    <Property Name="DonVi_ID" Type="int" Nullable="false" />
+    <Property Name="TrangThai" Type="int" Nullable="false" />
+    <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+    <Property Name="PasswordHash" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="SecurityStamp" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="PhoneNumber" Type="nvarchar(max)" />
+    <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+    <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+    <Property Name="LockoutEndDateUtc" Type="datetime" />
+    <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+    <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="256" />
+    <Property Name="Discriminator" Type="nvarchar" MaxLength="128" />
+  </EntityType>
+  <EntityType Name="CongNghiepCNTT">
+    <Key>
+      <PropertyRef Name="CongNghiepCNTT_ID" />
+    </Key>
+    <Property Name="CongNghiepCNTT_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LichNhap_ID" Type="int" Nullable="false" />
+    <Property Name="DonVi_ID" Type="int" Nullable="false" />
+    <Property Name="FileUpload" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="DoanhThu" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="SoMayTinh" Type="int" Nullable="false" />
+    <Property Name="SoPhanMemUngDung" Type="int" Nullable="false" />
+    <Property Name="SoWebsite" Type="int" Nullable="false" />
+    <Property Name="SoMayTinhKetNoiMang" Type="int" Nullable="false" />
+    <Property Name="TuNgay" Type="datetime" Nullable="false" />
+    <Property Name="DenNgay" Type="datetime" Nullable="false" />
+    <Property Name="NgayTao" Type="datetime" Nullable="false" />
+    <Property Name="NgayCapNhat" Type="datetime" Nullable="false" />
+    <Property Name="Success" Type="tinyint" Nullable="false" />
+    <Property Name="TruongNhapLai" Type="varchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="CongThongTinDienTu">
+    <Key>
+      <PropertyRef Name="CongThongTinDienTu_ID" />
+    </Key>
+    <Property Name="CongThongTinDienTu_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LichNhap_ID" Type="int" Nullable="false" />
+    <Property Name="DonVi_ID" Type="int" Nullable="false" />
+    <Property Name="FileUpload" Type="nvarchar" MaxLength="250" />
+    <Property Name="CongNgheLoi" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="NgonNguLapTrinh" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="CSDL" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="DonViThucHien" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="NangCapTrongNam" Type="int" Nullable="false" />
+    <Property Name="NoiDung" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="Website_Portal" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="CoCauToChuc" Type="tinyint" Nullable="false" />
+    <Property Name="ChucNang_DVTT" Type="tinyint" Nullable="false" />
+    <Property Name="LichSuHinhThanh" Type="tinyint" Nullable="false" />
+    <Property Name="ThongTinTomTat" Type="tinyint" Nullable="false" />
+    <Property Name="ThongTinLienHe" Type="tinyint" Nullable="false" />
+    <Property Name="BanDoDiaGioi" Type="tinyint" Nullable="false" />
+    <Property Name="ThongTinThongKe" Type="tinyint" Nullable="false" />
+    <Property Name="TanSuatCapNhat" Type="tinyint" Nullable="false" />
+    <Property Name="VanBanChiDao" Type="int" Nullable="false" />
+    <Property Name="VanBanChiDao_DangTai" Type="int" Nullable="false" />
+    <Property Name="LichLamViec" Type="tinyint" Nullable="false" />
+    <Property Name="PhoBienVanBan" Type="tinyint" Nullable="false" />
+    <Property Name="Tin_BaiViet" Type="tinyint" Nullable="false" />
+    <Property Name="ChuyenMuc_ChuyenTrang" Type="tinyint" Nullable="false" />
+    <Property Name="ChienLuoc_QuyHoach" Type="tinyint" Nullable="false" />
+    <Property Name="KeHoachPhatTrien" Type="tinyint" Nullable="false" />
+    <Property Name="VanBanQuyPham" Type="tinyint" Nullable="false" />
+    <Property Name="VanBanQuyPham_DangTai" Type="tinyint" Nullable="false" />
+    <Property Name="ChuyenTrang_QuanLy" Type="tinyint" Nullable="false" />
+    <Property Name="VanBanQuyPham_TaiVe" Type="tinyint" Nullable="false" />
+    <Property Name="HangMucDauTu" Type="tinyint" Nullable="false" />
+    <Property Name="SoDuAn" Type="tinyint" Nullable="false" />
+    <Property Name="ThongTinToiThieu" Type="tinyint" Nullable="false" />
+    <Property Name="DeTaiKhoaHoc" Type="tinyint" Nullable="false" />
+    <Property Name="SoLuongDeTaiKH_DangTai" Type="tinyint" Nullable="false" />
+    <Property Name="GopY" Type="tinyint" Nullable="false" />
+    <Property Name="YKienDangTai" Type="tinyint" Nullable="false" />
+    <Property Name="CungCapThongTin" Type="tinyint" Nullable="false" />
+    <Property Name="ChucNangTimKiem" Type="tinyint" Nullable="false" />
+    <Property Name="SoDoWebsite" Type="tinyint" Nullable="false" />
+    <Property Name="TraoDoi_HoiDap" Type="tinyint" Nullable="false" />
+    <Property Name="DuLieuDacTa" Type="tinyint" Nullable="false" />
+    <Property Name="Unicode" Type="tinyint" Nullable="false" />
+    <Property Name="TuongThichTrinhDuyet" Type="tinyint" Nullable="false" />
+    <Property Name="LienKetWebsite" Type="tinyint" Nullable="false" />
+    <Property Name="NguoiKhuyetTat" Type="tinyint" Nullable="false" />
+    <Property Name="TTHC_DonVi" Type="int" Nullable="false" />
+    <Property Name="DVC1" Type="int" Nullable="false" />
+    <Property Name="DVC2" Type="int" Nullable="false" />
+    <Property Name="DVC3" Type="int" Nullable="false" />
+    <Property Name="BanBienTap" Type="tinyint" Nullable="false" />
+    <Property Name="QuanTriKyThuat" Type="tinyint" Nullable="false" />
+    <Property Name="DichVuCongTT" Type="tinyint" Nullable="false" />
+    <Property Name="TapHuanDaoTao" Type="tinyint" Nullable="false" />
+    <Property Name="BienPhapKyThuat" Type="tinyint" Nullable="false" />
+    <Property Name="GiaiPhapHieuQua" Type="tinyint" Nullable="false" />
+    <Property Name="PhuongAnDuPhong" Type="tinyint" Nullable="false" />
+    <Property Name="BanHanhQuyChe" Type="tinyint" Nullable="false" />
+    <Property Name="BanHanhQuyChe_TTDT" Type="tinyint" Nullable="false" />
+    <Property Name="CapNhatThongTin" Type="tinyint" Nullable="false" />
+    <Property Name="NoiDungThongTin" Type="tinyint" Nullable="false" />
+    <Property Name="QuyDinhKhac" Type="tinyint" Nullable="false" />
+    <Property Name="Success" Type="tinyint" Nullable="false" />
+    <Property Name="TruongNhapLai" Type="varchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="CongThongTinDienTu_Huyen">
+    <Key>
+      <PropertyRef Name="CongThongTinDienTuHuyen_ID" />
+    </Key>
+    <Property Name="CongThongTinDienTuHuyen_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LichNhap_ID" Type="int" Nullable="false" />
+    <Property Name="DonVi_ID" Type="int" Nullable="false" />
+    <Property Name="FileUpload" Type="nvarchar" MaxLength="250" />
+    <Property Name="DangSuDung" Type="tinyint" />
+    <Property Name="QuanTriCoSoDL" Type="nvarchar" MaxLength="250" />
+    <Property Name="CongNgheLoi" Type="nvarchar" MaxLength="250" />
+    <Property Name="NgonNguLapTrinh" Type="nvarchar" MaxLength="250" />
+    <Property Name="WebCapXa" Type="nvarchar" MaxLength="250" />
+    <Property Name="SoDo_CoCau" Type="tinyint" />
+    <Property Name="ChucNang_NhiemVu" Type="tinyint" />
+    <Property Name="HinhThanh_PhatTrien" Type="tinyint" />
+    <Property Name="ThongTinTomTat" Type="tinyint" />
+    <Property Name="ThongTinGiaoDich" Type="tinyint" />
+    <Property Name="ThongTinLienHe" Type="tinyint" />
+    <Property Name="BanDoDiaGioi" Type="tinyint" />
+    <Property Name="ThongTinThongKe" Type="tinyint" />
+    <Property Name="TanSuatCapNhat" Type="tinyint" />
+    <Property Name="VBChiDao_DonVi" Type="int" />
+    <Property Name="VBChiDao_DieuHanh" Type="int" />
+    <Property Name="LichLamViec" Type="int" />
+    <Property Name="PhoBienVBQPPL" Type="tinyint" />
+    <Property Name="TinBai_DangTai" Type="tinyint" />
+    <Property Name="ChuyenMuc_ChienLuoc" Type="tinyint" />
+    <Property Name="ChienLuoc_DangTai" Type="tinyint" />
+    <Property Name="KeHoachPhatTrien" Type="tinyint" />
+    <Property Name="ChuyenTrang_QPPL" Type="tinyint" />
+    <Property Name="VBQPPL_DangTai" Type="tinyint" />
+    <Property Name="LienKet" Type="tinyint" />
+    <Property Name="ChoPhepTai" Type="tinyint" />
+    <Property Name="DauTu_MuaSam" Type="tinyint" />
+    <Property Name="DangTai_DauThau" Type="tinyint" />
+    <Property Name="DangTai_ThongTinToiThieu" Type="tinyint" />
+    <Property Name="DeTai_KhoaHoc" Type="tinyint" />
+    <Property Name="ChuyenMucGopY" Type="tinyint" />
+    <Property Name="XinYKien_VBQPPL" Type="tinyint" />
+    <Property Name="CungCapThongTin" Type="tinyint" />
+    <Property Name="ChucNangTimKiem" Type="tinyint" />
+    <Property Name="SoDoWeb_CayCauTruc" Type="tinyint" />
+    <Property Name="DangCauHoi_TraLoi" Type="tinyint" />
+    <Property Name="DuLieuDacTa" Type="tinyint" />
+    <Property Name="MaUnicode" Type="tinyint" />
+    <Property Name="KhaNangTuongThich" Type="tinyint" />
+    <Property Name="LienKetWeb" Type="tinyint" />
+    <Property Name="HoTro_NguoiKhuyetTat" Type="tinyint" />
+    <Property Name="TenMien_CongTTDT" Type="tinyint" />
+    <Property Name="TTHC_DV" Type="int" />
+    <Property Name="DVC_Muc1" Type="int" />
+    <Property Name="DVC_Muc2" Type="int" />
+    <Property Name="DVC_Muc3" Type="int" />
+    <Property Name="ThanhLap_BanBienTap" Type="tinyint" />
+    <Property Name="BoTri_QuanTriKyThuat" Type="tinyint" />
+    <Property Name="BoTri_XuLyDVCong" Type="tinyint" />
+    <Property Name="TapHuan_DaoTaoCanBo" Type="tinyint" />
+    <Property Name="DamBaoAnToanTTDuLieu" Type="tinyint" />
+    <Property Name="XayDungGiaiPhap" Type="tinyint" />
+    <Property Name="XDPhuongAnDuPhong" Type="tinyint" />
+    <Property Name="BanHanhQuyChePhoiHop" Type="tinyint" />
+    <Property Name="BanHanhQuyCheHoatDong" Type="tinyint" />
+    <Property Name="BaoCaoDinhKy_Nam" Type="tinyint" />
+    <Property Name="CapNhatThongTin" Type="tinyint" />
+    <Property Name="NoiDungThongTin" Type="tinyint" />
+    <Property Name="QuyDinhKhac" Type="tinyint" />
+    <Property Name="SXKD_PhanCung" Type="int" />
+    <Property Name="SXKD_PhanMem" Type="int" />
+    <Property Name="CungCapDVNDSo" Type="int" />
+    <Property Name="TongDoanhThu" Type="int" />
+    <Property Name="TruongNhapLai" Type="nvarchar" MaxLength="500" />
+    <Property Name="Success" Type="tinyint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Dm_DanhMucChung">
+    <Key>
+      <PropertyRef Name="DanhMuc_ID" />
+    </Key>
+    <Property Name="DanhMuc_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TenDanhMuc" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="LoaiDanhMuc_ID" Type="int" Nullable="false" />
+    <Property Name="TrangThai" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Dm_DonVi">
+    <Key>
+      <PropertyRef Name="DonVi_ID" />
+    </Key>
+    <Property Name="DonVi_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TenDonVi" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="NhomDonVi_ID" Type="int" Nullable="false" />
+    <Property Name="ChuyenVienPhuTrach" Type="nvarchar" MaxLength="250" />
+    <Property Name="SoDienThoai" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="NganhNghe_ID" Type="int" Nullable="false" />
+    <Property Name="LoaiHinhDoanhNghiep_ID" Type="int" Nullable="false" />
+    <Property Name="TrangThai" Type="int" Nullable="false" />
+    <Property Name="DiaChi" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="QuyMo" Type="int" />
+    <Property Name="NgayTao" Type="datetime" />
+    <Property Name="NgayCapNhat" Type="datetime" />
+    <Property Name="DonViCap1_ID" Type="int" />
+  </EntityType>
+  <EntityType Name="Dm_LoaiDanhMuc">
+    <Key>
+      <PropertyRef Name="LoaiDanhMuc_ID" />
+    </Key>
+    <Property Name="LoaiDanhMuc_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TenLoai" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="TrangThai" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Dm_LoaiKeHoach">
+    <Key>
+      <PropertyRef Name="LoaiKeHoach_ID" />
+    </Key>
+    <Property Name="LoaiKeHoach_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TenLoaiKeHoach" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="TrangThai" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Dm_LoaiVanBan">
+    <Key>
+      <PropertyRef Name="LoaiVanBan_ID" />
+    </Key>
+    <Property Name="LoaiVanBan_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TenLoaiVanBan" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="TrangThai" Type="tinyint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Dm_ThongTinDonVi">
+    <Key>
+      <PropertyRef Name="ThongTin_ID" />
+    </Key>
+    <Property Name="ThongTin_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DonVi_ID" Type="int" Nullable="false" />
+    <Property Name="TenDonVi" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="DiaChi" Type="nvarchar" MaxLength="500" />
+    <Property Name="DienThoai" Type="varchar" MaxLength="50" />
+    <Property Name="Email" Type="nvarchar" MaxLength="250" />
+    <Property Name="Website" Type="nvarchar" MaxLength="250" />
+    <Property Name="GiamDoc" Type="nvarchar" MaxLength="250" />
+    <Property Name="PhoGiamDoc1" Type="nvarchar" MaxLength="250" />
+    <Property Name="PhoGiamDoc2" Type="nvarchar" MaxLength="250" />
+    <Property Name="PhoGiamDoc3" Type="nvarchar" MaxLength="250" />
+    <Property Name="PhoGiamDoc4" Type="nvarchar" MaxLength="250" />
+    <Property Name="PhoGiamDoc5" Type="nvarchar" MaxLength="250" />
+    <Property Name="PhoGiamDoc6" Type="nvarchar" MaxLength="250" />
+    <Property Name="PhoGiamDoc7" Type="nvarchar" MaxLength="250" />
+    <Property Name="GiamDocCNTT" Type="nvarchar" MaxLength="250" />
+    <Property Name="SoLuongCBCC" Type="int" />
+    <Property Name="SoDonViTrucThuoc" Type="int" />
+    <Property Name="SoLuongNV_DVTT" Type="int" />
+    <Property Name="PhongCNTT" Type="tinyint" />
+    <Property Name="SoLuongCB_PhongCNTT" Type="int" />
+    <Property Name="ToCNTT" Type="tinyint" />
+    <Property Name="SoLuongCB_ToCNTT" Type="int" />
+    <Property Name="HoTen_CBCT1" Type="nvarchar" MaxLength="250" />
+    <Property Name="TrinhDoCNTT_CBCT1" Type="nvarchar" MaxLength="50" />
+    <Property Name="SoDienThoai_CBCT1" Type="varchar" MaxLength="50" />
+    <Property Name="Email_CBCT1" Type="nvarchar" MaxLength="250" />
+    <Property Name="HoTen_CBCT2" Type="nvarchar" MaxLength="250" />
+    <Property Name="TrinhDoCNTT_CBCT2" Type="nvarchar" MaxLength="50" />
+    <Property Name="SoDienThoai_CBCT2" Type="varchar" MaxLength="50" />
+    <Property Name="Email_CBCT2" Type="nvarchar" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="HaTangKyThuatCNTT">
+    <Key>
+      <PropertyRef Name="HaTangKyThuatCNTT_ID" />
+    </Key>
+    <Property Name="HaTangKyThuatCNTT_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LichNhap_ID" Type="int" />
+    <Property Name="DonVi_ID" Type="int" Nullable="false" />
+    <Property Name="FileUpload" Type="nvarchar" MaxLength="250" />
+    <Property Name="MayBan" Type="int" Nullable="false" />
+    <Property Name="LapTop" Type="int" Nullable="false" />
+    <Property Name="MayChu" Type="int" Nullable="false" />
+    <Property Name="MayNoiMangInternet" Type="int" Nullable="false" />
+    <Property Name="VirusCoBanQuyen" Type="int" Nullable="false" />
+    <Property Name="MayChieu" Type="int" Nullable="false" />
+    <Property Name="MayScan" Type="int" Nullable="false" />
+    <Property Name="MayIn" Type="int" Nullable="false" />
+    <Property Name="MayAnh" Type="int" Nullable="false" />
+    <Property Name="MayQuayPhim" Type="int" Nullable="false" />
+    <Property Name="MayTinhBang" Type="int" Nullable="false" />
+    <Property Name="MayBan_DVTT" Type="int" Nullable="false" />
+    <Property Name="LapTop_DVTT" Type="int" Nullable="false" />
+    <Property Name="MayChu_DVTT" Type="int" Nullable="false" />
+    <Property Name="MayNoiMangInternet_DVTT" Type="int" Nullable="false" />
+    <Property Name="VirusCoBanQuyen_DVTT" Type="int" Nullable="false" />
+    <Property Name="MayChieu_DVTT" Type="int" Nullable="false" />
+    <Property Name="MayScan_DVTT" Type="int" Nullable="false" />
+    <Property Name="MayIn_DVTT" Type="int" Nullable="false" />
+    <Property Name="MayAnh_DVTT" Type="int" Nullable="false" />
+    <Property Name="MayQuayPhim_DVTT" Type="int" Nullable="false" />
+    <Property Name="MayTinhBang_DVTT" Type="int" Nullable="false" />
+    <Property Name="PhongHopTrucTuyen" Type="tinyint" Nullable="false" />
+    <Property Name="ADSL" Type="int" Nullable="false" />
+    <Property Name="CapQuang" Type="int" Nullable="false" />
+    <Property Name="LeasedLine" Type="int" Nullable="false" />
+    <Property Name="MangChuyenDung" Type="int" Nullable="false" />
+    <Property Name="DungLuong_ADSL" Type="int" Nullable="false" />
+    <Property Name="DungLuong_CapQuang" Type="int" Nullable="false" />
+    <Property Name="DungLuong_Leased" Type="int" Nullable="false" />
+    <Property Name="DungLuong_MangChuyenDung" Type="int" Nullable="false" />
+    <Property Name="ManHinh_LichCongTac" Type="int" Nullable="false" />
+    <Property Name="ManHinh_TraCuuTTHC" Type="int" Nullable="false" />
+    <Property Name="HeThongTuongLua" Type="tinyint" Nullable="false" />
+    <Property Name="PhongChongTruyCapTraiPhep" Type="tinyint" Nullable="false" />
+    <Property Name="CanhBaoChayNo" Type="tinyint" />
+    <Property Name="ChongSet" Type="tinyint" />
+    <Property Name="BangTu" Type="tinyint" />
+    <Property Name="TuDia" Type="tinyint" />
+    <Property Name="SAN" Type="tinyint" />
+    <Property Name="NAS" Type="tinyint" />
+    <Property Name="DAS" Type="tinyint" />
+    <Property Name="RAID" Type="tinyint" />
+    <Property Name="Khac" Type="tinyint" />
+    <Property Name="TruongNhapLai" Type="nvarchar" MaxLength="500" />
+    <Property Name="Success" Type="tinyint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="HaTangKyThuatCNTT_Huyen">
+    <Key>
+      <PropertyRef Name="HaTangKyThuatCNTTHuyen_ID" />
+    </Key>
+    <Property Name="HaTangKyThuatCNTTHuyen_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LichNhap_ID" Type="int" Nullable="false" />
+    <Property Name="DonVi_ID" Type="int" Nullable="false" />
+    <Property Name="FileUpload" Type="nvarchar" MaxLength="250" />
+    <Property Name="ADSL" Type="int" />
+    <Property Name="LeadedLine" Type="int" />
+    <Property Name="CapQuang" Type="int" />
+    <Property Name="Khac" Type="int" />
+    <Property Name="UBND_MayBan" Type="int" />
+    <Property Name="UBND_LapTop" Type="int" />
+    <Property Name="UBND_MayChu" Type="int" />
+    <Property Name="UBND_VirusBanQuyen" Type="int" />
+    <Property Name="UBND_Internet" Type="int" />
+    <Property Name="UBND_MangCD" Type="int" />
+    <Property Name="HuyenUy_MayBan" Type="int" />
+    <Property Name="HuyenUy_LapTop" Type="int" />
+    <Property Name="HuyenUy_MayChu" Type="int" />
+    <Property Name="HuyenUy_VirusBanQuyen" Type="int" />
+    <Property Name="HuyenUy_Internet" Type="int" />
+    <Property Name="HuyenUy_MangCD" Type="int" />
+    <Property Name="Xa_MayBan" Type="int" />
+    <Property Name="Xa_LapTop" Type="int" />
+    <Property Name="Xa_MayChu" Type="int" />
+    <Property Name="Xa_VirusBanQuyen" Type="int" />
+    <Property Name="Xa_Internet" Type="int" />
+    <Property Name="Xa_MangCD" Type="int" />
+    <Property Name="GiaoDuc_MayBan" Type="int" />
+    <Property Name="GiaoDuc_LapTop" Type="int" />
+    <Property Name="GiaoDuc_MayChu" Type="int" />
+    <Property Name="GiaoDuc_VirusBanQuyen" Type="int" />
+    <Property Name="GiaoDuc_Internet" Type="int" />
+    <Property Name="GiaoDuc_MangCD" Type="int" />
+    <Property Name="YTe_MayBan" Type="int" />
+    <Property Name="YTe_LapTop" Type="int" />
+    <Property Name="YTe_MayChu" Type="int" />
+    <Property Name="YTe_VirusBanQuyen" Type="int" />
+    <Property Name="YTe_Internet" Type="int" />
+    <Property Name="YTe_MangCD" Type="int" />
+    <Property Name="Khac_MayBan" Type="int" />
+    <Property Name="Khac_LapTop" Type="int" />
+    <Property Name="Khac_MayChu" Type="int" />
+    <Property Name="Khac_VirusBanQuyen" Type="int" />
+    <Property Name="Khac_Internet" Type="int" />
+    <Property Name="Khac_MangCD" Type="int" />
+    <Property Name="VHX_MayBan" Type="int" />
+    <Property Name="VHX_LapTop" Type="int" />
+    <Property Name="VHX_MayChu" Type="int" />
+    <Property Name="VHX_VirusBanQuyen" Type="int" />
+    <Property Name="VHX_Internet" Type="int" />
+    <Property Name="VHX_MangCD" Type="int" />
+    <Property Name="DoanhNghiep_MayBan" Type="int" />
+    <Property Name="DoanhNghiep_LapTop" Type="int" />
+    <Property Name="DoanhNghiep_MayChu" Type="int" />
+    <Property Name="DoanhNghiep_VirusBanQuyen" Type="int" />
+    <Property Name="DoanhNghiep_Internet" Type="int" />
+    <Property Name="DoanhNghiep_MangCD" Type="int" />
+    <Property Name="KhongKetNoiInternet" Type="int" />
+    <Property Name="TuongLua" Type="tinyint" />
+    <Property Name="TruyCapTraiPhep" Type="tinyint" />
+    <Property Name="CanhBaoChayNo" Type="tinyint" />
+    <Property Name="ChongSet_BangTu" Type="tinyint" />
+    <Property Name="ChongSet_TuDia" Type="tinyint" />
+    <Property Name="ChongSet_SAN" Type="tinyint" />
+    <Property Name="ChongSet_NAS" Type="tinyint" />
+    <Property Name="ChongSet_DAS" Type="tinyint" />
+    <Property Name="ChongSet_RAID" Type="tinyint" />
+    <Property Name="BuuDienXa" Type="int" />
+    <Property Name="BuuDienXa_Internet" Type="int" />
+    <Property Name="BuuDienXa_DaiLyInternet" Type="int" />
+    <Property Name="HoiNghiTruyenHinh" Type="int" />
+    <Property Name="HoiNghiTruyenHinh_CuocHop" Type="int" />
+    <Property Name="TruongNhapLai" Type="nvarchar" MaxLength="500" />
+    <Property Name="Success" Type="tinyint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="HaTangNhanLucCNTT">
+    <Key>
+      <PropertyRef Name="HaTangNhanLucCNTT_ID" />
+    </Key>
+    <Property Name="HaTangNhanLucCNTT_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LichNhap_ID" Type="int" />
+    <Property Name="DonVi_ID" Type="int" Nullable="false" />
+    <Property Name="FileUpload" Type="nvarchar" MaxLength="250" />
+    <Property Name="TienSy_DV" Type="int" Nullable="false" />
+    <Property Name="ThacSy_DV" Type="int" Nullable="false" />
+    <Property Name="DaiHocChinhQuy_DV" Type="int" Nullable="false" />
+    <Property Name="DaiHocKhongChinhQuy_DV" Type="int" Nullable="false" />
+    <Property Name="LuotTapHuan_DV" Type="int" Nullable="false" />
+    <Property Name="SoLuongCanBo_DV" Type="int" Nullable="false" />
+    <Property Name="TienSy_DVTT" Type="int" Nullable="false" />
+    <Property Name="ThacSy_DVTT" Type="int" Nullable="false" />
+    <Property Name="DaiHocChinhQuy_DVTT" Type="int" Nullable="false" />
+    <Property Name="DaiHocKhongChinhQuy_DVTT" Type="int" Nullable="false" />
+    <Property Name="LuotTapHuan_DVTT" Type="int" Nullable="false" />
+    <Property Name="SoLuongCanBo_DVTT" Type="int" Nullable="false" />
+    <Property Name="ThanhThaoMayTinh_DV" Type="int" Nullable="false" />
+    <Property Name="LuotTapHuanThanhThaoMayTinh_DV" Type="int" Nullable="false" />
+    <Property Name="ThanhThaoMayTinh_DVTT" Type="int" Nullable="false" />
+    <Property Name="LuotTapHuanThanhThaoMayTinh_DVTT" Type="int" Nullable="false" />
+    <Property Name="Success" Type="tinyint" Nullable="false" />
+    <Property Name="TruongNhapLai" Type="varchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="HaTangNhanLucCNTT_Huyen">
+    <Key>
+      <PropertyRef Name="HaTangNhanLucCNTTHuyen_ID" />
+    </Key>
+    <Property Name="HaTangNhanLucCNTTHuyen_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LichNhap_ID" Type="int" Nullable="false" />
+    <Property Name="DonVi_ID" Type="int" Nullable="false" />
+    <Property Name="FileUpload" Type="nvarchar" MaxLength="250" />
+    <Property Name="TieuHoc_SoTruong" Type="int" />
+    <Property Name="TieuHoc_TinHoc" Type="int" />
+    <Property Name="TieuHoc_GVCNTT" Type="int" />
+    <Property Name="TieuHoc_TSCNTT" Type="int" />
+    <Property Name="TieuHoc_ThSCNTT" Type="int" />
+    <Property Name="THCS_SoTruong" Type="int" />
+    <Property Name="THCS_TinHoc" Type="int" />
+    <Property Name="THCS_GVCNTT" Type="int" />
+    <Property Name="THCS_TSCNTT" Type="int" />
+    <Property Name="THCS_ThSCNTT" Type="int" />
+    <Property Name="THPT_SoTruong" Type="int" />
+    <Property Name="THPT_TinHoc" Type="int" />
+    <Property Name="THPT_GVCNTT" Type="int" />
+    <Property Name="THPT_TSCNTT" Type="int" />
+    <Property Name="THPT_ThSCNTT" Type="int" />
+    <Property Name="TrungCap_SoTruong" Type="int" />
+    <Property Name="TrungCap_TinHoc" Type="int" />
+    <Property Name="TrungCap_NganhCNTT" Type="int" />
+    <Property Name="TrungCap_KhoaCNTT" Type="int" />
+    <Property Name="TrungCap_GVCNTT" Type="int" />
+    <Property Name="TrungCap_TSCNTT" Type="int" />
+    <Property Name="TrungCap_ThSCNTT" Type="int" />
+    <Property Name="TrungCap_TotNghiep" Type="int" />
+    <Property Name="CaoDang_SoTruong" Type="int" />
+    <Property Name="CaoDang_TinHoc" Type="int" />
+    <Property Name="CaoDang_NganhCNTT" Type="int" />
+    <Property Name="CaoDang_KhoaCNTT" Type="int" />
+    <Property Name="CaoDang_GVCNTT" Type="int" />
+    <Property Name="CaoDang_TSCNTT" Type="int" />
+    <Property Name="CaoDang_ThSCNTT" Type="int" />
+    <Property Name="CaoDang_TotNghiep" Type="int" />
+    <Property Name="DaiHoc_SoTruong" Type="int" />
+    <Property Name="DaiHoc_TinHoc" Type="int" />
+    <Property Name="DaiHoc_NganhCNTT" Type="int" />
+    <Property Name="DaiHoc_KhoaCNTT" Type="int" />
+    <Property Name="DaiHoc_GVCNTT" Type="int" />
+    <Property Name="DaiHoc_TSCNTT" Type="int" />
+    <Property Name="DaiHoc_ThSCNTT" Type="int" />
+    <Property Name="DaiHoc_TotNghiep" Type="int" />
+    <Property Name="Khac_SoTruong" Type="int" />
+    <Property Name="Khac_TinHoc" Type="int" />
+    <Property Name="Khac_NganhCNTT" Type="int" />
+    <Property Name="Khac_KhoaCNTT" Type="int" />
+    <Property Name="Khac_GVCNTT" Type="int" />
+    <Property Name="Khac_TSCNTT" Type="int" />
+    <Property Name="Khac_ThSCNTT" Type="int" />
+    <Property Name="Khac_TotNghiep" Type="int" />
+    <Property Name="Huyen_SoLuong" Type="int" />
+    <Property Name="Huyen_TienSy" Type="int" />
+    <Property Name="Huyen_ThacSy" Type="int" />
+    <Property Name="Huyen_DHCQ" Type="int" />
+    <Property Name="Huyen_KhongCQ" Type="int" />
+    <Property Name="Huyen_Luot" Type="int" />
+    <Property Name="Xa_SoLuong" Type="int" />
+    <Property Name="Xa_TienSy" Type="int" />
+    <Property Name="Xa_ThacSy" Type="int" />
+    <Property Name="Xa_DHCQ" Type="int" />
+    <Property Name="Xa_KhongCQ" Type="int" />
+    <Property Name="Xa_Luot" Type="int" />
+    <Property Name="UBND_ThanhThao" Type="int" />
+    <Property Name="UBND_Luot" Type="int" />
+    <Property Name="UBND_TSCNTT" Type="int" />
+    <Property Name="UBND_ThSCNTT" Type="int" />
+    <Property Name="HuyenUy_ThanhThao" Type="int" />
+    <Property Name="HuyenUy_Luot" Type="int" />
+    <Property Name="HuyenUy_TSCNTT" Type="int" />
+    <Property Name="HuyenUy_ThSCNTT" Type="int" />
+    <Property Name="Xa_ThanhThao" Type="int" />
+    <Property Name="Xa_Luot_ThanhThao" Type="int" />
+    <Property Name="Xa_TSCNTT" Type="int" />
+    <Property Name="Xa_ThSCNTT" Type="int" />
+    <Property Name="GiaoDuc_ThanhThao" Type="int" />
+    <Property Name="GiaoDuc_Luot" Type="int" />
+    <Property Name="GiaoDuc_TSCNTT" Type="int" />
+    <Property Name="GiaoDuc_ThSCNTT" Type="int" />
+    <Property Name="YTe_ThanhThao" Type="int" />
+    <Property Name="YTe_Luot" Type="int" />
+    <Property Name="YTe_TSCNTT" Type="int" />
+    <Property Name="YTe_ThSCNTT" Type="int" />
+    <Property Name="DVSN_ThanhThao" Type="int" />
+    <Property Name="DVSN_Luot" Type="int" />
+    <Property Name="DVSN_TSCNTT" Type="int" />
+    <Property Name="DVSN_ThSCNTT" Type="int" />
+    <Property Name="DN_ThanhThao" Type="int" />
+    <Property Name="DN_Luot" Type="int" />
+    <Property Name="DN_TSCNTT" Type="int" />
+    <Property Name="DN_ThSCNTT" Type="int" />
+    <Property Name="Khac_ThanhThao" Type="int" />
+    <Property Name="Khac_Luot" Type="int" />
+    <Property Name="Khac_TSCNTT_ThanhThao" Type="int" />
+    <Property Name="Khac_ThSCNTT_ThanhThao" Type="int" />
+    <Property Name="TruongNhapLai" Type="nvarchar" MaxLength="500" />
+    <Property Name="Success" Type="tinyint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Ht_CauHinhUpload">
+    <Key>
+      <PropertyRef Name="CauHinh_ID" />
+    </Key>
+    <Property Name="CauHinh_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PhanHe_ID" Type="int" Nullable="false" />
+    <Property Name="DuongDan" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="DonVi_ID" Type="int" Nullable="false" />
+    <Property Name="ThoiGian" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Ht_FileDinhKem">
+    <Key>
+      <PropertyRef Name="FileUpload_ID" />
+    </Key>
+    <Property Name="FileUpload_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BaoCao_ID" Type="int" Nullable="false" />
+    <Property Name="PhanHeChucNang_ID" Type="int" Nullable="false" />
+    <Property Name="DonVi_ID" Type="int" Nullable="false" />
+    <Property Name="LoaiVanBan_ID" Type="int" Nullable="false" />
+    <Property Name="SoVanBan" Type="nvarchar" MaxLength="100" />
+    <Property Name="TrichYeu" Type="nvarchar" MaxLength="250" />
+    <Property Name="NgayBanHanh" Type="datetime" />
+    <Property Name="HieuLuc" Type="tinyint" Nullable="false" />
+    <Property Name="CheDoBaoCao" Type="tinyint" />
+    <Property Name="QuanTamCuaLanhDao" Type="tinyint" />
+    <Property Name="GhiChu" Type="nvarchar" MaxLength="500" />
+    <Property Name="DuongDan" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="TenHienThi" Type="nvarchar" MaxLength="300" Nullable="false" />
+    <Property Name="TenFile" Type="nvarchar" MaxLength="300" Nullable="false" />
+    <Property Name="NguoiUpLoad" Type="nvarchar" MaxLength="128" />
+    <Property Name="NgayUpload" Type="datetime" />
+    <Property Name="TrangThai" Type="tinyint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Ht_LichNhapLieu">
+    <Key>
+      <PropertyRef Name="LichNhap_ID" />
+    </Key>
+    <Property Name="LichNhap_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BaoCao_ID" Type="int" />
+    <Property Name="PhanHe_ID" Type="int" Nullable="false" />
+    <Property Name="ChucNang_ID" Type="int" />
+    <Property Name="DonVi_ID" Type="int" Nullable="false" />
+    <Property Name="TuNgay" Type="datetime" Nullable="false" />
+    <Property Name="DenNgay" Type="datetime" Nullable="false" />
+    <Property Name="TrangThai" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="HT_Log">
+    <Key>
+      <PropertyRef Name="Log_ID" />
+    </Key>
+    <Property Name="Log_ID" Type="int" Nullable="false" />
+    <Property Name="User_ID" Type="int" Nullable="false" />
+    <Property Name="ChucNang" Type="varchar" MaxLength="250" />
+    <Property Name="ThaoTac" Type="varchar" MaxLength="150" />
+    <Property Name="ThoiGian" Type="datetime" Nullable="false" />
+    <Property Name="NoiDung" Type="varchar" MaxLength="8000" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Ht_PhanHe">
+    <Key>
+      <PropertyRef Name="PhanHe_ID" />
+    </Key>
+    <Property Name="PhanHe_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TenPhanHe" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="TrangThai" Type="int" Nullable="false" />
+    <Property Name="ThuTu" Type="int" />
+    <Property Name="ControllerName" Type="nvarchar" MaxLength="250" />
+    <Property Name="ActionName" Type="nvarchar" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="Ht_PhanHeChucNang">
+    <Key>
+      <PropertyRef Name="PhanHeChucNang_ID" />
+    </Key>
+    <Property Name="PhanHeChucNang_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PhanHe_ID" Type="int" Nullable="false" />
+    <Property Name="TenChucNang" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="ControllerName" Type="nvarchar" MaxLength="250" />
+    <Property Name="ActionName" Type="nvarchar" MaxLength="250" />
+    <Property Name="TrangThai" Type="int" Nullable="false" />
+    <Property Name="ThuTu" Type="int" />
+  </EntityType>
+  <EntityType Name="Ht_Role_PhanHe_ChucNang">
+    <Key>
+      <PropertyRef Name="PhanHeChucNang_ID" />
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="PhanHeChucNang_ID" Type="int" Nullable="false" />
+    <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="IsView" Type="tinyint" Nullable="false" />
+    <Property Name="IsEdit" Type="tinyint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Ht_ThamSoHeThong">
+    <Key>
+      <PropertyRef Name="ThamSo_ID" />
+    </Key>
+    <Property Name="ThamSo_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="User_ID" Type="int" />
+    <Property Name="TenThamSo" Type="varchar" MaxLength="250" Nullable="false" />
+    <Property Name="MaThamSo" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="GiaTriThamSo" Type="varchar" MaxLength="8000" Nullable="false" />
+    <Property Name="Comment" Type="varchar" MaxLength="1000" />
+  </EntityType>
+  <EntityType Name="Ht_User">
+    <Key>
+      <PropertyRef Name="User_ID" />
+    </Key>
+    <Property Name="User_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LoaiUser_ID" Type="int" Nullable="false" />
+    <Property Name="HoVaTen" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="DonVi_ID" Type="int" Nullable="false" />
+    <Property Name="QuyenHan" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="250" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="TrangThai" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="KeHoach">
+    <Key>
+      <PropertyRef Name="KeHoach_ID" />
+    </Key>
+    <Property Name="KeHoach_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LoaiKeHoach_ID" Type="int" Nullable="false" />
+    <Property Name="TenKeHoach" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="GhiChu" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="TruongNhapLai" Type="varchar" MaxLength="500" />
+    <Property Name="NgayTao" Type="datetime" />
+    <Property Name="NgayCapNhat" Type="datetime" />
+    <Property Name="Success" Type="tinyint" />
+  </EntityType>
+  <EntityType Name="PhanMemQLCN">
+    <Key>
+      <PropertyRef Name="PhanMemQLCN_ID" />
+    </Key>
+    <Property Name="PhanMemQLCN_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UngDungCNTT_ID" Type="int" Nullable="false" />
+    <Property Name="PhanHe_ID" Type="int" Nullable="false" />
+    <Property Name="DonVi_ID" Type="int" Nullable="false" />
+    <Property Name="TenPhanMem" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="SBN" Type="int" />
+    <Property Name="UBND_Huyen" Type="int" />
+    <Property Name="UBND_Xa" Type="int" />
+    <Property Name="DVTT" Type="int" />
+    <Property Name="Success" Type="tinyint" Nullable="false" />
+    <Property Name="TruongNhapLai" Type="varchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="TienDo">
+    <Key>
+      <PropertyRef Name="TienDo_ID" />
+    </Key>
+    <Property Name="TienDo_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="KeHoach_ID" Type="int" Nullable="false" />
+    <Property Name="TenDauViec" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="TienDo" Type="int" Nullable="false" />
+    <Property Name="GhiChu" Type="nvarchar" MaxLength="500" />
+    <Property Name="NgayTao" Type="datetime" />
+    <Property Name="NgayCapNhat" Type="datetime" />
+    <Property Name="FileUpload" Type="nvarchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="TinhHinhSXDN">
+    <Key>
+      <PropertyRef Name="TinhHinhSXDN_ID" />
+    </Key>
+    <Property Name="TinhHinhSXDN_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LichNhap_ID" Type="int" />
+    <Property Name="DonVi_ID" Type="int" Nullable="false" />
+    <Property Name="DoanhThu" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="TienNopThue" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="ThuNhapTrungBinh" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="DongGopXaHoi" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="KienNghi" Type="nvarchar" MaxLength="500" />
+    <Property Name="FileUpload" Type="nvarchar" MaxLength="500" />
+    <Property Name="Success" Type="tinyint" Nullable="false" />
+    <Property Name="TruongNhapLai" Type="varchar" MaxLength="500" />
+    <Property Name="NguoiDaiDien" Type="nvarchar" MaxLength="250" />
+    <Property Name="NLTN_DaiHoc" Type="int" Nullable="false" />
+    <Property Name="NLTN_CaoDang" Type="int" Nullable="false" />
+    <Property Name="NLTN_TrungCap" Type="int" Nullable="false" />
+    <Property Name="NLTN_TienSi" Type="int" Nullable="false" />
+    <Property Name="NLTN_ThacSi" Type="int" Nullable="false" />
+    <Property Name="NLTN_Khac" Type="int" Nullable="false" />
+    <Property Name="NLNN_DaiHoc" Type="int" Nullable="false" />
+    <Property Name="NLNN_CaoDang" Type="int" Nullable="false" />
+    <Property Name="NLNN_TrungCap" Type="int" Nullable="false" />
+    <Property Name="NLNN_TienSi" Type="int" Nullable="false" />
+    <Property Name="NLNN_ThacSi" Type="int" Nullable="false" />
+    <Property Name="NLNN_Khac" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TN_Chuyen">
+    <Key>
+      <PropertyRef Name="Chuyen_ID" />
+    </Key>
+    <Property Name="Viec_ID" Type="int" Nullable="false" />
+    <Property Name="Chuyen_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NguoiChuyen_ID" Type="varchar(max)" />
+    <Property Name="NguoiNhan_ID" Type="varchar(max)" />
+    <Property Name="Ykien" Type="nvarchar(max)" />
+    <Property Name="LoaiChuyen" Type="int" />
+    <Property Name="TenNguoiChuyen" Type="nvarchar(max)" />
+    <Property Name="TenNguoiNhan" Type="nvarchar(max)" />
+    <Property Name="Active" Type="int" />
+    <Property Name="LuongBaoCao" Type="varchar(max)" />
+    <Property Name="TraLoi_ID" Type="int" />
+  </EntityType>
+  <EntityType Name="TN_DauViec">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TenDauViec" Type="nvarchar" MaxLength="250" />
+    <Property Name="NguoiThucHien_ID" Type="nvarchar" MaxLength="500" />
+    <Property Name="TenNguoiThucHien" Type="nvarchar" MaxLength="250" />
+    <Property Name="FileDinhKem" Type="nvarchar" MaxLength="500" />
+    <Property Name="TuNgay" Type="datetime" />
+    <Property Name="DenNgay" Type="datetime" />
+    <Property Name="TienDo" Type="int" />
+    <Property Name="PhamVi" Type="int" />
+    <Property Name="LoaiViec" Type="int" />
+    <Property Name="NgayTao" Type="datetime" />
+    <Property Name="NguoiDuyet_ID" Type="varchar" MaxLength="250" />
+    <Property Name="TenNguoiDuyet" Type="nvarchar" MaxLength="250" />
+    <Property Name="NoiDung" Type="nvarchar(max)" />
+    <Property Name="Parent_ID" Type="int" />
+    <Property Name="NguoiTao_ID" Type="char" MaxLength="36" />
+    <Property Name="TrangThai" Type="int" />
+    <Property Name="Display" Type="varchar(max)" />
+    <Property Name="OnTime" Type="int" />
+  </EntityType>
+  <EntityType Name="ToChucChinhSachCNTT">
+    <Key>
+      <PropertyRef Name="ToChucChinhSachCNTT_ID" />
+    </Key>
+    <Property Name="ToChucChinhSachCNTT_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LichNhap_ID" Type="int" Nullable="false" />
+    <Property Name="DonVi_ID" Type="int" Nullable="false" />
+    <Property Name="TenVanBan" Type="nvarchar" MaxLength="250" />
+    <Property Name="SoKiHieu" Type="nvarchar" MaxLength="50" />
+    <Property Name="Success" Type="tinyint" Nullable="false" />
+    <Property Name="TruongNhapLai" Type="varchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="UngDungCNTT">
+    <Key>
+      <PropertyRef Name="UngDungCNTT_ID" />
+    </Key>
+    <Property Name="UngDungCNTT_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LichNhap_ID" Type="int" Nullable="false" />
+    <Property Name="DonVi_ID" Type="int" Nullable="false" />
+    <Property Name="FileUpload" Type="nvarchar" MaxLength="250" />
+    <Property Name="QLVB" Type="tinyint" Nullable="false" />
+    <Property Name="QLNhanSu" Type="tinyint" Nullable="false" />
+    <Property Name="QLTaiChinhKeToan" Type="tinyint" Nullable="false" />
+    <Property Name="QLTaiSanCong" Type="tinyint" Nullable="false" />
+    <Property Name="QLKhieuNai" Type="tinyint" Nullable="false" />
+    <Property Name="ChuKySo" Type="tinyint" Nullable="false" />
+    <Property Name="MotCuaDienTu" Type="tinyint" Nullable="false" />
+    <Property Name="SoTTHC" Type="int" Nullable="false" />
+    <Property Name="DV_LienThong" Type="int" Nullable="false" />
+    <Property Name="VBDi" Type="int" Nullable="false" />
+    <Property Name="VBDen" Type="int" Nullable="false" />
+    <Property Name="TongSo_VBDi" Type="int" Nullable="false" />
+    <Property Name="TongSo_VBDen" Type="int" Nullable="false" />
+    <Property Name="SoEmail" Type="int" Nullable="false" />
+    <Property Name="OpenOffice" Type="int" Nullable="false" />
+    <Property Name="MozillaThunderBird" Type="int" Nullable="false" />
+    <Property Name="MozillaFireFox" Type="int" Nullable="false" />
+    <Property Name="Unikey" Type="int" Nullable="false" />
+    <Property Name="PMNM" Type="int" Nullable="false" />
+    <Property Name="PMNM_MayChu" Type="int" Nullable="false" />
+    <Property Name="Success" Type="tinyint" Nullable="false" />
+    <Property Name="TruongNhapLai" Type="varchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="UngDungCNTT_Huyen">
+    <Key>
+      <PropertyRef Name="UngDungCNTTHuyen_ID" />
+    </Key>
+    <Property Name="UngDungCNTTHuyen_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LichNhap_ID" Type="int" Nullable="false" />
+    <Property Name="DonVi_ID" Type="int" Nullable="false" />
+    <Property Name="FileUpload" Type="nvarchar" MaxLength="250" />
+    <Property Name="TacNghiepTrucTiep" Type="tinyint" />
+    <Property Name="QuanLyNhanSu" Type="tinyint" />
+    <Property Name="TaiChinh_KeToan" Type="tinyint" />
+    <Property Name="TaiSanCong" Type="tinyint" />
+    <Property Name="KhieuNai_ToCao" Type="tinyint" />
+    <Property Name="ChuKySo" Type="tinyint" />
+    <Property Name="MotCuaDienTu" Type="tinyint" />
+    <Property Name="TenPhanMem" Type="nvarchar" MaxLength="250" />
+    <Property Name="ChucNang" Type="nvarchar" MaxLength="250" />
+    <Property Name="PhamViSuDung" Type="nvarchar" MaxLength="250" />
+    <Property Name="BatDauSuDung" Type="nvarchar" MaxLength="250" />
+    <Property Name="DonViThiCong" Type="nvarchar" MaxLength="250" />
+    <Property Name="Xa_KetNoiPhanMem" Type="int" />
+    <Property Name="VanBanDi_PhanMem" Type="int" />
+    <Property Name="VanBanDen_PhanMem" Type="int" />
+    <Property Name="Huyen_VanBanDi" Type="int" />
+    <Property Name="Huyen_VanBanDen" Type="int" />
+    <Property Name="Huyen_OpenOffice" Type="int" />
+    <Property Name="Huyen_ThunderBird" Type="int" />
+    <Property Name="Huyen_FireFox" Type="int" />
+    <Property Name="Huyen_Unikey" Type="int" />
+    <Property Name="Huyen_PMNM" Type="int" />
+    <Property Name="Huyen_MayChuPMNM" Type="int" />
+    <Property Name="Huyen_HopThuDienTu" Type="int" />
+    <Property Name="Xa_HopThuDienTu" Type="int" />
+    <Property Name="MamNon_TTDT" Type="int" />
+    <Property Name="MamNon_TaiSanCong" Type="int" />
+    <Property Name="MamNon_Khac" Type="int" />
+    <Property Name="MamNon_QLGiangDay" Type="int" />
+    <Property Name="MamNon_QLHSSV" Type="int" />
+    <Property Name="MamNon_QLThuVien" Type="int" />
+    <Property Name="MamNon_DeTaiKH" Type="int" />
+    <Property Name="MamNon_QLThi" Type="int" />
+    <Property Name="TieuHoc_TTDT" Type="int" />
+    <Property Name="TieuHoc_TaiSanCong" Type="int" />
+    <Property Name="TieuHoc_Khac" Type="int" />
+    <Property Name="TieuHoc_QLGiangDay" Type="int" />
+    <Property Name="TieuHoc_QLHSSV" Type="int" />
+    <Property Name="TieuHoc_QLThuVien" Type="int" />
+    <Property Name="TieuHoc_DeTaiKH" Type="int" />
+    <Property Name="TieuHoc_QLThi" Type="int" />
+    <Property Name="THCS_TTDT" Type="int" />
+    <Property Name="THCS_TaiSanCong" Type="int" />
+    <Property Name="THCS_Khac" Type="int" />
+    <Property Name="THCS_QLGiangDay" Type="int" />
+    <Property Name="THCS_QLHSSV" Type="int" />
+    <Property Name="THCS_QLThuVien" Type="int" />
+    <Property Name="THCS_DeTaiKH" Type="int" />
+    <Property Name="THCS_QLThi" Type="int" />
+    <Property Name="THPT_TTDT" Type="int" />
+    <Property Name="THPT_TaiSanCong" Type="int" />
+    <Property Name="THPT_Khac" Type="int" />
+    <Property Name="THPT_QLGiangDay" Type="int" />
+    <Property Name="THPT_QLHSSV" Type="int" />
+    <Property Name="THPT_QLThuVien" Type="int" />
+    <Property Name="THPT_DeTaiKH" Type="int" />
+    <Property Name="THPT_QLThi" Type="int" />
+    <Property Name="TrungCap_TTDT" Type="int" />
+    <Property Name="TrungCap_TaiSanCong" Type="int" />
+    <Property Name="TrungCap_Khac" Type="int" />
+    <Property Name="TrungCap_QLGiangDay" Type="int" />
+    <Property Name="TrungCap_QLHSSV" Type="int" />
+    <Property Name="TrungCap_QLThuVien" Type="int" />
+    <Property Name="TrungCap_DeTaiKH" Type="int" />
+    <Property Name="TrungCap_QLThi" Type="int" />
+    <Property Name="CaoDang_TTDT" Type="int" />
+    <Property Name="CaoDang_TaiSanCong" Type="int" />
+    <Property Name="CaoDang_Khac" Type="int" />
+    <Property Name="CaoDang_QLGiangDay" Type="int" />
+    <Property Name="CaoDang_QLHSSV" Type="int" />
+    <Property Name="CaoDang_QLThuVien" Type="int" />
+    <Property Name="CaoDang_DeTaiKH" Type="int" />
+    <Property Name="CaoDang_QLThi" Type="int" />
+    <Property Name="DaiHoc_TTDT" Type="int" />
+    <Property Name="DaiHoc_TaiSanCong" Type="int" />
+    <Property Name="DaiHoc_Khac" Type="int" />
+    <Property Name="DaiHoc_QLGiangDay" Type="int" />
+    <Property Name="DaiHoc_QLHSSV" Type="int" />
+    <Property Name="DaiHoc_QLThuVien" Type="int" />
+    <Property Name="DaiHoc_DeTaiKH" Type="int" />
+    <Property Name="DaiHoc_QLThi" Type="int" />
+    <Property Name="Khac_TTDT" Type="int" />
+    <Property Name="Khac_TaiSanCong" Type="int" />
+    <Property Name="Khac_Khac" Type="int" />
+    <Property Name="Khac_QLGiangDay" Type="int" />
+    <Property Name="Khac_QLHSSV" Type="int" />
+    <Property Name="Khac_QLThuVien" Type="int" />
+    <Property Name="Khac_DeTaiKH" Type="int" />
+    <Property Name="Khac_QLThi" Type="int" />
+    <Property Name="TramXa_TTDT" Type="int" />
+    <Property Name="TramXa_QLTC" Type="int" />
+    <Property Name="TramXa_NhanSu" Type="int" />
+    <Property Name="TramXa_BenhAn" Type="int" />
+    <Property Name="TramXa_TacNghiep" Type="int" />
+    <Property Name="TramXa_QLThuoc" Type="int" />
+    <Property Name="TramXa_GiuongBenh" Type="int" />
+    <Property Name="TramXa_CongSan" Type="int" />
+    <Property Name="TramXa_TuXa" Type="int" />
+    <Property Name="BenhVien_TTDT" Type="int" />
+    <Property Name="BenhVien_QLTC" Type="int" />
+    <Property Name="BenhVien_NhanSu" Type="int" />
+    <Property Name="BenhVien_BenhAn" Type="int" />
+    <Property Name="BenhVien_TacNghiep" Type="int" />
+    <Property Name="BenhVien_QLThuoc" Type="int" />
+    <Property Name="BenhVien_GiuongBenh" Type="int" />
+    <Property Name="BenhVien_CongSan" Type="int" />
+    <Property Name="BenhVien_TuXa" Type="int" />
+    <Property Name="DuPhong_TTDT" Type="int" />
+    <Property Name="DuPhong_QLTC" Type="int" />
+    <Property Name="DuPhong_NhanSu" Type="int" />
+    <Property Name="DuPhong_BenhAn" Type="int" />
+    <Property Name="DuPhong_TacNghiep" Type="int" />
+    <Property Name="DuPhong_QLThuoc" Type="int" />
+    <Property Name="DuPhong_GiuongBenh" Type="int" />
+    <Property Name="DuPhong_CongSan" Type="int" />
+    <Property Name="DuPhong_TuXa" Type="int" />
+    <Property Name="SotRet_TTDT" Type="int" />
+    <Property Name="SotRet_QLTC" Type="int" />
+    <Property Name="SotRet_NhanSu" Type="int" />
+    <Property Name="SotRet_BenhAn" Type="int" />
+    <Property Name="SotRet_TacNghiep" Type="int" />
+    <Property Name="SotRet_QLThuoc" Type="int" />
+    <Property Name="SotRet_GiuongBenh" Type="int" />
+    <Property Name="SotRet_CongSan" Type="int" />
+    <Property Name="SotRet_TuXa" Type="int" />
+    <Property Name="HIVAIDS_TTDT" Type="int" />
+    <Property Name="HIVAIDS_QLTC" Type="int" />
+    <Property Name="HIVAIDS_NhanSu" Type="int" />
+    <Property Name="HIVAIDS_BenhAn" Type="int" />
+    <Property Name="HIVAIDS_TacNghiep" Type="int" />
+    <Property Name="HIVAIDS_QLThuoc" Type="int" />
+    <Property Name="HIVAIDS_GiuongBenh" Type="int" />
+    <Property Name="HIVAIDS_CongSan" Type="int" Nullable="false" />
+    <Property Name="HIVAIDS_TuXa" Type="int" />
+    <Property Name="SinhSan_TTDT" Type="int" />
+    <Property Name="SinhSan_QLTC" Type="int" />
+    <Property Name="SinhSan_NhanSu" Type="int" />
+    <Property Name="SinhSan_BenhAn" Type="int" />
+    <Property Name="SinhSan_TacNghiep" Type="int" />
+    <Property Name="SinhSan_QLThuoc" Type="int" />
+    <Property Name="SinhSan_GiuongBenh" Type="int" />
+    <Property Name="SinhSan_CongSan" Type="int" />
+    <Property Name="SinhSan_TuXa" Type="int" />
+    <Property Name="DaLieu_TTDT" Type="int" />
+    <Property Name="DaLieu_QLTC" Type="int" />
+    <Property Name="DaLieu_NhanSu" Type="int" />
+    <Property Name="DaLieu_BenhAn" Type="int" />
+    <Property Name="DaLieu_TacNghiep" Type="int" />
+    <Property Name="DaLieu_QLThuoc" Type="int" />
+    <Property Name="DaLieu_GiuongBenh" Type="int" />
+    <Property Name="DaLieu_CongSan" Type="int" />
+    <Property Name="DaLieu_TuXa" Type="int" />
+    <Property Name="Mat_TTDT" Type="int" />
+    <Property Name="Mat_QLTC" Type="int" />
+    <Property Name="Mat_NhanSu" Type="int" />
+    <Property Name="Mat_BenhAn" Type="int" />
+    <Property Name="Mat_TacNghiep" Type="int" />
+    <Property Name="Mat_QLThuoc" Type="int" />
+    <Property Name="Mat_GiuongBenh" Type="int" />
+    <Property Name="Mat_CongSan" Type="int" />
+    <Property Name="Mat_TuXa" Type="int" />
+    <Property Name="DKTinh_TTDT" Type="int" />
+    <Property Name="DKTinh_QLTC" Type="int" />
+    <Property Name="DKTinh_NhanSu" Type="int" />
+    <Property Name="DKTinh_BenhAn" Type="int" />
+    <Property Name="DKTinh_TacNghiep" Type="int" />
+    <Property Name="DKTinh_QLThuoc" Type="int" />
+    <Property Name="DKTinh_GiuongBenh" Type="int" />
+    <Property Name="DKTinh_CongSan" Type="int" />
+    <Property Name="DKTinh_TuXa" Type="int" />
+    <Property Name="DieuDuong_TTDT" Type="int" />
+    <Property Name="DieuDuong_QLTC" Type="int" />
+    <Property Name="DieuDuong_NhanSu" Type="int" />
+    <Property Name="DieuDuong_BenhAn" Type="int" />
+    <Property Name="DieuDuong_TacNghiep" Type="int" />
+    <Property Name="DieuDuong_QLThuoc" Type="int" />
+    <Property Name="DieuDuong_GiuongBenh" Type="int" />
+    <Property Name="DieuDuong_CongSan" Type="int" />
+    <Property Name="DieuDuong_TuXa" Type="int" />
+    <Property Name="LaoPhoi_TTDT" Type="int" />
+    <Property Name="LaoPhoi_QLTC" Type="int" />
+    <Property Name="LaoPhoi_NhanSu" Type="int" />
+    <Property Name="LaoPhoi_BenhAn" Type="int" />
+    <Property Name="LaoPhoi_TacNghiep" Type="int" />
+    <Property Name="LaoPhoi_QLThuoc" Type="int" />
+    <Property Name="LaoPhoi_GiuongBenh" Type="int" />
+    <Property Name="LaoPhoi_CongSan" Type="int" />
+    <Property Name="LaoPhoi_TuXa" Type="int" />
+    <Property Name="YHoc_TTDT" Type="int" />
+    <Property Name="YHoc_QLTC" Type="int" />
+    <Property Name="YHoc_NhanSu" Type="int" />
+    <Property Name="YHoc_BenhAn" Type="int" />
+    <Property Name="YHoc_TacNghiep" Type="int" />
+    <Property Name="YHoc_QLThuoc" Type="int" />
+    <Property Name="YHoc_GiuongBenh" Type="int" />
+    <Property Name="YHoc_CongSan" Type="int" />
+    <Property Name="YHoc_TuXa" Type="int" />
+    <Property Name="TamThan_TTDT" Type="int" />
+    <Property Name="TamThan_QLTC" Type="int" Nullable="false" />
+    <Property Name="TamThan_NhanSu" Type="int" />
+    <Property Name="TamThan_BenhAn" Type="int" />
+    <Property Name="TamThan_TacNghiep" Type="int" />
+    <Property Name="TamThan_QLThuoc" Type="int" />
+    <Property Name="TamThan_GiuongBenh" Type="int" />
+    <Property Name="TamThan_CongSan" Type="int" />
+    <Property Name="TamThan_TuXa" Type="int" />
+    <Property Name="UD_AnToanVeSinhTP" Type="nvarchar" MaxLength="250" />
+    <Property Name="UD_KHHGiaDinh" Type="nvarchar" MaxLength="250" />
+    <Property Name="UD_TTSucKhoe" Type="nvarchar" MaxLength="250" />
+    <Property Name="UD_DPMyPham" Type="nvarchar" MaxLength="250" />
+    <Property Name="UD_GiamDinhYKhoa" Type="nvarchar" MaxLength="250" />
+    <Property Name="UD_GiamDinhPhapY" Type="nvarchar" MaxLength="250" />
+    <Property Name="SuNghiep_KeToan" Type="tinyint" />
+    <Property Name="SuNghiep_ERP" Type="tinyint" />
+    <Property Name="SuNghiep_VatTuDN" Type="tinyint" />
+    <Property Name="SuNghiep_Luong" Type="tinyint" />
+    <Property Name="SuNghiep_BanHang" Type="tinyint" />
+    <Property Name="SuNghiep_GDDTTinh" Type="tinyint" />
+    <Property Name="SuNghiep_Khac" Type="tinyint" />
+    <Property Name="CNTT_KeToan" Type="tinyint" />
+    <Property Name="CNTT_ERP" Type="tinyint" />
+    <Property Name="CNTT_VatTuDN" Type="tinyint" />
+    <Property Name="CNTT_Luong" Type="tinyint" />
+    <Property Name="CNTT_BanHang" Type="tinyint" />
+    <Property Name="CNTT_GDDTTinh" Type="tinyint" />
+    <Property Name="CNTT_Khac" Type="tinyint" />
+    <Property Name="Khac_KeToan" Type="tinyint" Nullable="false" />
+    <Property Name="Khac_ERP" Type="tinyint" />
+    <Property Name="Khac_VatTuDN" Type="tinyint" />
+    <Property Name="Khac_Luong" Type="tinyint" />
+    <Property Name="Khac_BanHang" Type="tinyint" />
+    <Property Name="Khac_GDDTTinh" Type="tinyint" />
+    <Property Name="DNKhac_Khac" Type="tinyint" />
+    <Property Name="TruongNhapLai" Type="nvarchar" MaxLength="500" />
+    <Property Name="Success" Type="tinyint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UngDungCNTTTaiDN">
+    <Key>
+      <PropertyRef Name="UngDungCNTTTaiDN_ID" />
+    </Key>
+    <Property Name="UngDungCNTTTaiDN_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LichNhap_ID" Type="int" Nullable="false" />
+    <Property Name="DonVi_ID" Type="int" Nullable="false" />
+    <Property Name="FileUpload" Type="nvarchar" MaxLength="250" />
+    <Property Name="DiaChi" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="NguoiDaiDien" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="SoDienThoai" Type="varchar" MaxLength="50" />
+    <Property Name="NganhNgheKinhDoanh" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="LAN" Type="tinyint" Nullable="false" />
+    <Property Name="LoaiHinhDoanhNghiep" Type="int" Nullable="false" />
+    <Property Name="DoanhThu" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="SoMayTinh" Type="int" Nullable="false" />
+    <Property Name="PhanMemDangUngDung" Type="int" Nullable="false" />
+    <Property Name="SoWebsite" Type="int" Nullable="false" />
+    <Property Name="KienNghi" Type="nvarchar" MaxLength="500" />
+    <Property Name="Success" Type="tinyint" Nullable="false" />
+    <Property Name="TruongNhapLai" Type="nvarchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="VanBan">
+    <Key>
+      <PropertyRef Name="VanBan_ID" />
+    </Key>
+    <Property Name="VanBan_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LoaiVanBan_ID" Type="int" Nullable="false" />
+    <Property Name="TenVanBan" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="FileUpload" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="DonViBanHanh_ID" Type="int" Nullable="false" />
+    <Property Name="TrichYeu" Type="nvarchar" MaxLength="500" />
+    <Property Name="NgayTao" Type="datetime" />
+    <Property Name="NgayCapNhat" Type="datetime" />
+    <Property Name="Success" Type="tinyint" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserClaims">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserLogins">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="sp_GetChucNangByRole" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="RoleId" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_GetUserAndRole" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Id" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_GetUserByDonVi_Role" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="nhomDonVi_ID" Type="int" Mode="In" />
+    <Parameter Name="donViCap1_ID" Type="int" Mode="In" />
+    <Parameter Name="donVi_ID" Type="int" Mode="In" />
+    <Parameter Name="role" Type="nvarchar" Mode="In" />
+    <Parameter Name="trangThai" Type="int" Mode="In" />
+  </Function>
+  <EntityContainer Name="WebsiteModelStoreContainer">
+    <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CongNghiepCNTT" EntityType="Self.CongNghiepCNTT" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CongThongTinDienTu" EntityType="Self.CongThongTinDienTu" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CongThongTinDienTu_Huyen" EntityType="Self.CongThongTinDienTu_Huyen" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Dm_DanhMucChung" EntityType="Self.Dm_DanhMucChung" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Dm_DonVi" EntityType="Self.Dm_DonVi" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Dm_LoaiDanhMuc" EntityType="Self.Dm_LoaiDanhMuc" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Dm_LoaiKeHoach" EntityType="Self.Dm_LoaiKeHoach" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Dm_LoaiVanBan" EntityType="Self.Dm_LoaiVanBan" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Dm_ThongTinDonVi" EntityType="Self.Dm_ThongTinDonVi" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="HaTangKyThuatCNTT" EntityType="Self.HaTangKyThuatCNTT" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="HaTangKyThuatCNTT_Huyen" EntityType="Self.HaTangKyThuatCNTT_Huyen" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="HaTangNhanLucCNTT" EntityType="Self.HaTangNhanLucCNTT" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="HaTangNhanLucCNTT_Huyen" EntityType="Self.HaTangNhanLucCNTT_Huyen" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Ht_CauHinhUpload" EntityType="Self.Ht_CauHinhUpload" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Ht_FileDinhKem" EntityType="Self.Ht_FileDinhKem" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Ht_LichNhapLieu" EntityType="Self.Ht_LichNhapLieu" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="HT_Log" EntityType="Self.HT_Log" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Ht_PhanHe" EntityType="Self.Ht_PhanHe" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Ht_PhanHeChucNang" EntityType="Self.Ht_PhanHeChucNang" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Ht_Role_PhanHe_ChucNang" EntityType="Self.Ht_Role_PhanHe_ChucNang" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Ht_ThamSoHeThong" EntityType="Self.Ht_ThamSoHeThong" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Ht_User" EntityType="Self.Ht_User" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="KeHoach" EntityType="Self.KeHoach" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PhanMemQLCN" EntityType="Self.PhanMemQLCN" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TienDo" EntityType="Self.TienDo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TinhHinhSXDN" EntityType="Self.TinhHinhSXDN" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TN_Chuyen" EntityType="Self.TN_Chuyen" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TN_DauViec" EntityType="Self.TN_DauViec" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ToChucChinhSachCNTT" EntityType="Self.ToChucChinhSachCNTT" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UngDungCNTT" EntityType="Self.UngDungCNTT" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UngDungCNTT_Huyen" EntityType="Self.UngDungCNTT_Huyen" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UngDungCNTTTaiDN" EntityType="Self.UngDungCNTTTaiDN" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="VanBan" EntityType="Self.VanBan" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

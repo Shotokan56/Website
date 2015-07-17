@@ -1,0 +1,202 @@
+﻿@model IEnumerable<S4T_HaTinh.Models.Dm_ThongTinDonVi>
+
+@{
+    ViewBag.Title = "THÔNG TIN ĐƠN VỊ";
+}
+<h2>@ViewBag.Title</h2>
+
+<table class="tableDefault">
+    <tr>
+        @*<th>
+                @Html.DisplayNameFor(model => model.DonVi_ID)
+            </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.TenDonVi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DiaChi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DienThoai)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Website)
+        </th>
+        @*<th>
+                @Html.DisplayNameFor(model => model.GiamDoc)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PhoGiamDoc1)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PhoGiamDoc2)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PhoGiamDoc3)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PhoGiamDoc4)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PhoGiamDoc5)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PhoGiamDoc6)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PhoGiamDoc7)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GiamDocCNTT)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SoLuongCBCC)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SoDonViTrucThuoc)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SoLuongNV_DVTT)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PhongCNTT)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SoLuongCB_PhongCNTT)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ToCNTT)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SoLuongCB_ToCNTT)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HoTen_CBCT1)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TrinhDoCNTT_CBCT1)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SoDienThoai_CBCT1)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email_CBCT1)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HoTen_CBCT2)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TrinhDoCNTT_CBCT2)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SoDienThoai_CBCT2)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email_CBCT2)
+            </th>*@
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.DonVi_ID)
+                </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.TenDonVi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DiaChi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DienThoai)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Website)
+            </td>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.GiamDoc)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PhoGiamDoc1)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PhoGiamDoc2)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PhoGiamDoc3)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PhoGiamDoc4)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PhoGiamDoc5)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PhoGiamDoc6)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PhoGiamDoc7)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GiamDocCNTT)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SoLuongCBCC)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SoDonViTrucThuoc)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SoLuongNV_DVTT)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PhongCNTT)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SoLuongCB_PhongCNTT)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ToCNTT)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SoLuongCB_ToCNTT)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HoTen_CBCT1)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TrinhDoCNTT_CBCT1)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SoDienThoai_CBCT1)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email_CBCT1)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HoTen_CBCT2)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TrinhDoCNTT_CBCT2)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SoDienThoai_CBCT2)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email_CBCT2)
+                </td>*@
+            <td>
+                @Html.ActionLink("Sửa", "Edit", new { id = item.ThongTin_ID })
+            </td>
+        </tr>
+    }
+
+</table>

@@ -1,0 +1,850 @@
+﻿@model S4T_HaTinh.Models.HaTangNhanLucCNTT_Huyen
+
+@{
+    ViewBag.Title = "CHECK";
+    //var listStatusNhapLieu = MvcApplication.ListTrangThaiNhapLieu();
+}
+<h2>KIỂM TRA</h2>
+
+<script src="~/Scripts/s4t-hatinh.js" type="text/javascript"></script>
+
+
+@using (Html.BeginForm()) 
+{
+    @*@Html.AntiForgeryToken()*@
+    
+    <div class="form-horizontal">        
+        <hr />        
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.HaTangNhanLucCNTTHuyen_ID)
+        <input type="hidden" id="lichNhap_ID" value="@ViewBag.LichNhap_ID" />
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DonVi_ID, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBox("txtTenDonVi", (string)ViewBag.TenDonVi, new { @class = "form-control", @readonly = "readonly" })
+                @Html.HiddenFor(model => model.DonVi_ID)
+                @Html.ValidationMessageFor(model => model.DonVi_ID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Success, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.HiddenFor(model => model.Success)
+                @Html.TextBox("txtSuccess", "Chờ duyệt", new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                @Html.ValidationMessageFor(model => model.Success, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.TruongNhapLai, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.HiddenFor(model => model.TruongNhapLai)
+                @Html.TextArea("txtTruongNhapLai", "", new { @rows = "5", @cols = "45", @readonly = "readonly" })
+            </div>
+        </div>
+        <div>
+            1.	Đào tạo nguồn nhân lực <span id="lblDaotaonhanluc"></span>
+            <table class="tableDefault">
+                <tr>
+                    <th></th>
+                    <th>Số trường</th>
+                    <th>Môn Tin học</th>
+                    <th>Ngành CNTT</th>
+                    <th>Khoa CNTT</th>
+                    <th>Giáo viên CNTT</th>
+                    <th>GV TS CNTT</th>
+                    <th>GV Th.S CNTT</th>
+                    <th>SV tốt nghiệp CNTT</th>
+                </tr>
+                <tr>
+                    <td>Tiểu học</td>
+                    <td>
+                       
+                        @Html.EditorFor(model => model.TieuHoc_SoTruong, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.TieuHoc_SoTruong, "", new { @class = "text-danger" })
+                        @Html.LabelFor(model => model.TieuHoc_SoTruong, new { @style = "display:none" })
+                        @Html.CheckBox("chk_value_TieuHoc_SoTruong")
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.TieuHoc_TinHoc, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.TieuHoc_TinHoc, "", new { @class = "text-danger" })
+                        @Html.LabelFor(model => model.TieuHoc_TinHoc, new { @style = "display:none" })
+                        @Html.CheckBox("chk_value_TieuHoc_TinHoc")
+                    </td>
+                    <td></td>
+                    <td></td>
+                    <td>
+                        @Html.EditorFor(model => model.TieuHoc_GVCNTT, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.TieuHoc_GVCNTT, "", new { @class = "text-danger" })
+                        @Html.LabelFor(model => model.TieuHoc_GVCNTT, new { @style = "display:none" })
+                        @Html.CheckBox("chk_value_TieuHoc_GVCNTT")
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.TieuHoc_TSCNTT, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.TieuHoc_TSCNTT, "", new { @class = "text-danger" })
+                        @Html.LabelFor(model => model.TieuHoc_TSCNTT, new { @style = "display:none" })
+                        @Html.CheckBox("chk_value_TieuHoc_TSCNTT")
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.TieuHoc_ThSCNTT, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.TieuHoc_ThSCNTT, "", new { @class = "text-danger" })
+                        @Html.LabelFor(model => model.TieuHoc_ThSCNTT, new { @style = "display:none" })
+                        @Html.CheckBox("chk_value_TieuHoc_ThSCNTT")
+                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>THCS</td>
+                    <td>
+                        @Html.EditorFor(model => model.THCS_SoTruong, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.THCS_SoTruong, "", new { @class = "text-danger" })
+                        @Html.LabelFor(model => model.THCS_SoTruong, new { @style = "display:none" })
+                        @Html.CheckBox("chk_value_TTHCS_SoTruong")
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.THCS_TinHoc, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.THCS_TinHoc, "", new { @class = "text-danger" })
+                        @Html.LabelFor(model => model.THCS_TinHoc, new { @style = "display:none" })
+                        @Html.CheckBox("chk_value_THCS_TinHoc")
+                    </td>
+                    <td></td>
+                    <td></td>
+                    <td>
+                        @Html.EditorFor(model => model.THCS_GVCNTT, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.THCS_GVCNTT, "", new { @class = "text-danger" })
+                        @Html.LabelFor(model => model.THCS_GVCNTT, new { @style = "display:none" })
+                        @Html.CheckBox("chk_value_THCS_GVCNTT")
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.THCS_TSCNTT, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.THCS_TSCNTT, "", new { @class = "text-danger" })
+                        @Html.LabelFor(model => model.THCS_TSCNTT, new { @style = "display:none" })
+                        @Html.CheckBox("chk_value_THCS_TSCNTT")
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.THCS_ThSCNTT, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.THCS_ThSCNTT, "", new { @class = "text-danger" })
+                        @Html.LabelFor(model => model.THCS_ThSCNTT, new { @style = "display:none" })
+                        @Html.CheckBox("chk_value_THCS_ThSCNTT")
+                    </td>
+                    <td></td>
+                </tr>
+
+                <tr>
+                    <td>THPT</td>
+                    <td>
+                        @Html.EditorFor(model => model.THPT_SoTruong, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.THPT_SoTruong, "", new { @class = "text-danger" })
+                        @Html.LabelFor(model => model.THPT_SoTruong, new { @style = "display:none" })
+                        @Html.CheckBox("chk_value_THPT_SoTruong")
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.THPT_TinHoc, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.THPT_TinHoc, "", new { @class = "text-danger" })
+                        @Html.LabelFor(model => model.THPT_TinHoc, new { @style = "display:none" })
+                        @Html.CheckBox("chk_value_THPT_TinHoc")
+                    </td>
+                    <td></td>
+                    <td></td>
+                    <td>
+                        @Html.EditorFor(model => model.THPT_GVCNTT, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.THPT_GVCNTT, "", new { @class = "text-danger" })
+                        @Html.LabelFor(model => model.THPT_GVCNTT, new { @style = "display:none" })
+                        @Html.CheckBox("chk_value_THPT_GVCNTT")
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.THPT_TSCNTT, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.THPT_TSCNTT, "", new { @class = "text-danger" })
+                        @Html.LabelFor(model => model.THPT_TSCNTT, new { @style = "display:none" })
+                        @Html.CheckBox("chk_value_THPT_TSCNTT")
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.THPT_ThSCNTT, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.THPT_ThSCNTT, "", new { @class = "text-danger" })
+                        @Html.LabelFor(model => model.THPT_ThSCNTT, new { @style = "display:none" })
+                        @Html.CheckBox("chk_value_THPT_ThSCNTT")
+                    </td>
+                    <td></td>
+                </tr>
+
+                <tr>
+                    <td>Trung cấp</td>
+                    <td>
+                        @Html.EditorFor(model => model.TrungCap_SoTruong, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.TrungCap_SoTruong, "", new { @class = "text-danger" })
+                        @Html.LabelFor(model => model.TrungCap_SoTruong, new { @style = "display:none" })
+                        @Html.CheckBox("chk_value_TrungCap_SoTruong")
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.TrungCap_TinHoc, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.TrungCap_TinHoc, "", new { @class = "text-danger" })
+                        @Html.LabelFor(model => model.TrungCap_TinHoc, new { @style = "display:none" })
+                        @Html.CheckBox("chk_value_TrungCap_TinHoc")
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.TrungCap_NganhCNTT, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.TrungCap_NganhCNTT, "", new { @class = "text-danger" })
+                        @Html.LabelFor(model => model.TrungCap_NganhCNTT, new { @style = "display:none" })
+                        @Html.CheckBox("chk_value_TrungCap_NganhCNTT")
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.TrungCap_KhoaCNTT, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.TrungCap_KhoaCNTT, "", new { @class = "text-danger" })
+                        @Html.LabelFor(model => model.TrungCap_KhoaCNTT, new { @style = "display:none" })
+                        @Html.CheckBox("chk_value_TrungCap_KhoaCNTT")
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.TrungCap_GVCNTT, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.TrungCap_GVCNTT, "", new { @class = "text-danger" })
+                        @Html.LabelFor(model => model.TrungCap_GVCNTT, new { @style = "display:none" })
+                        @Html.CheckBox("chk_value_TrungCap_GVCNTT")
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.TrungCap_TSCNTT, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.TrungCap_TSCNTT, "", new { @class = "text-danger" })
+                        @Html.LabelFor(model => model.TrungCap_TSCNTT, new { @style = "display:none" })
+                        @Html.CheckBox("chk_value_TrungCap_TSCNTT")
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.TrungCap_ThSCNTT, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.TrungCap_ThSCNTT, "", new { @class = "text-danger" })
+                        @Html.LabelFor(model => model.TrungCap_ThSCNTT, new { @style = "display:none" })
+                        @Html.CheckBox("chk_value_TrungCap_ThSCNTT")
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.TrungCap_TotNghiep, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.TrungCap_TotNghiep, "", new { @class = "text-danger" })
+                        @Html.LabelFor(model => model.TrungCap_TotNghiep, new { @style = "display:none" })
+                        @Html.CheckBox("chk_value_TrungCap_TotNghiep")
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Cao Đẳng</td>
+                    <td>
+                        @Html.EditorFor(model => model.CaoDang_SoTruong, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.CaoDang_SoTruong, "", new { @class = "text-danger" })
+                        @Html.LabelFor(model => model.CaoDang_SoTruong, new { @style = "display:none" })
+                        @Html.CheckBox("chk_value_CaoDang_SoTruong")
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.CaoDang_TinHoc, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.CaoDang_TinHoc, "", new { @class = "text-danger" })
+                        @Html.LabelFor(model => model.CaoDang_TinHoc, new { @style = "display:none" })
+                        @Html.CheckBox("chk_value_CaoDang_TinHoc")
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.CaoDang_NganhCNTT, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.CaoDang_NganhCNTT, "", new { @class = "text-danger" })
+                        @Html.LabelFor(model => model.CaoDang_NganhCNTT, new { @style = "display:none" })
+                        @Html.CheckBox("chk_value_CaoDang_NganhCNTT")
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.CaoDang_KhoaCNTT, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.CaoDang_KhoaCNTT, "", new { @class = "text-danger" })
+                        @Html.LabelFor(model => model.CaoDang_KhoaCNTT, new { @style = "display:none" })
+                        @Html.CheckBox("chk_value_CaoDang_KhoaCNTT")
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.CaoDang_GVCNTT, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.CaoDang_GVCNTT, "", new { @class = "text-danger" })
+                        @Html.LabelFor(model => model.CaoDang_GVCNTT, new { @style = "display:none" })
+                        @Html.CheckBox("chk_value_CaoDang_GVCNTT")
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.CaoDang_TSCNTT, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.CaoDang_TSCNTT, "", new { @class = "text-danger" })
+                        @Html.LabelFor(model => model.CaoDang_TSCNTT, new { @style = "display:none" })
+                        @Html.CheckBox("chk_value_CaoDang_TSCNTT")
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.CaoDang_ThSCNTT, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.CaoDang_ThSCNTT, "", new { @class = "text-danger" })
+                        @Html.LabelFor(model => model.CaoDang_ThSCNTT, new { @style = "display:none" })
+                        @Html.CheckBox("chk_value_CaoDang_ThSCNTT")
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.CaoDang_TotNghiep, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.CaoDang_TotNghiep, "", new { @class = "text-danger" })
+                        @Html.LabelFor(model => model.CaoDang_TotNghiep, new { @style = "display:none" })
+                        @Html.CheckBox("chk_value_CaoDang_TotNghiep")
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Đại học</td>
+                    <td>
+                        @Html.EditorFor(model => model.DaiHoc_SoTruong, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.CaoDang_SoTruong, "", new { @class = "text-danger" })
+                        @Html.LabelFor(model => model.CaoDang_SoTruong, new { @style = "display:none" })
+                        @Html.CheckBox("chk_value_CaoDang_SoTruong")
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.DaiHoc_TinHoc, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.DaiHoc_TinHoc, "", new { @class = "text-danger" })
+                        @Html.LabelFor(model => model.DaiHoc_TinHoc, new { @style = "display:none" })
+                        @Html.CheckBox("chk_value_DaiHoc_TinHoc")
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.DaiHoc_NganhCNTT, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.DaiHoc_NganhCNTT, "", new { @class = "text-danger" })
+                        @Html.LabelFor(model => model.DaiHoc_NganhCNTT, new { @style = "display:none" })
+                        @Html.CheckBox("chk_value_DaiHoc_NganhCNTT")
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.DaiHoc_KhoaCNTT, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.DaiHoc_KhoaCNTT, "", new { @class = "text-danger" })
+                        @Html.LabelFor(model => model.DaiHoc_KhoaCNTT, new { @style = "display:none" })
+                        @Html.CheckBox("chk_value_DaiHoc_KhoaCNTT")
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.DaiHoc_GVCNTT, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.DaiHoc_GVCNTT, "", new { @class = "text-danger" })
+                        @Html.LabelFor(model => model.DaiHoc_GVCNTT, new { @style = "display:none" })
+                        @Html.CheckBox("chk_value_DaiHoc_GVCNTT")
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.DaiHoc_TSCNTT, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.DaiHoc_TSCNTT, "", new { @class = "text-danger" })
+                        @Html.LabelFor(model => model.DaiHoc_TSCNTT, new { @style = "display:none" })
+                        @Html.CheckBox("chk_value_DaiHoc_TSCNTT")
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.DaiHoc_ThSCNTT, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.DaiHoc_ThSCNTT, "", new { @class = "text-danger" })
+                        @Html.LabelFor(model => model.DaiHoc_ThSCNTT, new { @style = "display:none" })
+                        @Html.CheckBox("chk_value_DaiHoc_ThSCNTT")
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.DaiHoc_TotNghiep, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.DaiHoc_TotNghiep, "", new { @class = "text-danger" })
+                        @Html.LabelFor(model => model.DaiHoc_TotNghiep, new { @style = "display:none" })
+                        @Html.CheckBox("chk_value_DaiHoc_TotNghiep")
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Cơ sở ĐT #</td>
+                    <td>
+                        @Html.EditorFor(model => model.Khac_SoTruong, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Khac_SoTruong, "", new { @class = "text-danger" })
+                        @Html.LabelFor(model => model.Khac_SoTruong, new { @style = "display:none" })
+                        @Html.CheckBox("chk_value_Khac_SoTruong")
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.Khac_TinHoc, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Khac_TinHoc, "", new { @class = "text-danger" })
+                        @Html.LabelFor(model => model.Khac_TinHoc, new { @style = "display:none" })
+                        @Html.CheckBox("chk_value_Khac_TinHoc")
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.Khac_NganhCNTT, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Khac_NganhCNTT, "", new { @class = "text-danger" })
+                        @Html.LabelFor(model => model.Khac_NganhCNTT, new { @style = "display:none" })
+                        @Html.CheckBox("chk_value_Khac_NganhCNTT")
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.Khac_KhoaCNTT, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Khac_KhoaCNTT, "", new { @class = "text-danger" })
+                        @Html.LabelFor(model => model.Khac_KhoaCNTT, new { @style = "display:none" })
+                        @Html.CheckBox("chk_value_Khac_KhoaCNTT")
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.Khac_GVCNTT, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Khac_GVCNTT, "", new { @class = "text-danger" })
+                        @Html.LabelFor(model => model.Khac_GVCNTT, new { @style = "display:none" })
+                        @Html.CheckBox("chk_value_Khac_GVCNTT")
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.Khac_TSCNTT, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Khac_TSCNTT, "", new { @class = "text-danger" })
+                        @Html.LabelFor(model => model.Khac_TSCNTT, new { @style = "display:none" })
+                        @Html.CheckBox("chk_value_Khac_TSCNTT")
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.Khac_ThSCNTT, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Khac_ThSCNTT, "", new { @class = "text-danger" })
+                        @Html.LabelFor(model => model.Khac_ThSCNTT, new { @style = "display:none" })
+                        @Html.CheckBox("chk_value_Khac_ThSCNTT")
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.Khac_TotNghiep, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Khac_TotNghiep, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+            </table>
+        </div>                                                                                                                      
+
+        <div>
+            2.	Cán bộ chuyên trách CNTT <span id="lblcanbochuyentrachCNTT"></span>
+            <table class=" tableDefault">
+                <tr>
+                    <th></th>
+                    <th>Số lượng</th>
+                    <th>Tiến sỹ</th>
+                    <th>Thạc sỹ</th>
+                    <th>Đại học CQ</th>
+                    <th>Đại học KCQ</th>
+                    <th>Lượt</th>
+                </tr>
+                <tr>
+                    <td>
+                        Cấp huyện
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.Huyen_SoLuong, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Huyen_SoLuong, "", new { @class = "text-danger" })
+                        @Html.LabelFor(model => model.Huyen_SoLuong, new { @style = "display:none" })
+                        @Html.CheckBox("chk_value_Huyen_SoLuong")
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.Huyen_TienSy, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Huyen_TienSy, "", new { @class = "text-danger" })
+                        @Html.LabelFor(model => model.Huyen_TienSy, new { @style = "display:none" })
+                        @Html.CheckBox("chk_value_Huyen_TienSy")
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.Huyen_ThacSy, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Huyen_ThacSy, "", new { @class = "text-danger" })
+                        @Html.LabelFor(model => model.Huyen_ThacSy, new { @style = "display:none" })
+                        @Html.CheckBox("chk_value_Huyen_ThacSy")
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.Huyen_DHCQ, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Huyen_DHCQ, "", new { @class = "text-danger" })
+                        @Html.LabelFor(model => model.Huyen_DHCQ, new { @style = "display:none" })
+                        @Html.CheckBox("chk_value_Huyen_DHCQ")
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.Huyen_KhongCQ, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Huyen_KhongCQ, "", new { @class = "text-danger" })
+                        @Html.LabelFor(model => model.Huyen_KhongCQ, new { @style = "display:none" })
+                        @Html.CheckBox("chk_value_Huyen_KhongCQ")
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.Huyen_Luot, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Huyen_Luot, "", new { @class = "text-danger" })
+                        @Html.LabelFor(model => model.Huyen_Luot, new { @style = "display:none" })
+                        @Html.CheckBox("chk_value_Huyen_Luot")
+                    </td>
+                </tr>
+                <tr>
+                    <td>Cấp xã</td>
+                    <td>
+                        @Html.EditorFor(model => model.Xa_SoLuong, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Xa_SoLuong, "", new { @class = "text-danger" })
+                        @Html.LabelFor(model => model.Xa_SoLuong, new { @style = "display:none" })
+                        @Html.CheckBox("chk_value_Xa_SoLuong")
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.Xa_TienSy, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Xa_TienSy, "", new { @class = "text-danger" })
+                        @Html.LabelFor(model => model.Xa_TienSy, new { @style = "display:none" })
+                        @Html.CheckBox("chk_value_Xa_TienSy")
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.Xa_ThacSy, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Xa_ThacSy, "", new { @class = "text-danger" })
+                        @Html.LabelFor(model => model.Xa_ThacSy, new { @style = "display:none" })
+                        @Html.CheckBox("chk_value_Xa_ThacSy")
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.Xa_DHCQ, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Xa_DHCQ, "", new { @class = "text-danger" })
+                        @Html.LabelFor(model => model.Xa_DHCQ, new { @style = "display:none" })
+                        @Html.CheckBox("chk_value_Xa_DHCQ")
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.Xa_KhongCQ, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Xa_KhongCQ, "", new { @class = "text-danger" })
+                        @Html.LabelFor(model => model.Xa_KhongCQ, new { @style = "display:none" })
+                        @Html.CheckBox("chk_value_Xa_KhongCQ")
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.Xa_Luot, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Xa_Luot, "", new { @class = "text-danger" })
+                        @Html.LabelFor(model => model.Xa_Luot, new { @style = "display:none" })
+                        @Html.CheckBox("chk_value_Xa_Luot")
+                    </td>
+                </tr>
+            </table>
+        </div>             
+        
+        <div>
+            3.	CBCCVC biết sử dụng thành thạo máy tính <span id="lblCanbothanhthaomaytinh"></span>
+            <table class="tableDefault">
+                <tr>
+                    <th></th>
+                    <th>Sử dụng thành thạo máy tính</th>
+                    <th>Lượt</th>
+                    <th>Tiến sỹ CNTT</th>
+                    <th>Thạc sỹCNTT</th>
+                </tr>
+
+                <tr>
+                    <td>UBND cấp huyện</td>
+                    <td>
+                        @Html.EditorFor(model => model.UBND_ThanhThao, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.UBND_ThanhThao, "", new { @class = "text-danger" })
+                        @Html.LabelFor(model => model.UBND_ThanhThao, new { @style = "display:none" })
+                        @Html.CheckBox("chk_value_UBND_ThanhThao")
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.UBND_Luot, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.UBND_Luot, "", new { @class = "text-danger" })
+                        @Html.LabelFor(model => model.UBND_Luot, new { @style = "display:none" })
+                        @Html.CheckBox("chk_value_UBND_Luot")
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.UBND_TSCNTT, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.UBND_TSCNTT, "", new { @class = "text-danger" })
+                        @Html.LabelFor(model => model.UBND_TSCNTT, new { @style = "display:none" })
+                        @Html.CheckBox("chk_value_UBND_TSCNTT")
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.UBND_ThSCNTT, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.UBND_ThSCNTT, "", new { @class = "text-danger" })
+                        @Html.LabelFor(model => model.UBND_ThSCNTT, new { @style = "display:none" })
+                        @Html.CheckBox("chk_value_UBND_ThSCNTT")
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Cấp huyện ủy</td>
+                    <td>
+                        @Html.EditorFor(model => model.HuyenUy_ThanhThao, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.HuyenUy_ThanhThao, "", new { @class = "text-danger" })
+                        @Html.LabelFor(model => model.HuyenUy_ThanhThao, new { @style = "display:none" })
+                        @Html.CheckBox("chk_value_HuyenUy_ThanhThao")
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.HuyenUy_Luot, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.HuyenUy_Luot, "", new { @class = "text-danger" })
+                        @Html.LabelFor(model => model.HuyenUy_Luot, new { @style = "display:none" })
+                        @Html.CheckBox("chk_value_HuyenUy_Luot")
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.HuyenUy_TSCNTT, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.HuyenUy_TSCNTT, "", new { @class = "text-danger" })
+                        @Html.LabelFor(model => model.HuyenUy_TSCNTT, new { @style = "display:none" })
+                        @Html.CheckBox("chk_value_HuyenUy_TSCNTT")
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.HuyenUy_ThSCNTT, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.HuyenUy_ThSCNTT, "", new { @class = "text-danger" })
+                        @Html.LabelFor(model => model.HuyenUy_ThSCNTT, new { @style = "display:none" })
+                        @Html.CheckBox("chk_value_HuyenUy_ThSCNTT")
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Cấp xã</td>
+                    <td>
+                        @Html.EditorFor(model => model.Xa_ThanhThao, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Xa_ThanhThao, "", new { @class = "text-danger" })
+                        @Html.LabelFor(model => model.Xa_ThanhThao, new { @style = "display:none" })
+                        @Html.CheckBox("chk_value_Xa_ThanhThao")
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.Xa_Luot_ThanhThao, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Xa_Luot_ThanhThao, "", new { @class = "text-danger" })
+                        @Html.LabelFor(model => model.Xa_Luot_ThanhThao, new { @style = "display:none" })
+                        @Html.CheckBox("chk_value_Xa_Luot_ThanhThao")
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.Xa_TSCNTT, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Xa_TSCNTT, "", new { @class = "text-danger" })
+                        @Html.LabelFor(model => model.Xa_TSCNTT, new { @style = "display:none" })
+                        @Html.CheckBox("chk_value_Xa_TSCNTT")
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.Xa_ThSCNTT, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Xa_ThSCNTT, "", new { @class = "text-danger" })
+                        @Html.LabelFor(model => model.Xa_ThSCNTT, new { @style = "display:none" })
+                        @Html.CheckBox("chk_value_Xa_ThSCNTT")
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Giáo dục</td>
+                    <td>
+                        @Html.EditorFor(model => model.GiaoDuc_ThanhThao, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.GiaoDuc_ThanhThao, "", new { @class = "text-danger" })
+                        @Html.LabelFor(model => model.GiaoDuc_ThanhThao, new { @style = "display:none" })
+                        @Html.CheckBox("chk_value_GiaoDuc_ThanhThao")
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.GiaoDuc_Luot, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.GiaoDuc_Luot, "", new { @class = "text-danger" })
+                        @Html.LabelFor(model => model.GiaoDuc_Luot, new { @style = "display:none" })
+                        @Html.CheckBox("chk_value_GiaoDuc_Luot")
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.GiaoDuc_TSCNTT, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.GiaoDuc_TSCNTT, "", new { @class = "text-danger" })
+                        @Html.LabelFor(model => model.GiaoDuc_TSCNTT, new { @style = "display:none" })
+                        @Html.CheckBox("chk_value_GiaoDuc_TSCNTT")
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.GiaoDuc_ThSCNTT, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.GiaoDuc_ThSCNTT, "", new { @class = "text-danger" })
+                        @Html.LabelFor(model => model.GiaoDuc_ThSCNTT, new { @style = "display:none" })
+                        @Html.CheckBox("chk_value_GiaoDuc_ThSCNTT")
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Y tế</td>
+                    <td>
+                        @Html.EditorFor(model => model.YTe_ThanhThao, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.YTe_ThanhThao, "", new { @class = "text-danger" })
+                        @Html.LabelFor(model => model.YTe_ThanhThao, new { @style = "display:none" })
+                        @Html.CheckBox("chk_value_YTe_ThanhThao")
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.YTe_Luot, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.YTe_Luot, "", new { @class = "text-danger" })
+                        @Html.LabelFor(model => model.YTe_Luot, new { @style = "display:none" })
+                        @Html.CheckBox("chk_value_YTe_Luot")
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.YTe_TSCNTT, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.YTe_TSCNTT, "", new { @class = "text-danger" })
+                        @Html.LabelFor(model => model.YTe_TSCNTT, new { @style = "display:none" })
+                        @Html.CheckBox("chk_value_YTe_TSCNTT")
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.YTe_ThSCNTT, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.YTe_ThSCNTT, "", new { @class = "text-danger" })
+                        @Html.LabelFor(model => model.YTe_ThSCNTT, new { @style = "display:none" })
+                        @Html.CheckBox("chk_value_YTe_ThSCNTT")
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Đơn vị sự nghiệp</td>
+                    <td>
+                        @Html.EditorFor(model => model.DVSN_ThanhThao, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.DVSN_ThanhThao, "", new { @class = "text-danger" })
+                        @Html.LabelFor(model => model.DVSN_ThanhThao, new { @style = "display:none" })
+                        @Html.CheckBox("chk_value_DVSN_ThanhThao")
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.DVSN_Luot, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.DVSN_Luot, "", new { @class = "text-danger" })
+                        @Html.LabelFor(model => model.DVSN_Luot, new { @style = "display:none" })
+                        @Html.CheckBox("chk_value_DVSN_Luot")
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.DVSN_TSCNTT, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.DVSN_TSCNTT, "", new { @class = "text-danger" })
+                        @Html.LabelFor(model => model.DVSN_TSCNTT, new { @style = "display:none" })
+                        @Html.CheckBox("chk_value_DVSN_TSCNTT")
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.DVSN_ThSCNTT, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.DVSN_ThSCNTT, "", new { @class = "text-danger" })
+                        @Html.LabelFor(model => model.DVSN_ThSCNTT, new { @style = "display:none" })
+                        @Html.CheckBox("chk_value_DVSN_ThSCNTT")
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Doanh nghiệp CNTT</td>
+                    <td>
+                        @Html.EditorFor(model => model.DN_ThanhThao, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.DN_ThanhThao, "", new { @class = "text-danger" })
+                        @Html.LabelFor(model => model.DN_ThanhThao, new { @style = "display:none" })
+                        @Html.CheckBox("chk_value_DN_ThanhThao")
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.DN_Luot, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.DN_Luot, "", new { @class = "text-danger" })
+                        @Html.LabelFor(model => model.DN_Luot, new { @style = "display:none" })
+                        @Html.CheckBox("chk_value_DN_Luot")
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.DN_TSCNTT, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.DN_TSCNTT, "", new { @class = "text-danger" })
+                        @Html.LabelFor(model => model.DN_TSCNTT, new { @style = "display:none" })
+                        @Html.CheckBox("chk_value_DN_TSCNTT")
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.DN_ThSCNTT, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.DN_ThSCNTT, "", new { @class = "text-danger" })
+                        @Html.LabelFor(model => model.DN_ThSCNTT, new { @style = "display:none" })
+                        @Html.CheckBox("chk_value_DN_ThSCNTT")
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Doanh nghiệp #</td>
+                    <td>
+                        @Html.EditorFor(model => model.Khac_ThanhThao, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Khac_ThanhThao, "", new { @class = "text-danger" })
+                        @Html.LabelFor(model => model.Khac_ThanhThao, new { @style = "display:none" })
+                        @Html.CheckBox("chk_value_Khac_ThanhThao")
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.Khac_Luot, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Khac_Luot, "", new { @class = "text-danger" })
+                        @Html.LabelFor(model => model.Khac_Luot, new { @style = "display:none" })
+                        @Html.CheckBox("chk_value_Khac_Luot")
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.Khac_TSCNTT_ThanhThao, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Khac_TSCNTT_ThanhThao, "", new { @class = "text-danger" })
+                        @Html.LabelFor(model => model.Khac_TSCNTT_ThanhThao, new { @style = "display:none" })
+                        @Html.CheckBox("chk_value_Khac_TSCNTT_ThanhThao")
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.Khac_ThSCNTT_ThanhThao, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Khac_ThSCNTT_ThanhThao, "", new { @class = "text-danger" })
+                        @Html.LabelFor(model => model.Khac_ThSCNTT_ThanhThao, new { @style = "display:none" })
+                        @Html.CheckBox("chk_value_Khac_ThSCNTT_ThanhThao")
+                    </td>
+                </tr>
+            </table>
+        </div>   
+
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.TruongNhapLai, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TruongNhapLai, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TruongNhapLai, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+        
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="button" value="Gửi cấp trên" class="btn btn-default" onclick="SendReport()" />
+                <input type="button" value="Yêu cầu nhập lại" class="btn btn-default" onclick="OpenDatePopup()" />
+            </div>
+        </div>
+        <div class="form-group" style="display:none;" id="fsLichNhapLieu">
+            <fieldset>
+                <legend>Đặt lịch sửa báo cáo</legend>
+                <div class="form-group">
+                    @Html.Label("", "Từ ngày", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.Editor("TuNgay", "", new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.Label("", "Đến ngày", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.Editor("DenNgay", "", new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                </div>
+                <input type="button" value="Đặt lịch" class="btn btn-default" onclick="NhapLaiRequest()" />
+            </fieldset>
+        </div>
+    </div>
+}
+
+<div>
+    <a href="/Ht_QuanLyNhapLieu/Index">Quay lại</a>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+<script type="text/javascript">
+    var listInputRadio = '@ViewBag.listInputRadio';
+
+    $(document).ready(function () {
+        var start = $("#TuNgay").kendoDatePicker({
+            change: startChange
+            , format: "dd/MM/yyyy"
+        }).data("kendoDatePicker");
+
+        var end = $("#DenNgay").kendoDatePicker({
+            change: endChange
+            , format: "dd/MM/yyyy"
+        }).data("kendoDatePicker");
+
+        start.max(end.value());
+        end.min(start.value());
+
+        SetIncorectHtml();
+        CheckRadioByInputValue();
+    });
+
+    // Duyệt báo cáo thành công, thay đổi trạng thái nhập liệu
+    function SendReport() {
+        if (!confirm("Kết thúc quá trình nhập dữ liệu của đơn vị ?")) return;
+        var id = $("#HaTangNhanLucCNTTHuyen_ID").val();
+        var lichNhap_ID = $("#lichNhap_ID").val();
+        $.post("ConfirmReport", { "id": id, "lichNhap_ID": lichNhap_ID }).done(function (data) {
+            if (data.msg == null) {
+                window.location.href = "/Ht_QuanLyNhapLieu/Index";
+            } else {
+                alert(data.msg);
+            }
+        });
+    }
+
+    // Yêu cầu nhập lại báo cáo
+    function NhapLaiRequest() {
+        var id = $("#HaTangNhanLucCNTTHuyen_ID").val();
+        var lichNhap_ID = $("#lichNhap_ID").val();
+        var truongNhapLai = $("#TruongNhapLai").val();
+        var tuNgay = $("#TuNgay").val();
+        var denNgay = $("#DenNgay").val();
+        $.post("NhapLaiRequest", {
+            "id": id,
+            "lichNhap_ID": lichNhap_ID,
+            "truongNhapLai": truongNhapLai,
+            "tuNgay": tuNgay,
+            "denNgay": denNgay
+        }).done(function (data) {
+            if (data.msg == null) {
+                window.location.href = "/Ht_QuanLyNhapLieu/Index";
+            } else {
+                alert(data.msg);
+            }
+        });
+    }
+
+    // Đóng/ mở fiedset lịch nhập lại báo cáo
+    function OpenDatePopup() {
+        if ($("#fsLichNhapLieu").css('display') == 'none') {
+            $("#fsLichNhapLieu").show();
+        } else {
+            $("#fsLichNhapLieu").hide();
+        }
+    }
+
+    // Sự kiện nhấn nút Checkbox để yêu cầu nhập lại trường dữ liệu đó
+    $("input[type='checkbox']").change(function () {
+        if (this.id.indexOf("chk_value_") != -1) {
+            var radio_ID = $(this).attr('id');
+            var base_ID = radio_ID.substring(10, radio_ID.length);
+            var arrLabel = $("#txtTruongNhapLai").val();
+            var arrID = $("#TruongNhapLai").val();
+            var label = $('label[for="' + base_ID + '"]').html();
+            var listInput = arrID.split(',');
+
+            // Nếu không có mới insert
+            if (this.checked) {
+                if ($.inArray(base_ID, listInput) == -1) {
+                    arrID += base_ID + ",";
+                    arrLabel += label + ",";
+
+                    $("#TruongNhapLai").val(arrID);
+                    $("#txtTruongNhapLai").val(arrLabel);
+                }
+            } else {
+                arrID = arrID.replace(base_ID + ",", "");
+                $("#TruongNhapLai").val(arrID);
+
+                arrLabel = arrLabel.replace(label + ",", "");
+                $("#txtTruongNhapLai").val(arrLabel);
+            }
+        }
+    })
+</script>

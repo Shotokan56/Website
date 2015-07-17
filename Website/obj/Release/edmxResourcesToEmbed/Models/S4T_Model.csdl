@@ -1,0 +1,1251 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="S4T_HaTinhModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="AspNetRole">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="TenHienThi" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="AspNetUserClaim">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUser" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaims" ToRole="AspNetUsers" />
+  </EntityType>
+  <EntityType Name="AspNetUserLogin">
+    <Key>
+      <PropertyRef Name="LoginProvider" />
+      <PropertyRef Name="ProviderKey" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="LoginProvider" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ProviderKey" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="AspNetUser" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogins" ToRole="AspNetUsers" />
+  </EntityType>
+  <EntityType Name="AspNetUserRole">
+    <Key>
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="RoleId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetUser">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="HoVaTen" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="DonVi_ID" Type="Int32" Nullable="false" />
+    <Property Name="TrangThai" Type="Int32" Nullable="false" />
+    <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+    <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+    <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="Discriminator" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUserClaims" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
+    <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
+  </EntityType>
+  <EntityType Name="CongNghiepCNTT">
+    <Key>
+      <PropertyRef Name="CongNghiepCNTT_ID" />
+    </Key>
+    <Property Name="CongNghiepCNTT_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DonVi_ID" Type="Int32" Nullable="false" />
+    <Property Name="FileUpload" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DoanhThu" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="SoMayTinh" Type="Int32" Nullable="false" />
+    <Property Name="SoPhanMemUngDung" Type="Int32" Nullable="false" />
+    <Property Name="SoWebsite" Type="Int32" Nullable="false" />
+    <Property Name="SoMayTinhKetNoiMang" Type="Int32" Nullable="false" />
+    <Property Name="TuNgay" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DenNgay" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="NgayTao" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="NgayCapNhat" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Success" Type="Byte" Nullable="false" />
+    <Property Name="TruongNhapLai" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="LichNhap_ID" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CongThongTinDienTu">
+    <Key>
+      <PropertyRef Name="CongThongTinDienTu_ID" />
+    </Key>
+    <Property Name="CongThongTinDienTu_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DonVi_ID" Type="Int32" Nullable="false" />
+    <Property Name="FileUpload" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="CongNgheLoi" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="NgonNguLapTrinh" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CSDL" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DonViThucHien" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="NangCapTrongNam" Type="Int32" Nullable="false" />
+    <Property Name="NoiDung" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Website_Portal" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CoCauToChuc" Type="Byte" Nullable="false" />
+    <Property Name="ChucNang_DVTT" Type="Byte" Nullable="false" />
+    <Property Name="LichSuHinhThanh" Type="Byte" Nullable="false" />
+    <Property Name="ThongTinTomTat" Type="Byte" Nullable="false" />
+    <Property Name="ThongTinLienHe" Type="Byte" Nullable="false" />
+    <Property Name="BanDoDiaGioi" Type="Byte" Nullable="false" />
+    <Property Name="ThongTinThongKe" Type="Byte" Nullable="false" />
+    <Property Name="TanSuatCapNhat" Type="Byte" Nullable="false" />
+    <Property Name="VanBanChiDao" Type="Int32" Nullable="false" />
+    <Property Name="VanBanChiDao_DangTai" Type="Int32" Nullable="false" />
+    <Property Name="LichLamViec" Type="Byte" Nullable="false" />
+    <Property Name="PhoBienVanBan" Type="Byte" Nullable="false" />
+    <Property Name="Tin_BaiViet" Type="Byte" Nullable="false" />
+    <Property Name="ChuyenMuc_ChuyenTrang" Type="Byte" Nullable="false" />
+    <Property Name="ChienLuoc_QuyHoach" Type="Byte" Nullable="false" />
+    <Property Name="KeHoachPhatTrien" Type="Byte" Nullable="false" />
+    <Property Name="VanBanQuyPham" Type="Byte" Nullable="false" />
+    <Property Name="VanBanQuyPham_DangTai" Type="Byte" Nullable="false" />
+    <Property Name="ChuyenTrang_QuanLy" Type="Byte" Nullable="false" />
+    <Property Name="VanBanQuyPham_TaiVe" Type="Byte" Nullable="false" />
+    <Property Name="HangMucDauTu" Type="Byte" Nullable="false" />
+    <Property Name="SoDuAn" Type="Byte" Nullable="false" />
+    <Property Name="ThongTinToiThieu" Type="Byte" Nullable="false" />
+    <Property Name="DeTaiKhoaHoc" Type="Byte" Nullable="false" />
+    <Property Name="SoLuongDeTaiKH_DangTai" Type="Byte" Nullable="false" />
+    <Property Name="GopY" Type="Byte" Nullable="false" />
+    <Property Name="YKienDangTai" Type="Byte" Nullable="false" />
+    <Property Name="CungCapThongTin" Type="Byte" Nullable="false" />
+    <Property Name="ChucNangTimKiem" Type="Byte" Nullable="false" />
+    <Property Name="SoDoWebsite" Type="Byte" Nullable="false" />
+    <Property Name="TraoDoi_HoiDap" Type="Byte" Nullable="false" />
+    <Property Name="DuLieuDacTa" Type="Byte" Nullable="false" />
+    <Property Name="Unicode" Type="Byte" Nullable="false" />
+    <Property Name="TuongThichTrinhDuyet" Type="Byte" Nullable="false" />
+    <Property Name="LienKetWebsite" Type="Byte" Nullable="false" />
+    <Property Name="NguoiKhuyetTat" Type="Byte" Nullable="false" />
+    <Property Name="TTHC_DonVi" Type="Int32" Nullable="false" />
+    <Property Name="DVC1" Type="Int32" Nullable="false" />
+    <Property Name="DVC2" Type="Int32" Nullable="false" />
+    <Property Name="DVC3" Type="Int32" Nullable="false" />
+    <Property Name="BanBienTap" Type="Byte" Nullable="false" />
+    <Property Name="QuanTriKyThuat" Type="Byte" Nullable="false" />
+    <Property Name="DichVuCongTT" Type="Byte" Nullable="false" />
+    <Property Name="TapHuanDaoTao" Type="Byte" Nullable="false" />
+    <Property Name="BienPhapKyThuat" Type="Byte" Nullable="false" />
+    <Property Name="GiaiPhapHieuQua" Type="Byte" Nullable="false" />
+    <Property Name="PhuongAnDuPhong" Type="Byte" Nullable="false" />
+    <Property Name="BanHanhQuyChe" Type="Byte" Nullable="false" />
+    <Property Name="BanHanhQuyChe_TTDT" Type="Byte" Nullable="false" />
+    <Property Name="CapNhatThongTin" Type="Byte" Nullable="false" />
+    <Property Name="NoiDungThongTin" Type="Byte" Nullable="false" />
+    <Property Name="QuyDinhKhac" Type="Byte" Nullable="false" />
+    <Property Name="Success" Type="Byte" Nullable="false" />
+    <Property Name="TruongNhapLai" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="LichNhap_ID" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Dm_DanhMucChung">
+    <Key>
+      <PropertyRef Name="DanhMuc_ID" />
+    </Key>
+    <Property Name="DanhMuc_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TenDanhMuc" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="LoaiDanhMuc_ID" Type="Int32" Nullable="false" />
+    <Property Name="TrangThai" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Dm_DonVi">
+    <Key>
+      <PropertyRef Name="DonVi_ID" />
+    </Key>
+    <Property Name="DonVi_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TenDonVi" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="NhomDonVi_ID" Type="Int32" Nullable="false" />
+    <Property Name="ChuyenVienPhuTrach" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="SoDienThoai" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="NganhNghe_ID" Type="Int32" Nullable="false" />
+    <Property Name="LoaiHinhDoanhNghiep_ID" Type="Int32" Nullable="false" />
+    <Property Name="TrangThai" Type="Int32" Nullable="false" />
+    <Property Name="DiaChi" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="QuyMo" Type="Int32" />
+    <Property Name="NgayTao" Type="DateTime" Precision="3" />
+    <Property Name="NgayCapNhat" Type="DateTime" Precision="3" />
+    <Property Name="DonViCap1_ID" Type="Int32" Nullable="true" />
+  </EntityType>
+  <EntityType Name="Dm_LoaiDanhMuc">
+    <Key>
+      <PropertyRef Name="LoaiDanhMuc_ID" />
+    </Key>
+    <Property Name="LoaiDanhMuc_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TenLoai" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="TrangThai" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Dm_LoaiKeHoach">
+    <Key>
+      <PropertyRef Name="LoaiKeHoach_ID" />
+    </Key>
+    <Property Name="LoaiKeHoach_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TenLoaiKeHoach" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="TrangThai" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Dm_LoaiVanBan">
+    <Key>
+      <PropertyRef Name="LoaiVanBan_ID" />
+    </Key>
+    <Property Name="LoaiVanBan_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TenLoaiVanBan" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="TrangThai" Type="Byte" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Dm_ThongTinDonVi">
+    <Key>
+      <PropertyRef Name="ThongTin_ID" />
+    </Key>
+    <Property Name="ThongTin_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DonVi_ID" Type="Int32" Nullable="false" />
+    <Property Name="TenDonVi" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DiaChi" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="DienThoai" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Website" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="GiamDoc" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="PhoGiamDoc1" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="PhoGiamDoc2" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="PhoGiamDoc3" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="PhoGiamDoc4" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="PhoGiamDoc5" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="PhoGiamDoc6" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="PhoGiamDoc7" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="GiamDocCNTT" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="SoLuongCBCC" Type="Int32" />
+    <Property Name="SoDonViTrucThuoc" Type="Int32" />
+    <Property Name="SoLuongNV_DVTT" Type="Int32" />
+    <Property Name="PhongCNTT" Type="Byte" />
+    <Property Name="SoLuongCB_PhongCNTT" Type="Int32" />
+    <Property Name="ToCNTT" Type="Byte" />
+    <Property Name="SoLuongCB_ToCNTT" Type="Int32" />
+    <Property Name="HoTen_CBCT1" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="TrinhDoCNTT_CBCT1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SoDienThoai_CBCT1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Email_CBCT1" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="HoTen_CBCT2" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="TrinhDoCNTT_CBCT2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SoDienThoai_CBCT2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Email_CBCT2" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="HaTangKyThuatCNTT">
+    <Key>
+      <PropertyRef Name="HaTangKyThuatCNTT_ID" />
+    </Key>
+    <Property Name="HaTangKyThuatCNTT_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DonVi_ID" Type="Int32" Nullable="false" />
+    <Property Name="FileUpload" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="true" />
+    <Property Name="MayBan" Type="Int32" Nullable="false" />
+    <Property Name="LapTop" Type="Int32" Nullable="false" />
+    <Property Name="MayChu" Type="Int32" Nullable="false" />
+    <Property Name="MayNoiMangInternet" Type="Int32" Nullable="false" />
+    <Property Name="VirusCoBanQuyen" Type="Int32" Nullable="false" />
+    <Property Name="MayChieu" Type="Int32" Nullable="false" />
+    <Property Name="MayScan" Type="Int32" Nullable="false" />
+    <Property Name="MayIn" Type="Int32" Nullable="false" />
+    <Property Name="MayAnh" Type="Int32" Nullable="false" />
+    <Property Name="MayQuayPhim" Type="Int32" Nullable="false" />
+    <Property Name="MayTinhBang" Type="Int32" Nullable="false" />
+    <Property Name="MayBan_DVTT" Type="Int32" Nullable="false" />
+    <Property Name="LapTop_DVTT" Type="Int32" Nullable="false" />
+    <Property Name="MayChu_DVTT" Type="Int32" Nullable="false" />
+    <Property Name="MayNoiMangInternet_DVTT" Type="Int32" Nullable="false" />
+    <Property Name="VirusCoBanQuyen_DVTT" Type="Int32" Nullable="false" />
+    <Property Name="MayChieu_DVTT" Type="Int32" Nullable="false" />
+    <Property Name="MayScan_DVTT" Type="Int32" Nullable="false" />
+    <Property Name="MayIn_DVTT" Type="Int32" Nullable="false" />
+    <Property Name="MayAnh_DVTT" Type="Int32" Nullable="false" />
+    <Property Name="MayQuayPhim_DVTT" Type="Int32" Nullable="false" />
+    <Property Name="MayTinhBang_DVTT" Type="Int32" Nullable="false" />
+    <Property Name="PhongHopTrucTuyen" Type="Byte" Nullable="false" />
+    <Property Name="ADSL" Type="Int32" Nullable="false" />
+    <Property Name="CapQuang" Type="Int32" Nullable="false" />
+    <Property Name="LeasedLine" Type="Int32" Nullable="false" />
+    <Property Name="MangChuyenDung" Type="Int32" Nullable="false" />
+    <Property Name="DungLuong_ADSL" Type="Int32" Nullable="false" />
+    <Property Name="DungLuong_CapQuang" Type="Int32" Nullable="false" />
+    <Property Name="DungLuong_Leased" Type="Int32" Nullable="false" />
+    <Property Name="DungLuong_MangChuyenDung" Type="Int32" Nullable="false" />
+    <Property Name="ManHinh_LichCongTac" Type="Int32" Nullable="false" />
+    <Property Name="ManHinh_TraCuuTTHC" Type="Int32" Nullable="false" />
+    <Property Name="HeThongTuongLua" Type="Byte" Nullable="false" />
+    <Property Name="PhongChongTruyCapTraiPhep" Type="Byte" Nullable="false" />
+    <Property Name="CanhBaoChayNo" Type="Byte" />
+    <Property Name="ChongSet" Type="Byte" />
+    <Property Name="BangTu" Type="Byte" />
+    <Property Name="TuDia" Type="Byte" />
+    <Property Name="SAN" Type="Byte" />
+    <Property Name="NAS" Type="Byte" />
+    <Property Name="DAS" Type="Byte" />
+    <Property Name="RAID" Type="Byte" />
+    <Property Name="Khac" Type="Byte" />
+    <Property Name="Success" Type="Byte" Nullable="false" />
+    <Property Name="TruongNhapLai" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="LichNhap_ID" Type="Int32" />
+  </EntityType>
+  <EntityType Name="HaTangNhanLucCNTT">
+    <Key>
+      <PropertyRef Name="HaTangNhanLucCNTT_ID" />
+    </Key>
+    <Property Name="HaTangNhanLucCNTT_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DonVi_ID" Type="Int32" Nullable="false" />
+    <Property Name="FileUpload" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="TienSy_DV" Type="Int32" Nullable="false" />
+    <Property Name="ThacSy_DV" Type="Int32" Nullable="false" />
+    <Property Name="DaiHocChinhQuy_DV" Type="Int32" Nullable="false" />
+    <Property Name="DaiHocKhongChinhQuy_DV" Type="Int32" Nullable="false" />
+    <Property Name="LuotTapHuan_DV" Type="Int32" Nullable="false" />
+    <Property Name="SoLuongCanBo_DV" Type="Int32" Nullable="false" />
+    <Property Name="TienSy_DVTT" Type="Int32" Nullable="false" />
+    <Property Name="ThacSy_DVTT" Type="Int32" Nullable="false" />
+    <Property Name="DaiHocChinhQuy_DVTT" Type="Int32" Nullable="false" />
+    <Property Name="DaiHocKhongChinhQuy_DVTT" Type="Int32" Nullable="false" />
+    <Property Name="LuotTapHuan_DVTT" Type="Int32" Nullable="false" />
+    <Property Name="SoLuongCanBo_DVTT" Type="Int32" Nullable="false" />
+    <Property Name="ThanhThaoMayTinh_DV" Type="Int32" Nullable="false" />
+    <Property Name="LuotTapHuanThanhThaoMayTinh_DV" Type="Int32" Nullable="false" />
+    <Property Name="ThanhThaoMayTinh_DVTT" Type="Int32" Nullable="false" />
+    <Property Name="LuotTapHuanThanhThaoMayTinh_DVTT" Type="Int32" Nullable="false" />
+    <Property Name="Success" Type="Byte" Nullable="false" />
+    <Property Name="TruongNhapLai" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="LichNhap_ID" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Ht_CauHinhUpload">
+    <Key>
+      <PropertyRef Name="CauHinh_ID" />
+    </Key>
+    <Property Name="CauHinh_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PhanHe_ID" Type="Int32" Nullable="false" />
+    <Property Name="DuongDan" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DonVi_ID" Type="Int32" Nullable="false" />
+    <Property Name="ThoiGian" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Ht_LichNhapLieu">
+    <Key>
+      <PropertyRef Name="LichNhap_ID" />
+    </Key>
+    <Property Name="LichNhap_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BaoCao_ID" Type="Int32" Nullable="true" />
+    <Property Name="PhanHe_ID" Type="Int32" Nullable="false" />
+    <Property Name="ChucNang_ID" Type="Int32" />
+    <Property Name="DonVi_ID" Type="Int32" Nullable="false" />
+    <Property Name="TuNgay" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DenNgay" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="TrangThai" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Ht_PhanHe">
+    <Key>
+      <PropertyRef Name="PhanHe_ID" />
+    </Key>
+    <Property Name="PhanHe_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TenPhanHe" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="TrangThai" Type="Int32" Nullable="false" />
+    <Property Name="ThuTu" Type="Int32" />
+    <Property Name="ControllerName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="ActionName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Ht_PhanHeChucNang">
+    <Key>
+      <PropertyRef Name="PhanHeChucNang_ID" />
+    </Key>
+    <Property Name="PhanHeChucNang_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PhanHe_ID" Type="Int32" Nullable="false" />
+    <Property Name="TenChucNang" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="TrangThai" Type="Int32" Nullable="false" />
+    <Property Name="ThuTu" Type="Int32" />
+    <Property Name="ControllerName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="ActionName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Ht_User">
+    <Key>
+      <PropertyRef Name="User_ID" />
+    </Key>
+    <Property Name="User_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LoaiUser_ID" Type="Int32" Nullable="false" />
+    <Property Name="HoVaTen" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DonVi_ID" Type="Int32" Nullable="false" />
+    <Property Name="QuyenHan" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="UserName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="TrangThai" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="KeHoach">
+    <Key>
+      <PropertyRef Name="KeHoach_ID" />
+    </Key>
+    <Property Name="KeHoach_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LoaiKeHoach_ID" Type="Int32" Nullable="false" />
+    <Property Name="TenKeHoach" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="GhiChu" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="TruongNhapLai" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="NgayTao" Type="DateTime" Precision="3" />
+    <Property Name="NgayCapNhat" Type="DateTime" Precision="3" />
+    <Property Name="Success" Type="Byte" />
+  </EntityType>
+  <EntityType Name="TienDo">
+    <Key>
+      <PropertyRef Name="TienDo_ID" />
+    </Key>
+    <Property Name="TienDo_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="KeHoach_ID" Type="Int32" Nullable="false" />
+    <Property Name="TenDauViec" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="TienDo1" Type="Int32" Nullable="false" />
+    <Property Name="GhiChu" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="NgayTao" Type="DateTime" Precision="3" />
+    <Property Name="NgayCapNhat" Type="DateTime" Precision="3" />
+    <Property Name="FileUpload" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="ToChucChinhSachCNTT">
+    <Key>
+      <PropertyRef Name="ToChucChinhSachCNTT_ID" />
+    </Key>
+    <Property Name="ToChucChinhSachCNTT_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DonVi_ID" Type="Int32" Nullable="false" />
+    <Property Name="TenVanBan" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="SoKiHieu" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Success" Type="Byte" Nullable="false" />
+    <Property Name="TruongNhapLai" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="LichNhap_ID" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UngDungCNTT">
+    <Key>
+      <PropertyRef Name="UngDungCNTT_ID" />
+    </Key>
+    <Property Name="UngDungCNTT_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LichNhap_ID" Type="Int32" Nullable="false" />
+    <Property Name="DonVi_ID" Type="Int32" Nullable="false" />
+    <Property Name="FileUpload" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="QLVB" Type="Byte" Nullable="false" />
+    <Property Name="QLNhanSu" Type="Byte" Nullable="false" />
+    <Property Name="QLTaiChinhKeToan" Type="Byte" Nullable="false" />
+    <Property Name="QLTaiSanCong" Type="Byte" Nullable="false" />
+    <Property Name="QLKhieuNai" Type="Byte" Nullable="false" />
+    <Property Name="ChuKySo" Type="Byte" Nullable="false" />
+    <Property Name="MotCuaDienTu" Type="Byte" Nullable="false" />
+    <Property Name="SoTTHC" Type="Int32" Nullable="false" />
+    <Property Name="DV_LienThong" Type="Int32" Nullable="false" />
+    <Property Name="VBDi" Type="Int32" Nullable="false" />
+    <Property Name="VBDen" Type="Int32" Nullable="false" />
+    <Property Name="TongSo_VBDi" Type="Int32" Nullable="false" />
+    <Property Name="TongSo_VBDen" Type="Int32" Nullable="false" />
+    <Property Name="SoEmail" Type="Int32" Nullable="false" />
+    <Property Name="OpenOffice" Type="Int32" Nullable="false" />
+    <Property Name="MozillaThunderBird" Type="Int32" Nullable="false" />
+    <Property Name="MozillaFireFox" Type="Int32" Nullable="false" />
+    <Property Name="Unikey" Type="Int32" Nullable="false" />
+    <Property Name="PMNM" Type="Int32" Nullable="false" />
+    <Property Name="PMNM_MayChu" Type="Int32" Nullable="false" />
+    <Property Name="Success" Type="Byte" Nullable="false" />
+    <Property Name="TruongNhapLai" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="UngDungCNTTTaiDN">
+    <Key>
+      <PropertyRef Name="UngDungCNTTTaiDN_ID" />
+    </Key>
+    <Property Name="UngDungCNTTTaiDN_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DonVi_ID" Type="Int32" Nullable="false" />
+    <Property Name="FileUpload" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="DiaChi" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="NguoiDaiDien" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="SoDienThoai" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="NganhNgheKinhDoanh" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="LAN" Type="Byte" Nullable="false" />
+    <Property Name="LoaiHinhDoanhNghiep" Type="Int32" Nullable="false" />
+    <Property Name="DoanhThu" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="SoMayTinh" Type="Int32" Nullable="false" />
+    <Property Name="PhanMemDangUngDung" Type="Int32" Nullable="false" />
+    <Property Name="SoWebsite" Type="Int32" Nullable="false" />
+    <Property Name="KienNghi" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Success" Type="Byte" Nullable="false" />
+    <Property Name="TruongNhapLai" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="LichNhap_ID" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="VanBan">
+    <Key>
+      <PropertyRef Name="VanBan_ID" />
+    </Key>
+    <Property Name="VanBan_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LoaiVanBan_ID" Type="Int32" Nullable="false" />
+    <Property Name="TenVanBan" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="FileUpload" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DonViBanHanh_ID" Type="Int32" Nullable="false" />
+    <Property Name="TrichYeu" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="NgayTao" Type="DateTime" Precision="3" />
+    <Property Name="NgayCapNhat" Type="DateTime" Precision="3" />
+    <Property Name="Success" Type="Byte" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserClaims" Type="Self.AspNetUserClaim" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserClaims">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserLogins" Type="Self.AspNetUserLogin" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserLogins">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="S4T_HaTinhEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRole" />
+    <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaim" />
+    <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogin" />
+    <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRole" />
+    <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUser" />
+    <EntitySet Name="CongNghiepCNTTs" EntityType="Self.CongNghiepCNTT" />
+    <EntitySet Name="CongThongTinDienTus" EntityType="Self.CongThongTinDienTu" />
+    <EntitySet Name="Dm_DanhMucChung" EntityType="Self.Dm_DanhMucChung" />
+    <EntitySet Name="Dm_DonVi" EntityType="Self.Dm_DonVi" />
+    <EntitySet Name="Dm_LoaiDanhMuc" EntityType="Self.Dm_LoaiDanhMuc" />
+    <EntitySet Name="Dm_LoaiKeHoach" EntityType="Self.Dm_LoaiKeHoach" />
+    <EntitySet Name="Dm_LoaiVanBan" EntityType="Self.Dm_LoaiVanBan" />
+    <EntitySet Name="Dm_ThongTinDonVi" EntityType="Self.Dm_ThongTinDonVi" />
+    <EntitySet Name="HaTangKyThuatCNTTs" EntityType="Self.HaTangKyThuatCNTT" />
+    <EntitySet Name="HaTangNhanLucCNTTs" EntityType="Self.HaTangNhanLucCNTT" />
+    <EntitySet Name="Ht_CauHinhUpload" EntityType="Self.Ht_CauHinhUpload" />
+    <EntitySet Name="Ht_LichNhapLieu" EntityType="Self.Ht_LichNhapLieu" />
+    <EntitySet Name="Ht_PhanHe" EntityType="Self.Ht_PhanHe" />
+    <EntitySet Name="Ht_PhanHeChucNang" EntityType="Self.Ht_PhanHeChucNang" />
+    <EntitySet Name="Ht_User" EntityType="Self.Ht_User" />
+    <EntitySet Name="KeHoaches" EntityType="Self.KeHoach" />
+    <EntitySet Name="TienDoes" EntityType="Self.TienDo" />
+    <EntitySet Name="ToChucChinhSachCNTTs" EntityType="Self.ToChucChinhSachCNTT" />
+    <EntitySet Name="UngDungCNTTs" EntityType="Self.UngDungCNTT" />
+    <EntitySet Name="UngDungCNTTTaiDNs" EntityType="Self.UngDungCNTTTaiDN" />
+    <EntitySet Name="VanBans" EntityType="Self.VanBan" />
+    <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+    </AssociationSet>
+    <EntitySet Name="TinhHinhSXDNs" EntityType="S4T_HaTinhModel.TinhHinhSXDN" />
+    <EntitySet Name="Ht_FileDinhKem" EntityType="S4T_HaTinhModel.Ht_FileDinhKem" />
+    <EntitySet Name="CongThongTinDienTu_Huyen" EntityType="S4T_HaTinhModel.CongThongTinDienTu_Huyen" />
+    <EntitySet Name="HaTangKyThuatCNTT_Huyen" EntityType="S4T_HaTinhModel.HaTangKyThuatCNTT_Huyen" />
+    <EntitySet Name="HaTangNhanLucCNTT_Huyen" EntityType="S4T_HaTinhModel.HaTangNhanLucCNTT_Huyen" />
+    <EntitySet Name="UngDungCNTT_Huyen" EntityType="S4T_HaTinhModel.UngDungCNTT_Huyen" />
+    <EntitySet Name="PhanMemQLCNs" EntityType="S4T_HaTinhModel.PhanMemQLCN" />
+    <EntitySet Name="Ht_Role_PhanHe_ChucNang" EntityType="S4T_HaTinhModel.Ht_Role_PhanHe_ChucNang" />
+    <EntitySet Name="Ht_ThamSoHeThong" EntityType="S4T_HaTinhModel.Ht_ThamSoHeThong" />
+    <FunctionImport Name="GetUserByDonVi_Role" ReturnType="Collection(S4T_HaTinhModel.sp_GetUserByDonVi_Role_Result)">
+      <Parameter Name="nhomDonVi_ID" Mode="In" Type="Int32" />
+      <Parameter Name="donViCap1_ID" Mode="In" Type="Int32" />
+      <Parameter Name="donVi_ID" Mode="In" Type="Int32" />
+      <Parameter Name="role" Mode="In" Type="String" />
+      <Parameter Name="trangThai" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="GetUserAndRole" ReturnType="Collection(S4T_HaTinhModel.sp_GetUserAndRole_Result)">
+      <Parameter Name="Id" Mode="In" Type="String" />
+    </FunctionImport>
+    <EntitySet Name="HT_Log" EntityType="S4T_HaTinhModel.HT_Log" />
+    <FunctionImport Name="GetChucNangByRole" ReturnType="Collection(S4T_HaTinhModel.sp_GetChucNangByRole_Result)">
+      <Parameter Name="RoleId" Mode="In" Type="String" />
+    </FunctionImport>
+    <EntitySet Name="TN_Chuyen" EntityType="S4T_HaTinhModel.TN_Chuyen" />
+    <EntitySet Name="TN_DauViec" EntityType="S4T_HaTinhModel.TN_DauViec" />
+  </EntityContainer>
+  <EntityType Name="TinhHinhSXDN">
+    <Key>
+      <PropertyRef Name="TinhHinhSXDN_ID" />
+    </Key>
+    <Property Name="TinhHinhSXDN_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DonVi_ID" Type="Int32" Nullable="false" />
+    <Property Name="DoanhThu" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="TienNopThue" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="ThuNhapTrungBinh" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="DongGopXaHoi" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="KienNghi" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="FileUpload" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Success" Type="Byte" Nullable="false" />
+    <Property Name="TruongNhapLai" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="NguoiDaiDien" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="NLTN_DaiHoc" Type="Int32" Nullable="false" />
+    <Property Name="NLTN_CaoDang" Type="Int32" Nullable="false" />
+    <Property Name="NLTN_TrungCap" Type="Int32" Nullable="false" />
+    <Property Name="NLTN_TienSi" Type="Int32" Nullable="false" />
+    <Property Name="NLTN_ThacSi" Type="Int32" Nullable="false" />
+    <Property Name="NLTN_Khac" Type="Int32" Nullable="false" />
+    <Property Name="NLNN_DaiHoc" Type="Int32" Nullable="false" />
+    <Property Name="NLNN_CaoDang" Type="Int32" Nullable="false" />
+    <Property Name="NLNN_TrungCap" Type="Int32" Nullable="false" />
+    <Property Name="NLNN_TienSi" Type="Int32" Nullable="false" />
+    <Property Name="NLNN_ThacSi" Type="Int32" Nullable="false" />
+    <Property Name="NLNN_Khac" Type="Int32" Nullable="false" />
+    <Property Name="LichNhap_ID" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Ht_FileDinhKem">
+    <Key>
+      <PropertyRef Name="FileUpload_ID" />
+    </Key>
+    <Property Name="FileUpload_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BaoCao_ID" Type="Int32" Nullable="false" />
+    <Property Name="PhanHeChucNang_ID" Type="Int32" Nullable="false" />
+    <Property Name="DonVi_ID" Type="Int32" Nullable="false" />
+    <Property Name="LoaiVanBan_ID" Type="Int32" Nullable="false" />
+    <Property Name="SoVanBan" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="TrichYeu" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="NgayBanHanh" Type="DateTime" Precision="3" />
+    <Property Name="DuongDan" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="TenFile" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="NguoiUpLoad" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="NgayUpload" Type="DateTime" Precision="3" />
+    <Property Name="HieuLuc" Type="Byte" Nullable="false" />
+    <Property Name="CheDoBaoCao" Type="Byte" Nullable="true" />
+    <Property Name="QuanTamCuaLanhDao" Type="Byte" Nullable="true" />
+    <Property Name="GhiChu" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="TenHienThi" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="TrangThai" Type="Byte" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CongThongTinDienTu_Huyen">
+    <Key>
+      <PropertyRef Name="CongThongTinDienTuHuyen_ID" />
+    </Key>
+    <Property Name="CongThongTinDienTuHuyen_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LichNhap_ID" Type="Int32" Nullable="false" />
+    <Property Name="DonVi_ID" Type="Int32" Nullable="false" />
+    <Property Name="FileUpload" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="DangSuDung" Type="Byte" />
+    <Property Name="QuanTriCoSoDL" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="CongNgheLoi" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="NgonNguLapTrinh" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="WebCapXa" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="SoDo_CoCau" Type="Byte" />
+    <Property Name="ChucNang_NhiemVu" Type="Byte" />
+    <Property Name="HinhThanh_PhatTrien" Type="Byte" />
+    <Property Name="ThongTinTomTat" Type="Byte" />
+    <Property Name="ThongTinGiaoDich" Type="Byte" />
+    <Property Name="ThongTinLienHe" Type="Byte" />
+    <Property Name="BanDoDiaGioi" Type="Byte" />
+    <Property Name="ThongTinThongKe" Type="Byte" />
+    <Property Name="TanSuatCapNhat" Type="Byte" />
+    <Property Name="VBChiDao_DonVi" Type="Int32" />
+    <Property Name="VBChiDao_DieuHanh" Type="Int32" />
+    <Property Name="LichLamViec" Type="Int32" />
+    <Property Name="PhoBienVBQPPL" Type="Byte" />
+    <Property Name="TinBai_DangTai" Type="Byte" />
+    <Property Name="ChuyenMuc_ChienLuoc" Type="Byte" />
+    <Property Name="ChienLuoc_DangTai" Type="Byte" />
+    <Property Name="KeHoachPhatTrien" Type="Byte" />
+    <Property Name="ChuyenTrang_QPPL" Type="Byte" />
+    <Property Name="VBQPPL_DangTai" Type="Byte" />
+    <Property Name="LienKet" Type="Byte" />
+    <Property Name="ChoPhepTai" Type="Byte" />
+    <Property Name="DauTu_MuaSam" Type="Byte" />
+    <Property Name="DangTai_DauThau" Type="Byte" />
+    <Property Name="DangTai_ThongTinToiThieu" Type="Byte" />
+    <Property Name="DeTai_KhoaHoc" Type="Byte" />
+    <Property Name="ChuyenMucGopY" Type="Byte" />
+    <Property Name="XinYKien_VBQPPL" Type="Byte" />
+    <Property Name="CungCapThongTin" Type="Byte" />
+    <Property Name="ChucNangTimKiem" Type="Byte" />
+    <Property Name="SoDoWeb_CayCauTruc" Type="Byte" />
+    <Property Name="DangCauHoi_TraLoi" Type="Byte" />
+    <Property Name="DuLieuDacTa" Type="Byte" />
+    <Property Name="MaUnicode" Type="Byte" />
+    <Property Name="KhaNangTuongThich" Type="Byte" />
+    <Property Name="LienKetWeb" Type="Byte" />
+    <Property Name="HoTro_NguoiKhuyetTat" Type="Byte" />
+    <Property Name="TenMien_CongTTDT" Type="Byte" />
+    <Property Name="TTHC_DV" Type="Int32" />
+    <Property Name="DVC_Muc1" Type="Int32" />
+    <Property Name="DVC_Muc2" Type="Int32" />
+    <Property Name="DVC_Muc3" Type="Int32" />
+    <Property Name="ThanhLap_BanBienTap" Type="Byte" />
+    <Property Name="BoTri_QuanTriKyThuat" Type="Byte" />
+    <Property Name="BoTri_XuLyDVCong" Type="Byte" />
+    <Property Name="TapHuan_DaoTaoCanBo" Type="Byte" />
+    <Property Name="DamBaoAnToanTTDuLieu" Type="Byte" />
+    <Property Name="XayDungGiaiPhap" Type="Byte" />
+    <Property Name="XDPhuongAnDuPhong" Type="Byte" />
+    <Property Name="BanHanhQuyChePhoiHop" Type="Byte" />
+    <Property Name="BanHanhQuyCheHoatDong" Type="Byte" />
+    <Property Name="BaoCaoDinhKy_Nam" Type="Byte" />
+    <Property Name="CapNhatThongTin" Type="Byte" />
+    <Property Name="NoiDungThongTin" Type="Byte" />
+    <Property Name="QuyDinhKhac" Type="Byte" />
+    <Property Name="SXKD_PhanCung" Type="Int32" />
+    <Property Name="SXKD_PhanMem" Type="Int32" />
+    <Property Name="CungCapDVNDSo" Type="Int32" />
+    <Property Name="TongDoanhThu" Type="Int32" />
+    <Property Name="TruongNhapLai" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Success" Type="Byte" Nullable="false" />
+  </EntityType>
+  <EntityType Name="HaTangKyThuatCNTT_Huyen">
+    <Key>
+      <PropertyRef Name="HaTangKyThuatCNTTHuyen_ID" />
+    </Key>
+    <Property Name="HaTangKyThuatCNTTHuyen_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LichNhap_ID" Type="Int32" Nullable="false" />
+    <Property Name="DonVi_ID" Type="Int32" Nullable="false" />
+    <Property Name="FileUpload" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="ADSL" Type="Int32" />
+    <Property Name="LeadedLine" Type="Int32" />
+    <Property Name="CapQuang" Type="Int32" />
+    <Property Name="Khac" Type="Int32" />
+    <Property Name="UBND_MayBan" Type="Int32" />
+    <Property Name="UBND_LapTop" Type="Int32" />
+    <Property Name="UBND_MayChu" Type="Int32" />
+    <Property Name="UBND_VirusBanQuyen" Type="Int32" />
+    <Property Name="UBND_Internet" Type="Int32" />
+    <Property Name="UBND_MangCD" Type="Int32" />
+    <Property Name="HuyenUy_MayBan" Type="Int32" />
+    <Property Name="HuyenUy_LapTop" Type="Int32" />
+    <Property Name="HuyenUy_MayChu" Type="Int32" />
+    <Property Name="HuyenUy_VirusBanQuyen" Type="Int32" />
+    <Property Name="HuyenUy_Internet" Type="Int32" />
+    <Property Name="HuyenUy_MangCD" Type="Int32" />
+    <Property Name="Xa_MayBan" Type="Int32" />
+    <Property Name="Xa_LapTop" Type="Int32" />
+    <Property Name="Xa_MayChu" Type="Int32" />
+    <Property Name="Xa_VirusBanQuyen" Type="Int32" />
+    <Property Name="Xa_Internet" Type="Int32" />
+    <Property Name="Xa_MangCD" Type="Int32" />
+    <Property Name="GiaoDuc_MayBan" Type="Int32" />
+    <Property Name="GiaoDuc_LapTop" Type="Int32" />
+    <Property Name="GiaoDuc_MayChu" Type="Int32" />
+    <Property Name="GiaoDuc_VirusBanQuyen" Type="Int32" />
+    <Property Name="GiaoDuc_Internet" Type="Int32" />
+    <Property Name="GiaoDuc_MangCD" Type="Int32" />
+    <Property Name="YTe_MayBan" Type="Int32" />
+    <Property Name="YTe_LapTop" Type="Int32" />
+    <Property Name="YTe_MayChu" Type="Int32" />
+    <Property Name="YTe_VirusBanQuyen" Type="Int32" />
+    <Property Name="YTe_Internet" Type="Int32" />
+    <Property Name="YTe_MangCD" Type="Int32" />
+    <Property Name="Khac_MayBan" Type="Int32" />
+    <Property Name="Khac_LapTop" Type="Int32" />
+    <Property Name="Khac_MayChu" Type="Int32" />
+    <Property Name="Khac_VirusBanQuyen" Type="Int32" />
+    <Property Name="Khac_Internet" Type="Int32" />
+    <Property Name="Khac_MangCD" Type="Int32" />
+    <Property Name="VHX_MayBan" Type="Int32" />
+    <Property Name="VHX_LapTop" Type="Int32" />
+    <Property Name="VHX_MayChu" Type="Int32" />
+    <Property Name="VHX_VirusBanQuyen" Type="Int32" />
+    <Property Name="VHX_Internet" Type="Int32" />
+    <Property Name="VHX_MangCD" Type="Int32" />
+    <Property Name="DoanhNghiep_MayBan" Type="Int32" />
+    <Property Name="DoanhNghiep_LapTop" Type="Int32" />
+    <Property Name="DoanhNghiep_MayChu" Type="Int32" />
+    <Property Name="DoanhNghiep_VirusBanQuyen" Type="Int32" />
+    <Property Name="DoanhNghiep_Internet" Type="Int32" />
+    <Property Name="DoanhNghiep_MangCD" Type="Int32" />
+    <Property Name="KhongKetNoiInternet" Type="Int32" />
+    <Property Name="TuongLua" Type="Byte" />
+    <Property Name="TruyCapTraiPhep" Type="Byte" />
+    <Property Name="CanhBaoChayNo" Type="Byte" />
+    <Property Name="ChongSet_BangTu" Type="Byte" />
+    <Property Name="ChongSet_TuDia" Type="Byte" />
+    <Property Name="ChongSet_SAN" Type="Byte" />
+    <Property Name="ChongSet_NAS" Type="Byte" />
+    <Property Name="ChongSet_DAS" Type="Byte" />
+    <Property Name="ChongSet_RAID" Type="Byte" />
+    <Property Name="BuuDienXa" Type="Int32" />
+    <Property Name="BuuDienXa_Internet" Type="Int32" />
+    <Property Name="BuuDienXa_DaiLyInternet" Type="Int32" />
+    <Property Name="HoiNghiTruyenHinh" Type="Int32" />
+    <Property Name="HoiNghiTruyenHinh_CuocHop" Type="Int32" />
+    <Property Name="TruongNhapLai" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Success" Type="Byte" Nullable="false" />
+  </EntityType>
+  <EntityType Name="HaTangNhanLucCNTT_Huyen">
+    <Key>
+      <PropertyRef Name="HaTangNhanLucCNTTHuyen_ID" />
+    </Key>
+    <Property Name="HaTangNhanLucCNTTHuyen_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LichNhap_ID" Type="Int32" Nullable="false" />
+    <Property Name="DonVi_ID" Type="Int32" Nullable="false" />
+    <Property Name="FileUpload" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="TieuHoc_SoTruong" Type="Int32" />
+    <Property Name="TieuHoc_TinHoc" Type="Int32" />
+    <Property Name="TieuHoc_GVCNTT" Type="Int32" />
+    <Property Name="TieuHoc_TSCNTT" Type="Int32" />
+    <Property Name="TieuHoc_ThSCNTT" Type="Int32" />
+    <Property Name="THCS_SoTruong" Type="Int32" />
+    <Property Name="THCS_TinHoc" Type="Int32" />
+    <Property Name="THCS_GVCNTT" Type="Int32" />
+    <Property Name="THCS_TSCNTT" Type="Int32" />
+    <Property Name="THCS_ThSCNTT" Type="Int32" />
+    <Property Name="THPT_SoTruong" Type="Int32" />
+    <Property Name="THPT_TinHoc" Type="Int32" />
+    <Property Name="THPT_GVCNTT" Type="Int32" />
+    <Property Name="THPT_TSCNTT" Type="Int32" />
+    <Property Name="THPT_ThSCNTT" Type="Int32" />
+    <Property Name="TrungCap_SoTruong" Type="Int32" />
+    <Property Name="TrungCap_TinHoc" Type="Int32" />
+    <Property Name="TrungCap_NganhCNTT" Type="Int32" />
+    <Property Name="TrungCap_KhoaCNTT" Type="Int32" />
+    <Property Name="TrungCap_GVCNTT" Type="Int32" />
+    <Property Name="TrungCap_TSCNTT" Type="Int32" />
+    <Property Name="TrungCap_ThSCNTT" Type="Int32" />
+    <Property Name="TrungCap_TotNghiep" Type="Int32" />
+    <Property Name="CaoDang_SoTruong" Type="Int32" />
+    <Property Name="CaoDang_TinHoc" Type="Int32" />
+    <Property Name="CaoDang_NganhCNTT" Type="Int32" />
+    <Property Name="CaoDang_KhoaCNTT" Type="Int32" />
+    <Property Name="CaoDang_GVCNTT" Type="Int32" />
+    <Property Name="CaoDang_TSCNTT" Type="Int32" />
+    <Property Name="CaoDang_ThSCNTT" Type="Int32" />
+    <Property Name="CaoDang_TotNghiep" Type="Int32" />
+    <Property Name="DaiHoc_SoTruong" Type="Int32" />
+    <Property Name="DaiHoc_TinHoc" Type="Int32" />
+    <Property Name="DaiHoc_NganhCNTT" Type="Int32" />
+    <Property Name="DaiHoc_KhoaCNTT" Type="Int32" />
+    <Property Name="DaiHoc_GVCNTT" Type="Int32" />
+    <Property Name="DaiHoc_TSCNTT" Type="Int32" />
+    <Property Name="DaiHoc_ThSCNTT" Type="Int32" />
+    <Property Name="DaiHoc_TotNghiep" Type="Int32" />
+    <Property Name="Khac_SoTruong" Type="Int32" />
+    <Property Name="Khac_TinHoc" Type="Int32" />
+    <Property Name="Khac_NganhCNTT" Type="Int32" />
+    <Property Name="Khac_KhoaCNTT" Type="Int32" />
+    <Property Name="Khac_GVCNTT" Type="Int32" />
+    <Property Name="Khac_TSCNTT" Type="Int32" />
+    <Property Name="Khac_ThSCNTT" Type="Int32" />
+    <Property Name="Khac_TotNghiep" Type="Int32" />
+    <Property Name="Huyen_SoLuong" Type="Int32" />
+    <Property Name="Huyen_TienSy" Type="Int32" />
+    <Property Name="Huyen_ThacSy" Type="Int32" />
+    <Property Name="Huyen_DHCQ" Type="Int32" />
+    <Property Name="Huyen_KhongCQ" Type="Int32" />
+    <Property Name="Huyen_Luot" Type="Int32" />
+    <Property Name="Xa_SoLuong" Type="Int32" />
+    <Property Name="Xa_TienSy" Type="Int32" />
+    <Property Name="Xa_ThacSy" Type="Int32" />
+    <Property Name="Xa_DHCQ" Type="Int32" />
+    <Property Name="Xa_KhongCQ" Type="Int32" />
+    <Property Name="Xa_Luot" Type="Int32" />
+    <Property Name="UBND_ThanhThao" Type="Int32" />
+    <Property Name="UBND_Luot" Type="Int32" />
+    <Property Name="UBND_TSCNTT" Type="Int32" />
+    <Property Name="UBND_ThSCNTT" Type="Int32" />
+    <Property Name="HuyenUy_ThanhThao" Type="Int32" />
+    <Property Name="HuyenUy_Luot" Type="Int32" />
+    <Property Name="HuyenUy_TSCNTT" Type="Int32" />
+    <Property Name="HuyenUy_ThSCNTT" Type="Int32" />
+    <Property Name="Xa_ThanhThao" Type="Int32" />
+    <Property Name="Xa_Luot_ThanhThao" Type="Int32" />
+    <Property Name="Xa_TSCNTT" Type="Int32" />
+    <Property Name="Xa_ThSCNTT" Type="Int32" />
+    <Property Name="GiaoDuc_ThanhThao" Type="Int32" />
+    <Property Name="GiaoDuc_Luot" Type="Int32" />
+    <Property Name="GiaoDuc_TSCNTT" Type="Int32" />
+    <Property Name="GiaoDuc_ThSCNTT" Type="Int32" />
+    <Property Name="YTe_ThanhThao" Type="Int32" />
+    <Property Name="YTe_Luot" Type="Int32" />
+    <Property Name="YTe_TSCNTT" Type="Int32" />
+    <Property Name="YTe_ThSCNTT" Type="Int32" />
+    <Property Name="DVSN_ThanhThao" Type="Int32" />
+    <Property Name="DVSN_Luot" Type="Int32" />
+    <Property Name="DVSN_TSCNTT" Type="Int32" />
+    <Property Name="DVSN_ThSCNTT" Type="Int32" />
+    <Property Name="DN_ThanhThao" Type="Int32" />
+    <Property Name="DN_Luot" Type="Int32" />
+    <Property Name="DN_TSCNTT" Type="Int32" />
+    <Property Name="DN_ThSCNTT" Type="Int32" />
+    <Property Name="Khac_ThanhThao" Type="Int32" />
+    <Property Name="Khac_Luot" Type="Int32" />
+    <Property Name="Khac_TSCNTT_ThanhThao" Type="Int32" />
+    <Property Name="Khac_ThSCNTT_ThanhThao" Type="Int32" />
+    <Property Name="TruongNhapLai" Type="String" Nullable="true" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Success" Type="Byte" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UngDungCNTT_Huyen">
+    <Key>
+      <PropertyRef Name="UngDungCNTTHuyen_ID" />
+    </Key>
+    <Property Name="UngDungCNTTHuyen_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LichNhap_ID" Type="Int32" Nullable="false" />
+    <Property Name="DonVi_ID" Type="Int32" Nullable="false" />
+    <Property Name="FileUpload" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="TacNghiepTrucTiep" Type="Byte" />
+    <Property Name="QuanLyNhanSu" Type="Byte" />
+    <Property Name="TaiChinh_KeToan" Type="Byte" />
+    <Property Name="TaiSanCong" Type="Byte" />
+    <Property Name="KhieuNai_ToCao" Type="Byte" />
+    <Property Name="ChuKySo" Type="Byte" />
+    <Property Name="MotCuaDienTu" Type="Byte" />
+    <Property Name="TenPhanMem" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="ChucNang" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="PhamViSuDung" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="BatDauSuDung" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="DonViThiCong" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Xa_KetNoiPhanMem" Type="Int32" />
+    <Property Name="VanBanDi_PhanMem" Type="Int32" />
+    <Property Name="VanBanDen_PhanMem" Type="Int32" />
+    <Property Name="Huyen_VanBanDi" Type="Int32" />
+    <Property Name="Huyen_VanBanDen" Type="Int32" />
+    <Property Name="Huyen_OpenOffice" Type="Int32" />
+    <Property Name="Huyen_ThunderBird" Type="Int32" />
+    <Property Name="Huyen_FireFox" Type="Int32" />
+    <Property Name="Huyen_Unikey" Type="Int32" />
+    <Property Name="Huyen_PMNM" Type="Int32" />
+    <Property Name="Huyen_MayChuPMNM" Type="Int32" />
+    <Property Name="Huyen_HopThuDienTu" Type="Int32" />
+    <Property Name="Xa_HopThuDienTu" Type="Int32" />
+    <Property Name="MamNon_TTDT" Type="Int32" />
+    <Property Name="MamNon_TaiSanCong" Type="Int32" />
+    <Property Name="MamNon_Khac" Type="Int32" />
+    <Property Name="MamNon_QLGiangDay" Type="Int32" />
+    <Property Name="MamNon_QLHSSV" Type="Int32" />
+    <Property Name="MamNon_QLThuVien" Type="Int32" />
+    <Property Name="MamNon_DeTaiKH" Type="Int32" />
+    <Property Name="MamNon_QLThi" Type="Int32" />
+    <Property Name="TieuHoc_TTDT" Type="Int32" />
+    <Property Name="TieuHoc_TaiSanCong" Type="Int32" />
+    <Property Name="TieuHoc_Khac" Type="Int32" />
+    <Property Name="TieuHoc_QLGiangDay" Type="Int32" />
+    <Property Name="TieuHoc_QLHSSV" Type="Int32" />
+    <Property Name="TieuHoc_QLThuVien" Type="Int32" />
+    <Property Name="TieuHoc_DeTaiKH" Type="Int32" />
+    <Property Name="TieuHoc_QLThi" Type="Int32" />
+    <Property Name="THCS_TTDT" Type="Int32" />
+    <Property Name="THCS_TaiSanCong" Type="Int32" />
+    <Property Name="THCS_Khac" Type="Int32" />
+    <Property Name="THCS_QLGiangDay" Type="Int32" />
+    <Property Name="THCS_QLHSSV" Type="Int32" />
+    <Property Name="THCS_QLThuVien" Type="Int32" />
+    <Property Name="THCS_DeTaiKH" Type="Int32" />
+    <Property Name="THCS_QLThi" Type="Int32" />
+    <Property Name="THPT_TTDT" Type="Int32" />
+    <Property Name="THPT_TaiSanCong" Type="Int32" />
+    <Property Name="THPT_Khac" Type="Int32" />
+    <Property Name="THPT_QLGiangDay" Type="Int32" />
+    <Property Name="THPT_QLHSSV" Type="Int32" />
+    <Property Name="THPT_QLThuVien" Type="Int32" />
+    <Property Name="THPT_DeTaiKH" Type="Int32" />
+    <Property Name="THPT_QLThi" Type="Int32" />
+    <Property Name="TrungCap_TTDT" Type="Int32" />
+    <Property Name="TrungCap_TaiSanCong" Type="Int32" />
+    <Property Name="TrungCap_Khac" Type="Int32" />
+    <Property Name="TrungCap_QLGiangDay" Type="Int32" />
+    <Property Name="TrungCap_QLHSSV" Type="Int32" />
+    <Property Name="TrungCap_QLThuVien" Type="Int32" />
+    <Property Name="TrungCap_DeTaiKH" Type="Int32" />
+    <Property Name="TrungCap_QLThi" Type="Int32" />
+    <Property Name="CaoDang_TTDT" Type="Int32" />
+    <Property Name="CaoDang_TaiSanCong" Type="Int32" />
+    <Property Name="CaoDang_Khac" Type="Int32" />
+    <Property Name="CaoDang_QLGiangDay" Type="Int32" />
+    <Property Name="CaoDang_QLHSSV" Type="Int32" />
+    <Property Name="CaoDang_QLThuVien" Type="Int32" />
+    <Property Name="CaoDang_DeTaiKH" Type="Int32" />
+    <Property Name="CaoDang_QLThi" Type="Int32" />
+    <Property Name="DaiHoc_TTDT" Type="Int32" />
+    <Property Name="DaiHoc_TaiSanCong" Type="Int32" />
+    <Property Name="DaiHoc_Khac" Type="Int32" />
+    <Property Name="DaiHoc_QLGiangDay" Type="Int32" />
+    <Property Name="DaiHoc_QLHSSV" Type="Int32" />
+    <Property Name="DaiHoc_QLThuVien" Type="Int32" />
+    <Property Name="DaiHoc_DeTaiKH" Type="Int32" />
+    <Property Name="DaiHoc_QLThi" Type="Int32" />
+    <Property Name="Khac_TTDT" Type="Int32" />
+    <Property Name="Khac_TaiSanCong" Type="Int32" />
+    <Property Name="Khac_Khac" Type="Int32" />
+    <Property Name="Khac_QLGiangDay" Type="Int32" />
+    <Property Name="Khac_QLHSSV" Type="Int32" />
+    <Property Name="Khac_QLThuVien" Type="Int32" />
+    <Property Name="Khac_DeTaiKH" Type="Int32" />
+    <Property Name="Khac_QLThi" Type="Int32" />
+    <Property Name="TramXa_TTDT" Type="Int32" />
+    <Property Name="TramXa_QLTC" Type="Int32" />
+    <Property Name="TramXa_NhanSu" Type="Int32" />
+    <Property Name="TramXa_BenhAn" Type="Int32" />
+    <Property Name="TramXa_TacNghiep" Type="Int32" />
+    <Property Name="TramXa_QLThuoc" Type="Int32" />
+    <Property Name="TramXa_GiuongBenh" Type="Int32" />
+    <Property Name="TramXa_CongSan" Type="Int32" />
+    <Property Name="TramXa_TuXa" Type="Int32" />
+    <Property Name="BenhVien_TTDT" Type="Int32" />
+    <Property Name="BenhVien_QLTC" Type="Int32" />
+    <Property Name="BenhVien_NhanSu" Type="Int32" />
+    <Property Name="BenhVien_BenhAn" Type="Int32" />
+    <Property Name="BenhVien_TacNghiep" Type="Int32" />
+    <Property Name="BenhVien_QLThuoc" Type="Int32" />
+    <Property Name="BenhVien_GiuongBenh" Type="Int32" />
+    <Property Name="BenhVien_CongSan" Type="Int32" />
+    <Property Name="BenhVien_TuXa" Type="Int32" />
+    <Property Name="DuPhong_TTDT" Type="Int32" />
+    <Property Name="DuPhong_QLTC" Type="Int32" />
+    <Property Name="DuPhong_NhanSu" Type="Int32" />
+    <Property Name="DuPhong_BenhAn" Type="Int32" />
+    <Property Name="DuPhong_TacNghiep" Type="Int32" />
+    <Property Name="DuPhong_QLThuoc" Type="Int32" />
+    <Property Name="DuPhong_GiuongBenh" Type="Int32" />
+    <Property Name="DuPhong_CongSan" Type="Int32" />
+    <Property Name="DuPhong_TuXa" Type="Int32" />
+    <Property Name="SotRet_TTDT" Type="Int32" />
+    <Property Name="SotRet_QLTC" Type="Int32" />
+    <Property Name="SotRet_NhanSu" Type="Int32" />
+    <Property Name="SotRet_BenhAn" Type="Int32" />
+    <Property Name="SotRet_TacNghiep" Type="Int32" />
+    <Property Name="SotRet_QLThuoc" Type="Int32" />
+    <Property Name="SotRet_GiuongBenh" Type="Int32" />
+    <Property Name="SotRet_CongSan" Type="Int32" />
+    <Property Name="SotRet_TuXa" Type="Int32" />
+    <Property Name="HIVAIDS_TTDT" Type="Int32" />
+    <Property Name="HIVAIDS_QLTC" Type="Int32" />
+    <Property Name="HIVAIDS_NhanSu" Type="Int32" />
+    <Property Name="HIVAIDS_BenhAn" Type="Int32" />
+    <Property Name="HIVAIDS_TacNghiep" Type="Int32" />
+    <Property Name="HIVAIDS_QLThuoc" Type="Int32" />
+    <Property Name="HIVAIDS_GiuongBenh" Type="Int32" />
+    <Property Name="HIVAIDS_CongSan" Type="Int32" Nullable="false" />
+    <Property Name="HIVAIDS_TuXa" Type="Int32" />
+    <Property Name="SinhSan_TTDT" Type="Int32" />
+    <Property Name="SinhSan_QLTC" Type="Int32" />
+    <Property Name="SinhSan_NhanSu" Type="Int32" />
+    <Property Name="SinhSan_BenhAn" Type="Int32" />
+    <Property Name="SinhSan_TacNghiep" Type="Int32" />
+    <Property Name="SinhSan_QLThuoc" Type="Int32" />
+    <Property Name="SinhSan_GiuongBenh" Type="Int32" />
+    <Property Name="SinhSan_CongSan" Type="Int32" />
+    <Property Name="SinhSan_TuXa" Type="Int32" />
+    <Property Name="DaLieu_TTDT" Type="Int32" />
+    <Property Name="DaLieu_QLTC" Type="Int32" />
+    <Property Name="DaLieu_NhanSu" Type="Int32" />
+    <Property Name="DaLieu_BenhAn" Type="Int32" />
+    <Property Name="DaLieu_TacNghiep" Type="Int32" />
+    <Property Name="DaLieu_QLThuoc" Type="Int32" />
+    <Property Name="DaLieu_GiuongBenh" Type="Int32" />
+    <Property Name="DaLieu_CongSan" Type="Int32" />
+    <Property Name="DaLieu_TuXa" Type="Int32" />
+    <Property Name="Mat_TTDT" Type="Int32" />
+    <Property Name="Mat_QLTC" Type="Int32" />
+    <Property Name="Mat_NhanSu" Type="Int32" />
+    <Property Name="Mat_BenhAn" Type="Int32" />
+    <Property Name="Mat_TacNghiep" Type="Int32" />
+    <Property Name="Mat_QLThuoc" Type="Int32" />
+    <Property Name="Mat_GiuongBenh" Type="Int32" />
+    <Property Name="Mat_CongSan" Type="Int32" />
+    <Property Name="Mat_TuXa" Type="Int32" />
+    <Property Name="DKTinh_TTDT" Type="Int32" />
+    <Property Name="DKTinh_QLTC" Type="Int32" />
+    <Property Name="DKTinh_NhanSu" Type="Int32" />
+    <Property Name="DKTinh_BenhAn" Type="Int32" />
+    <Property Name="DKTinh_TacNghiep" Type="Int32" />
+    <Property Name="DKTinh_QLThuoc" Type="Int32" />
+    <Property Name="DKTinh_GiuongBenh" Type="Int32" />
+    <Property Name="DKTinh_CongSan" Type="Int32" />
+    <Property Name="DKTinh_TuXa" Type="Int32" />
+    <Property Name="DieuDuong_TTDT" Type="Int32" />
+    <Property Name="DieuDuong_QLTC" Type="Int32" />
+    <Property Name="DieuDuong_NhanSu" Type="Int32" />
+    <Property Name="DieuDuong_BenhAn" Type="Int32" />
+    <Property Name="DieuDuong_TacNghiep" Type="Int32" />
+    <Property Name="DieuDuong_QLThuoc" Type="Int32" />
+    <Property Name="DieuDuong_GiuongBenh" Type="Int32" />
+    <Property Name="DieuDuong_CongSan" Type="Int32" />
+    <Property Name="DieuDuong_TuXa" Type="Int32" />
+    <Property Name="LaoPhoi_TTDT" Type="Int32" />
+    <Property Name="LaoPhoi_QLTC" Type="Int32" />
+    <Property Name="LaoPhoi_NhanSu" Type="Int32" />
+    <Property Name="LaoPhoi_BenhAn" Type="Int32" />
+    <Property Name="LaoPhoi_TacNghiep" Type="Int32" />
+    <Property Name="LaoPhoi_QLThuoc" Type="Int32" />
+    <Property Name="LaoPhoi_GiuongBenh" Type="Int32" />
+    <Property Name="LaoPhoi_CongSan" Type="Int32" />
+    <Property Name="LaoPhoi_TuXa" Type="Int32" />
+    <Property Name="YHoc_TTDT" Type="Int32" />
+    <Property Name="YHoc_QLTC" Type="Int32" />
+    <Property Name="YHoc_NhanSu" Type="Int32" />
+    <Property Name="YHoc_BenhAn" Type="Int32" />
+    <Property Name="YHoc_TacNghiep" Type="Int32" />
+    <Property Name="YHoc_QLThuoc" Type="Int32" />
+    <Property Name="YHoc_GiuongBenh" Type="Int32" />
+    <Property Name="YHoc_CongSan" Type="Int32" />
+    <Property Name="YHoc_TuXa" Type="Int32" />
+    <Property Name="TamThan_TTDT" Type="Int32" />
+    <Property Name="TamThan_QLTC" Type="Int32" Nullable="false" />
+    <Property Name="TamThan_NhanSu" Type="Int32" />
+    <Property Name="TamThan_BenhAn" Type="Int32" />
+    <Property Name="TamThan_TacNghiep" Type="Int32" />
+    <Property Name="TamThan_QLThuoc" Type="Int32" />
+    <Property Name="TamThan_GiuongBenh" Type="Int32" />
+    <Property Name="TamThan_CongSan" Type="Int32" />
+    <Property Name="TamThan_TuXa" Type="Int32" />
+    <Property Name="UD_AnToanVeSinhTP" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="UD_KHHGiaDinh" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="UD_TTSucKhoe" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="UD_DPMyPham" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="UD_GiamDinhYKhoa" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="UD_GiamDinhPhapY" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="SuNghiep_KeToan" Type="Byte" />
+    <Property Name="SuNghiep_ERP" Type="Byte" />
+    <Property Name="SuNghiep_VatTuDN" Type="Byte" />
+    <Property Name="SuNghiep_Luong" Type="Byte" />
+    <Property Name="SuNghiep_BanHang" Type="Byte" />
+    <Property Name="SuNghiep_GDDTTinh" Type="Byte" />
+    <Property Name="SuNghiep_Khac" Type="Byte" />
+    <Property Name="CNTT_KeToan" Type="Byte" />
+    <Property Name="CNTT_ERP" Type="Byte" />
+    <Property Name="CNTT_VatTuDN" Type="Byte" />
+    <Property Name="CNTT_Luong" Type="Byte" />
+    <Property Name="CNTT_BanHang" Type="Byte" />
+    <Property Name="CNTT_GDDTTinh" Type="Byte" />
+    <Property Name="CNTT_Khac" Type="Byte" />
+    <Property Name="Khac_KeToan" Type="Byte" Nullable="false" />
+    <Property Name="Khac_ERP" Type="Byte" />
+    <Property Name="Khac_VatTuDN" Type="Byte" />
+    <Property Name="Khac_Luong" Type="Byte" />
+    <Property Name="Khac_BanHang" Type="Byte" />
+    <Property Name="Khac_GDDTTinh" Type="Byte" />
+    <Property Name="DNKhac_Khac" Type="Byte" />
+    <Property Name="TruongNhapLai" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Success" Type="Byte" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PhanMemQLCN">
+    <Key>
+      <PropertyRef Name="PhanMemQLCN_ID" />
+    </Key>
+    <Property Name="PhanMemQLCN_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UngDungCNTT_ID" Type="Int32" Nullable="false" />
+    <Property Name="PhanHe_ID" Type="Int32" Nullable="false" />
+    <Property Name="DonVi_ID" Type="Int32" Nullable="false" />
+    <Property Name="TenPhanMem" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="SBN" Type="Int32" />
+    <Property Name="UBND_Huyen" Type="Int32" />
+    <Property Name="UBND_Xa" Type="Int32" />
+    <Property Name="DVTT" Type="Int32" />
+    <Property Name="Success" Type="Byte" Nullable="false" />
+    <Property Name="TruongNhapLai" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Ht_Role_PhanHe_ChucNang">
+    <Key>
+      <PropertyRef Name="PhanHeChucNang_ID" />
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="PhanHeChucNang_ID" Type="Int32" Nullable="false" />
+    <Property Name="RoleId" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
+    <Property Name="IsView" Type="Byte" Nullable="false" />
+    <Property Name="IsEdit" Type="Byte" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Ht_ThamSoHeThong">
+    <Key>
+      <PropertyRef Name="ThamSo_ID" />
+    </Key>
+    <Property Name="ThamSo_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="User_ID" Type="Int32" />
+    <Property Name="TenThamSo" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="MaThamSo" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="GiaTriThamSo" Type="String" Nullable="false" MaxLength="8000" FixedLength="false" Unicode="false" />
+    <Property Name="Comment" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <ComplexType Name="sp_GetUserByDonVi_Role_Result">
+    <Property Type="String" Name="Id" Nullable="false" MaxLength="128" />
+    <Property Type="String" Name="HoVaTen" Nullable="true" />
+    <Property Type="String" Name="Email" Nullable="true" MaxLength="256" />
+    <Property Type="Int32" Name="DonVi_ID" Nullable="false" />
+    <Property Type="Int32" Name="TrangThai" Nullable="true" />
+    <Property Type="Boolean" Name="EmailConfirmed" Nullable="true" />
+    <Property Type="String" Name="PasswordHash" Nullable="true" />
+    <Property Type="String" Name="SecurityStamp" Nullable="true" />
+    <Property Type="String" Name="PhoneNumber" Nullable="true" />
+    <Property Type="Boolean" Name="PhoneNumberConfirmed" Nullable="true" />
+    <Property Type="Boolean" Name="TwoFactorEnabled" Nullable="true" />
+    <Property Type="DateTime" Name="LockoutEndDateUtc" Nullable="true" Precision="23" />
+    <Property Type="Boolean" Name="LockoutEnabled" Nullable="true" />
+    <Property Type="Int32" Name="AccessFailedCount" Nullable="true" />
+    <Property Type="String" Name="UserName" Nullable="true" MaxLength="256" />
+    <Property Type="String" Name="Discriminator" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="RoleId" Nullable="false" MaxLength="128" />
+    <Property Type="String" Name="TenDonVi" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_GetUserAndRole_Result">
+    <Property Type="String" Name="Id" Nullable="false" MaxLength="128" />
+    <Property Type="String" Name="UserName" Nullable="true" MaxLength="256" />
+    <Property Type="String" Name="HoVaTen" Nullable="true" />
+    <Property Type="Int32" Name="DonVi_ID" Nullable="false" />
+    <Property Type="String" Name="Email" Nullable="true" MaxLength="256" />
+    <Property Type="Int32" Name="TrangThai" Nullable="false" />
+    <Property Type="String" Name="RoleId" Nullable="false" MaxLength="128" />
+  </ComplexType>
+  <EntityType Name="HT_Log">
+    <Key>
+      <PropertyRef Name="Log_ID" />
+    </Key>
+    <Property Name="Log_ID" Type="Int32" Nullable="false" />
+    <Property Name="User_ID" Type="Int32" Nullable="false" />
+    <Property Name="ChucNang" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="ThaoTac" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="ThoiGian" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="NoiDung" Type="String" Nullable="false" MaxLength="8000" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <ComplexType Name="sp_GetChucNangByRole_Result">
+    <Property Type="Int32" Name="PhanHeChucNang_ID" Nullable="false" />
+    <Property Type="String" Name="TenChucNang" Nullable="false" MaxLength="250" />
+    <Property Type="String" Name="RoleId" Nullable="false" MaxLength="128" />
+    <Property Type="String" Name="TenHienThi" Nullable="true" MaxLength="250" />
+    <Property Type="Byte" Name="IsEdit" Nullable="false" />
+    <Property Type="Byte" Name="IsView" Nullable="false" />
+  </ComplexType>
+  <EntityType Name="TN_Chuyen">
+    <Key>
+      <PropertyRef Name="Chuyen_ID" />
+    </Key>
+    <Property Name="Viec_ID" Type="Int32" Nullable="false" />
+    <Property Name="Chuyen_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NguoiChuyen_ID" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="NguoiNhan_ID" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Ykien" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="LoaiChuyen" Type="Int32" />
+    <Property Name="TenNguoiChuyen" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="TenNguoiNhan" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Active" Type="Int32" />
+    <Property Name="LuongBaoCao" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="TraLoi_ID" Type="Int32" />
+  </EntityType>
+  <EntityType Name="TN_DauViec">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TenDauViec" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="NguoiThucHien_ID" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="TenNguoiThucHien" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="FileDinhKem" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="TuNgay" Type="DateTime" Precision="3" />
+    <Property Name="DenNgay" Type="DateTime" Precision="3" />
+    <Property Name="TienDo" Type="Int32" />
+    <Property Name="PhamVi" Type="Int32" />
+    <Property Name="LoaiViec" Type="Int32" />
+    <Property Name="NgayTao" Type="DateTime" Precision="3" />
+    <Property Name="NguoiDuyet_ID" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="TenNguoiDuyet" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="NoiDung" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Parent_ID" Type="Int32" />
+    <Property Name="NguoiTao_ID" Type="String" MaxLength="36" FixedLength="true" Unicode="false" />
+    <Property Name="TrangThai" Type="Int32" />
+    <Property Name="Display" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="OnTime" Type="Int32" />
+  </EntityType>
+</Schema>

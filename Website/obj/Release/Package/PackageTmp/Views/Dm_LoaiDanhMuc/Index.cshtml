@@ -1,0 +1,67 @@
+﻿@model IEnumerable<S4T_HaTinh.Models.Dm_LoaiDanhMuc>
+
+@{
+    ViewBag.Title = "LOẠI DANH MỤC";
+    var listTrangThai = MvcApplication.ListTrangThai();
+}
+
+<h2>@ViewBag.Title</h2>
+
+<p>
+    @Html.ActionLink("Tạo mới", "Create")
+</p>
+<table class="tableDefault">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.LoaiDanhMuc_ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TenLoai)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TrangThai)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.LoaiDanhMuc_ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TenLoai)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => listTrangThai.FirstOrDefault(o => o.DanhMuc_ID == item.TrangThai).TenDanhMuc)
+            </td>
+            <td>
+                @Html.ActionLink("Sửa", "Edit", new { id = item.LoaiDanhMuc_ID }) |
+                <a title="Xóa" onclick="Delete(@item.LoaiDanhMuc_ID)">Xóa</a>
+            </td>
+        </tr>
+    }
+
+</table>
+<script type="text/javascript">
+    // Href Xóa : Xóa loại danh mục
+    function Delete(id) {
+        if (!confirm("Bạn có chắc chắn xóa dữ liệu này?")) return;
+
+        $.ajax({
+            type: 'POST',
+            url: "Dm_LoaiDanhMuc/Delete?id=" + id,
+            success: function (data) {
+                if (data.msg == "ok") {
+                    alert("Đã xóa thành công");
+                    location.reload();
+                } else {
+                    alert(data.msg);
+                }
+            },
+            async: true
+        });
+    }
+</script>

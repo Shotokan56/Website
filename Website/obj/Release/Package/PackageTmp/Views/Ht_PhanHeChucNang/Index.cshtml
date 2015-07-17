@@ -1,0 +1,90 @@
+﻿@model IEnumerable<S4T_HaTinh.Models.Ht_PhanHeChucNang>
+@using S4T_HaTinh.Models;
+@{
+    ViewBag.Title = "DANH SÁCH PHÂN HỆ CHỨC NĂNG";
+    var listTrangThai = MvcApplication.ListTrangThai();
+    var listPhanHe = (IEnumerable<Ht_PhanHe>) ViewBag.ListPhanHe;
+}
+
+<h2>@ViewBag.Title</h2>
+
+<p>
+    @Html.ActionLink("Tạo mới", "Create")
+</p>
+<table class="tableDefault">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.PhanHeChucNang_ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PhanHe_ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TenChucNang)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ControllerName)
+        </th>        
+        <th>
+            @Html.DisplayNameFor(model => model.ActionName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TrangThai)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ThuTu)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>    
+                @Html.DisplayFor(modelItem => item.PhanHeChucNang_ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => listPhanHe.FirstOrDefault(o => o.PhanHe_ID == item.PhanHe_ID).TenPhanHe)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TenChucNang)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ControllerName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ActionName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => listTrangThai.FirstOrDefault(o => o.DanhMuc_ID == item.TrangThai).TenDanhMuc)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ThuTu)
+            </td>
+            <td>
+                @Html.ActionLink("Sửa", "Edit", new { id = item.PhanHeChucNang_ID }) |
+                <a title="Xóa" onclick="Delete(@item.PhanHeChucNang_ID)">Xóa</a>
+            </td>
+        </tr>
+    }
+
+</table>
+<script type="text/javascript">
+    function Delete(id) {
+        //if (!confirm("Bạn có chắc chắn xóa dữ liệu này?")) return;
+
+        //$.ajax({
+        //    type: 'POST',
+        //    url: "Ht_PhanHeChucNang/Delete?id=" + id,
+        //    success: function (data) {
+        //        if (data.msg == "ok") {
+        //            alert("Đã xóa thành công");
+        //            location.reload();
+        //        } else {
+        //            alert(data.msg);
+        //        }
+        //    },
+        //    async: true
+        //});
+    }
+</script>

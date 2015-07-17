@@ -1,0 +1,60 @@
+﻿@model S4T_HaTinh.Models.TinhHinhSXDN
+
+@{
+    ViewBag.Title = "QUẢN LÝ TÌNH HÌNH NHẬP LIỆU CÁC ĐƠN VỊ";
+    var listDonVi = new SelectList(ViewBag.ListDonVi, "DonVi_ID", "TenDonVi");
+    
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <div class="form-group">
+            @Html.Label("lblDonVi","Chọn đơn vị", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("ddlDonVi", listDonVi,"Chọn đơn vị", new { @class = "form-control", @onchange = "DonVi_Onchange()" })
+            </div>
+        </div>
+    </div>
+    <div class="form-horizontal">
+        <table class="tableDefault" id="tblReport">
+            <thead>
+                <tr>
+                    <th>Tên phân hệ</th>
+                    <th>Ngày bắt đầu</th>
+                    <th>Ngày kết thúc</th>
+                    <th>Trạng thái</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                
+            </tbody>
+        </table>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Quay lại", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+<script type="text/javascript">
+    function DonVi_Onchange() {
+        if ($("#ddlDonVi").val() != "") {
+            $.post("GetReportByDonVi", { "donVi_ID": $("#ddlDonVi").val() }).done(function (data) {
+                if (data.msg == null) {
+                    $("#tblReport > tbody").html(data.danhSach);
+                } else {
+                    alert(data.msg);
+                }
+            });
+        }
+    }
+</script>

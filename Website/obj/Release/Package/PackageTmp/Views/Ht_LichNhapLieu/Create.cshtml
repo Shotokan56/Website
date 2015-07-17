@@ -1,0 +1,167 @@
+﻿@model S4T_HaTinh.Models.Ht_LichNhapLieu
+@using S4T_HaTinh.Models
+@{
+    ViewBag.Title = "Tạo mới";
+    var listTrangThai = new SelectList(MvcApplication.ListTrangThai(), "DanhMuc_ID", "TenDanhMuc");
+    var listDonVi = new SelectList(ViewBag.ListDonVi, "DonVi_ID", "TenDonVi");
+    var listPhanHe = new SelectList(ViewBag.ListPhanHe, "PhanHeChucNang_ID", "TenChucNang");
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DonVi_ID, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.DonVi_ID, listDonVi, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.DonVi_ID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ChucNang_ID, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input class = "form-control" value = "Thêm mới" disabled="disabled" />
+                @Html.HiddenFor(model => model.ChucNang_ID, new { Value = @ViewBag.TrangThaiNhapLieu })
+                @Html.ValidationMessageFor(model => model.ChucNang_ID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        @*<table class="tableDefault">
+            <tr>
+                <th>Phân hệ quản lý</th>
+                <th>Từ ngày</th>
+                <th>Đến ngày</th>
+            </tr>
+        </table>*@
+        <div class="form-group">
+            @Html.LabelFor(model => model.PhanHe_ID, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.PhanHe_ID, listPhanHe, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.PhanHe_ID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TuNgay, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TuNgay, new { htmlAttributes = new { @class = "form-control" } })
+                @*@Html.ValidationMessageFor(model => model.TuNgay, "", new { @class = "text-danger" })*@
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DenNgay, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.DenNgay, new { htmlAttributes = new { @class = "form-control" } })
+                @*@Html.ValidationMessageFor(model => model.DenNgay, "", new { @class = "text-danger" })*@
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TrangThai, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.TrangThai, listTrangThai, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TrangThai, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input id="btnSubmit" type="submit" value="Tạo mới" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        // create DatePicker from input HTML element
+        function startChange() {
+            var startDate = start.value(),
+            endDate = end.value();
+
+            if (startDate) {
+                startDate = new Date(startDate);
+                startDate.setDate(startDate.getDate());
+                end.min(startDate);
+            } else if (endDate) {
+                start.max(new Date(endDate));
+            } else {
+                endDate = new Date();
+                start.max(endDate);
+                end.min(endDate);
+            }
+        }
+
+        function endChange() {
+            var endDate = end.value(),
+            startDate = start.value();
+
+            if (endDate) {
+                endDate = new Date(endDate);
+                endDate.setDate(endDate.getDate());
+                start.max(endDate);
+            } else if (startDate) {
+                end.min(new Date(startDate));
+            } else {
+                endDate = new Date();
+                start.max(endDate);
+                end.min(endDate);
+            }
+        }
+
+        var start = $("#TuNgay").kendoDatePicker({
+            change: startChange
+            ,format: "dd/MM/yyyy"
+        }).data("kendoDatePicker");
+
+        var end = $("#DenNgay").kendoDatePicker({
+            change: endChange
+            ,format: "dd/MM/yyyy"
+        }).data("kendoDatePicker");
+
+        start.max(end.value());
+        end.min(start.value());
+
+        $('#TuNgay').removeAttr('data-val-date');
+        $('#DenNgay').removeAttr('data-val-date');
+    });
+
+    function DonVi_Onchange() {
+        var array = @Html.Raw(
+                        Json.Encode(
+                            ((IEnumerable<Ht_PhanHeChucNang>)ViewBag.ListPhanHe).Select(o => new
+                            {
+                                phanHeId = o.PhanHeChucNang_ID,
+                                tenPhanHe = o.TenChucNang
+                            })
+                        )
+                    );
+        var str = "";
+        for(var i = 0; i < array.length; i++){
+            str += "<tr>";
+            str += "<td>" + array[i].phanHeId + "</td>";
+            str += "<td>" + array[i].phanHeId + "</td>";
+            str += "</tr>";
+        }
+        alert(str);
+    }
+
+    //$("#btnSubmit").click(function(e){
+        
+    //})
+</script>

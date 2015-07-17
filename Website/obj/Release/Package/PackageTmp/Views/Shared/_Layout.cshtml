@@ -1,0 +1,245 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>S4T Hà Tĩnh</title>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <link href="~/Content/skin.css" rel="stylesheet" />
+    <link href="~/Content/default.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.11.1.js" type="text/javascript"></script>
+    <script src="~/Scripts/jquery-1.11.1.min.js" type="text/javascript"></script>
+    @Styles.Render("~/Content/Kendo/css")
+    @*<meta name="viewport" content="width=device-width, initial-scale=1.0">*@
+    @*@Styles.Render("~/Content/css")
+        @Scripts.Render("~/bundles/modernizr")*@
+</head>
+<body>
+    <div id="siteWrapper" style="">
+        @*<div class="ul1">
+        </div>*@
+        <div class="">
+        </div>
+
+        <div>
+            <table style="width:100%; border:0; background:#fff; border-spacing:0; border-collapse:collapse;">
+                <tbody>
+                    <tr>
+                        <td class="FPTLeftCol" style="width:220px; vertical-align:top;">
+                            <div class="FPT-User">
+                                <table style="width:100%;border-spacing:0; border-collapse:collapse">
+                                    <tbody>
+                                        <tr>
+                                            <td style="width:60px;">
+                                                <img src="~/Content/images/no_avatar.gif" width="60">
+                                            </td>
+                                            <td>
+                                                <a id="dnn_dnnUser_enhancedRegisterLink"></a><br>
+
+                                                <div id="dnn_dnnUser_dnnLogin_loginGroup" class="loginGroup">
+                                                    @using Microsoft.AspNet.Identity
+                                                    @if (Request.IsAuthenticated)
+                                                    {
+                                                        using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                                                        {
+                                                @Html.AntiForgeryToken()
+
+                                                <ul class="nav navbar-nav navbar-right" style="list-style:none">
+                                                    <li>
+                                                        @Html.ActionLink("Xin chào " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+                                                    </li>
+                                                    <li><a href="javascript:document.getElementById('logoutForm').submit()">Đăng xuất</a></li>
+                                                </ul>
+                                                        }
+                                                    }
+                                                    else
+                                                    {
+                                                <ul class="nav navbar-nav navbar-right">
+                                                    <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+                                                </ul>
+                                                    }
+                                                </div><!--close loginGroup-->
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div id="dnn_leftPane" class="contentPane">
+                                <div id="dnn_ctr994_ContentPane">
+                                    <!-- Start_Module_994 -->
+                                    <div id="dnn_ctr994_ModuleContent" class="DNNModuleContent Mod1CHomeleftC">
+
+        @using S4T_HaTinh.Models;
+        @using System.Text;
+        @{
+            var strMenu = System.Web.HttpContext.Current.Session["LeftMenu"];
+            if (strMenu != null)
+            {
+                @Html.Raw(strMenu);
+            }
+            else
+            {
+                var user = System.Web.HttpContext.Current.Session["User"] as ApplicationUser;
+                var listChucNang = (List<Ht_PhanHeChucNang>)System.Web.HttpContext.Current.Session["ChucNang"];
+                var listPhanHe = MvcApplication.ListPhanHe;
+                if (user != null && listChucNang != null && listPhanHe != null)
+                {
+                    var str = new StringBuilder();
+                    foreach (var phanHe in listPhanHe)
+                    {
+                        var list = listChucNang.Where(o => o.PhanHe_ID == phanHe.PhanHe_ID);
+                        if (list.Any())
+                        {
+                            str.AppendFormat("<div class='FPT-MenuTop'><span>{0}</span></div>", phanHe.TenPhanHe);
+                            str.Append("<div class='FPT-Menu'> <ul id='FPT-nav'>");
+
+                            foreach (var chucNang in listChucNang.Where(o => o.PhanHe_ID == phanHe.PhanHe_ID))
+                            {
+                                str.AppendFormat("<li><a href=\"/{0}/{1}\">{2}</a></li>",
+                                    chucNang.ControllerName.Trim(), chucNang.ActionName.Trim(), chucNang.TenChucNang);
+                            }
+
+                            str.Append("</ul> </div>");
+                        }
+                    }
+                    System.Web.HttpContext.Current.Session["LeftMenu"] = str.ToString();
+                    @Html.Raw(str.ToString());
+                }
+                else
+                {
+                    Response.Redirect("~/Account/Login");
+                }
+            }
+
+            @*if (user != null)
+            {
+                var roleAdmin_ID = MvcApplication.RoleAdmin_ID();
+                var roleChuyenVien_ID = MvcApplication.RoleChuyenVien_ID();
+                var isAdmin = new S4T_HaTinhEntities().AspNetUserRoles.FirstOrDefault(o => o.UserId == user.Id && (o.RoleId == roleAdmin_ID || o.RoleId == roleChuyenVien_ID));
+                if (isAdmin != null)
+                {
+                    <div class="FPT-MenuTop"><span>DANH MỤC HỆ THỐNG</span></div>
+                    <div class="FPT-Menu">
+                        <ul id="FPT-nav">
+                            <li>
+                                <a href="/ht_phanhe/index">Danh mục phân hệ</a>
+                            </li>
+                            <li>
+                                <a href="/ht_phanhechucnang/index">Danh mục phân hệ chức năng</a>
+                            </li>
+                            <li>
+                                <a href="/dm_donvi/index">Danh mục đơn vị</a>
+                            </li>
+                            <li>
+                                <a href="/HT_USer/index">Người dùng</a>
+                            </li>
+                            <li>
+                                <a href="/Dm_LoaiDanhMuc/index">Loại danh mục</a>
+                            </li>
+                            <li>
+                                <a href="/Dm_DanhMucChung/index">Danh mục dùng chung</a>
+                            </li>
+                            <li>
+                                <a href="/Ht_LichNhapLieu/index">Lịch nhập liệu</a>
+                            </li>
+                            <li>
+                                <a href="/Ht_QuanLyNhapLieu/index">Quản lý tình hình nhập liệu</a>
+                            </li>
+                            <li>
+                                <a href="/ToChucChinhSachCNTTs/List">Quản lý môi trường chính sách</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="FPT-MenuTop"><span>TÁC NGHIỆP</span></div>
+                    <div class="FPT-MenuTop"><span>QUẢN LÝ DỰ ÁN ĐẦU TƯ</span></div>
+                    <div class="FPT-Menu">
+                        <ul id="FPT-nav">
+                            <li>
+                                <a href="#">Thẩm định thiết kế sơ bộ dự án CNTT</a>
+                            </li>
+                            <li>
+                                <a href="#">Phân công thụ lý hồ sơ</a>
+                            </li>
+                            <li>
+                                <a href="#">Theo dõi quá trình thực hiện dự án đầu tư sau khi kết thúc quá trình thẩm định</a>
+                            </li>
+                        </ul>
+                    </div>
+                }
+                else
+                {
+                    var roleUser_ID = MvcApplication.RoleUser_ID();
+                    var isUser = new S4T_HaTinhEntities().AspNetUserRoles.FirstOrDefault(o => o.UserId == user.Id && o.RoleId == roleUser_ID);
+                    if (isUser != null)
+                    {
+                        <div class="FPT-MenuTop"><span>QUẢN LÝ THÔNG TIN</span></div>
+                        <div class="FPT-Menu">
+                            <ul id="FPT-nav">
+                                <li>
+                                    <a href="/home/MenuUngDungCNTT">Ứng dụng CNTT tại các cơ quan Nhà nước trên địa bàn Tỉnh</a>
+                                </li>
+                                <li>
+                                    <a href="/TinhHinhSXDN/Index">Tình hình sản xuất kinh doanh của các DN trên địa bàn Tỉnh</a>
+                                </li>
+                                <li>
+                                    <a href="/UngDungCNTTTaiDN/Index">Tình hình ứng dụng CNTT tại các Doanh nghiệp trên địa bàn Tỉnh</a>
+                                </li>
+
+                                <li>
+                                    <a href="#">Kế hoạch</a>
+                                </li>
+                            </ul>
+                        </div>
+                    }
+                }
+            }*@
+        }
+                                    </div><!-- End_Module_994 -->
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                        </td>
+                        <td style="vertical-align:top; padding-left:20px;" class="FPTContent">
+                            <div id="dnn_contentPane" class="contentPane">
+                                <div class="DnnModule DnnModule-DNN_HTML DnnModule-995">
+                                    <a name="995"></a>
+                                    <div class="DNNContainer_Title_h2 SpacingBottom">
+                                        @*<h2>
+                                                <span id="dnn_ctr995_dnnTITLE_titleLabel" class="TitleH2">Điều hành tác nghiệp</span>
+                                            </h2>*@
+                                        <div id="dnn_ctr995_ContentPane">
+                                            <!-- Start_Module_995 --><div id="dnn_ctr995_ModuleContent" class="DNNModuleContent ModDNNHTMLC">
+                                                <div id="dnn_ctr995_HtmlModule_lblContent" class="Normal">
+                                                    @RenderBody()
+                                                    @RenderSection("SPAViews", required: false)
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    @*@Scripts.Render("~/bundles/jquery")*@
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/kendo")
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
+<script type="text/javascript">
+    var mCheckSession = false;
+    window.setInterval(CheckSessionTimeout, 600000); //600000-10p check 1 lần
+
+    function CheckSessionTimeout() {
+        mCheckSession = true;
+        $.post("~/login/CheckSessionTimeout",
+            function (data) {
+                if (data == "0") {
+                    window.location.href = "../../Account/Login?returnUrl=" + window.location.pathname;
+                }
+            });
+    }
+</script>

@@ -1,0 +1,1404 @@
+﻿@model S4T_HaTinh.Models.CongThongTinDienTu_Huyen
+
+@{
+    ViewBag.Title = "Check";
+    var listStatusNhapLieu = MvcApplication.ListTrangThaiNhapLieu();
+}
+
+@*<script src="../../../../Scripts/jquery-1.10.2.min.js" type="text/javascript"></script>*@
+<script src="~/Scripts/s4t-hatinh.js" type="text/javascript"></script>
+<h2>Kiểm Tra</h2>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        @*<h4>Đơn vị: @ViewBag.TenDonVi được tạo mới dữ liệu từ ngày @String.Format("{0:dd/MM/yyyy}", @ViewBag.TuNgay) đến ngày @String.Format("{0:dd/MM/yyyy}", @ViewBag.DenNgay)</h4>*@
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.CongThongTinDienTuHuyen_ID)
+        <input type="hidden" id="lichNhap_ID" value="@ViewBag.LichNhap_ID" />      
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DonVi_ID, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBox("txtTenDonVi", (string)ViewBag.TenDonVi, new { @class = "form-control", @disabled = "disabled" })
+                @Html.HiddenFor(model => model.DonVi_ID)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Success, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(Model => listStatusNhapLieu.FirstOrDefault(o => o.DanhMuc_ID == Model.Success).TenDanhMuc, new { @class = "form-control", @readonly = "readonly" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.TruongNhapLai, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.HiddenFor(model => model.TruongNhapLai)
+                @Html.TextArea("txtTruongNhapLai", "", new { @rows = "5", @cols = "45", @readonly = "readonly" })
+            </div>
+        </div>
+
+        <p>1. Hệ thống hiện đang sử dụng là:</p>
+
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.FileUpload, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.FileUpload, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.FileUpload, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DangSuDung, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <ul style="list-style:none">
+                    <li>
+                        <input type="radio" id="rd_value_DangSuDung_1" name="rd_value_DangSuDung" style="width:30px;" checked="checked" />
+                        <span style="width:30px;">Trang thông tin điện tử(Website)</span>
+                    </li>
+                    <li>
+                        <input type="radio" id="rd_value_DangSuDung_2" name="rd_value_DangSuDung" style="width:30px;" />
+                        <span style="width:30px;">Cổng thông tin điện tử(Portal)</span>
+                    </li>
+                </ul>
+                @Html.HiddenFor(model => model.DangSuDung)
+                @Html.CheckBox("chk_value_DangSuDung", new { @style = "margin-left: 30px;" })
+                @Html.ValidationMessageFor(model => model.DangSuDung, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.QuanTriCoSoDL, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.QuanTriCoSoDL, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.QuanTriCoSoDL, "", new { @class = "text-danger" })
+                @Html.LabelFor(model => model.QuanTriCoSoDL, new { @style = "display:none" })
+                @Html.CheckBox("chk_value_QuanTriCoSoDL")
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CongNgheLoi, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.CongNgheLoi, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.CongNgheLoi, "", new { @class = "text-danger" })
+                @Html.LabelFor(model => model.CongNgheLoi, new { @style = "display:none" })
+                @Html.CheckBox("chk_value_CongNgheLoi")
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.NgonNguLapTrinh, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.NgonNguLapTrinh, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.NgonNguLapTrinh, "", new { @class = "text-danger" })
+                @Html.LabelFor(model => model.NgonNguLapTrinh, new { @style = "display:none" })
+                @Html.CheckBox("chk_value_NgonNguLapTrinh")
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.WebCapXa, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.WebCapXa, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.WebCapXa, "", new { @class = "text-danger" })
+                @Html.LabelFor(model => model.WebCapXa, new { @style = "display:none" })
+                @Html.CheckBox("chk_value_WebCapXa")
+            </div>
+        </div>
+
+        <p>2. Thông tin được cung cấp và cập nhật đầy đủ trên Website/Portal</p>
+
+        <div class="form-group">
+            <div>1) Thông tin giới thiệu</div>
+
+            @Html.LabelFor(model => model.SoDo_CoCau, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <ul style="list-style:none">
+                    <li>
+                        <input type="radio" id="rd_value_CoCauToChuc_1" name="rd_value_CoCauToChuc" style="width:30px;" checked="checked" />
+                        <span style="width:30px;">Thông tin đầy đủ</span>
+                    </li>
+                    <li>
+                        <input type="radio" id="rd_value_CoCauToChuc_2" name="rd_value_CoCauToChuc" style="width:30px;" />
+                        <span style="width:30px;">Thông tin không đầy đủ (thiếu 1 nhóm thông tin)</span>
+                    </li>
+                    <li>
+                        <input type="radio" id="rd_value_CoCauToChuc_3" name="rd_value_CoCauToChuc" style="width:30px;" />
+                        <span style="width:30px;">Không có thông tin</span>
+                    </li>
+                </ul>
+                @Html.HiddenFor(model => model.SoDo_CoCau)
+                @Html.CheckBox("chk_value_SoDo_CoCau", new { @style = "margin-left: 30px;" })
+                @Html.ValidationMessageFor(model => model.SoDo_CoCau, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ChucNang_NhiemVu, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <ul style="list-style:none">
+                    <li>
+                        <input type="radio" id="rd_value_ChucNang_DVTT_1" name="rd_value_ChucNang_DVTT" style="width:30px;" checked="checked" />
+                        <span style="width:30px;">Thông tin đầy đủ</span>
+                    </li>
+                    <li>
+                        <input type="radio" id="rd_value_ChucNang_DVTT_2" name="rd_value_ChucNang_DVTT" style="width:30px;" />
+                        <span style="width:30px;">Thông tin không đầy đủ (thiếu 1 nhóm thông tin)</span>
+                    </li>
+                    <li>
+                        <input type="radio" id="rd_value_ChucNang_DVTT_3" name="rd_value_ChucNang_DVTT" style="width:30px;" />
+                        <span style="width:30px;">Không có thông tin</span>
+                    </li>
+                </ul>
+                @Html.HiddenFor(model => model.ChucNang_NhiemVu)
+                @Html.CheckBox("chk_value_ChucNang_NhiemVu", new { @style = "margin-left: 30px;" })
+                @Html.ValidationMessageFor(model => model.ChucNang_NhiemVu, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.HinhThanh_PhatTrien, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <ul style="list-style:none">
+                    <li>
+                        <input type="radio" id="rd_value_LichSuHinhThanh_1" name="rd_value_LichSuHinhThanh" style="width:30px;" checked="checked" />
+                        <span style="width:30px;">Có thông tin</span>
+                    </li>
+                    <li>
+                        <input type="radio" id="rd_value_LichSuHinhThanh_2" name="rd_value_LichSuHinhThanh_DVTT" style="width:30px;" />
+                        <span style="width:30px;">Không có thông tin</span>
+                    </li>
+                </ul>
+                @Html.HiddenFor(model => model.HinhThanh_PhatTrien)
+                @Html.CheckBox("chk_value_HinhThanh_PhatTrien", new { @style = "margin-left: 30px;" })
+                @Html.ValidationMessageFor(model => model.HinhThanh_PhatTrien, "", new { @class = "text-danger" })
+            </div>
+
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ThongTinTomTat, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <ul style="list-style:none">
+                    <li>
+                        <input type="radio" id="rd_value_ThongTinTomTat_1" name="rd_value_ThongTinTomTat" style="width:30px;" checked="checked" />
+                        <span style="width:30px;">Thông tin đầy đủ</span>
+                    </li>
+                    <li>
+                        <input type="radio" id="rd_value_ThongTinTomTat_2" name="rd_value_ThongTinTomTat" style="width:30px;" />
+                        <span style="width:30px;">Thông tin không đầy đủ</span>
+                    </li>
+                    <li>
+                        <input type="radio" id="rd_value_ThongTinTomTat_3" name="rd_value_ThongTinTomTat" style="width:30px;" />
+                        <span style="width:30px;">Không có thông tin</span>
+                    </li>
+                </ul>
+                @Html.HiddenFor(model => model.ThongTinTomTat)
+                @Html.CheckBox("chk_value_ThongTinTomTat", new { @style = "margin-left: 30px;" })
+                @Html.ValidationMessageFor(model => model.ThongTinTomTat, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ThongTinGiaoDich, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <ul style="list-style:none">
+                    <li>
+                        <input type="radio" id="rd_value_ThongTinGiaoDich_1" name="rd_value_ThongTinGiaoDich" style="width:30px;" checked="checked" />
+                        <span style="width:30px;">Thông tin đầy đủ</span>
+                    </li>
+                    <li>
+                        <input type="radio" id="rd_value_ThongTinGiaoDich_2" name="rd_value_ThongTinGiaoDich" style="width:30px;" />
+                        <span style="width:30px;">Thông tin không đầy đủ</span>
+                    </li>
+                    <li>
+                        <input type="radio" id="rd_value_ThongTinGiaoDich_3" name="rd_value_ThongTinGiaoDich" style="width:30px;" />
+                        <span style="width:30px;">Không có thông tin</span>
+                    </li>
+                </ul>
+                @Html.HiddenFor(model => model.ThongTinGiaoDich)
+                @Html.CheckBox("chk_value_ThongTinGiaoDich", new { @style = "margin-left: 30px;" })
+                @Html.ValidationMessageFor(model => model.ThongTinGiaoDich, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ThongTinLienHe, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <ul style="list-style:none">
+                    <li>
+                        <input type="radio" id="rd_value_ThongTinLienHe_1" name="rd_value_ThongTinLienHe" style="width:30px;" checked="checked" />
+                        <span style="width:30px;">Thông tin đầy đủ</span>
+                    </li>
+                    <li>
+                        <input type="radio" id="rd_value_ThongTinLienHe_2" name="rd_value_ThongTinLienHe" style="width:30px;" />
+                        <span style="width:30px;">Thông tin không đầy đủ</span>
+                    </li>
+                    <li>
+                        <input type="radio" id="rd_value_ThongTinLienHe_3" name="rd_value_ThongTinLienHe" style="width:30px;" />
+                        <span style="width:30px;">Không có thông tin</span>
+                    </li>
+                </ul>
+                @Html.HiddenFor(model => model.ThongTinLienHe)
+                @Html.CheckBox("chk_value_ThongTinLienHe", new { @style = "margin-left: 30px;" })
+                @Html.ValidationMessageFor(model => model.ThongTinLienHe, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.BanDoDiaGioi, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <ul style="list-style:none">
+                    <li>
+                        <input type="radio" id="rd_value_BanDoDiaGioi_1" name="rd_value_BanDoDiaGioi" style="width:30px;" checked="checked" />
+                        <span style="width:30px;">Có đăng tải</span>
+                    </li>
+                    <li>
+                        <input type="radio" id="rd_value_BanDoDiaGioi_2" name="rd_value_BanDoDiaGioi" style="width:30px;" />
+                        <span style="width:30px;">Không đăng tải</span>
+                    </li>
+                </ul>
+                @Html.HiddenFor(model => model.BanDoDiaGioi)
+                @Html.CheckBox("chk_value_BanDoDiaGioi", new { @style = "margin-left: 30px;" })
+                @Html.ValidationMessageFor(model => model.BanDoDiaGioi, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ThongTinThongKe, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <ul style="list-style:none">
+                    <li>
+                        <input type="radio" id="rd_value_ThongTinThongKe_1" name="rd_value_ThongTinThongKe" style="width:30px;" checked="checked" />
+                        <span style="width:30px;">Thông tin đầy đủ</span>
+                    </li>
+                    <li>
+                        <input type="radio" id="rd_value_ThongTinThongKe_2" name="rd_value_ThongTinThongKe" style="width:30px;" />
+                        <span style="width:30px;">Thông tin không đầy đủ</span>
+                    </li>
+                    <li>
+                        <input type="radio" id="rd_value_ThongTinThongKe_3" name="rd_value_ThongTinThongKe" style="width:30px;" />
+                        <span style="width:30px;">Không có thông tin</span>
+                    </li>
+                </ul>
+                @Html.HiddenFor(model => model.ThongTinThongKe)
+                @Html.CheckBox("chk_value_ThongTinThongKe", new { @style = "margin-left: 30px;" })
+                @Html.ValidationMessageFor(model => model.ThongTinThongKe, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div>2) Tuần suất cập nhật</div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TanSuatCapNhat, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <ul style="list-style:none">
+                    <li>
+                        <input type="radio" id="rd_value_TanSuatCapNhat_1" name="rd_value_TanSuatCapNhat" style="width:30px;" checked="checked" />
+                        <span style="width:30px;">Cập nhật hàng ngày</span>
+                    </li>
+                    <li>
+                        <input type="radio" id="rd_value_TanSuatCapNhat_2" name="rd_value_TanSuatCapNhat" style="width:30px;" />
+                        <span style="width:30px;">Cập nhật hàng tuần</span>
+                    </li>
+                    <li>
+                        <input type="radio" id="rd_value_TanSuatCapNhat_3" name="rd_value_TanSuatCapNhat" style="width:30px;" />
+                        <span style="width:30px;">Cập nhật hàng tháng</span>
+                    </li>
+                    <li>
+                        <input type="radio" id="rd_value_TanSuatCapNhat_4" name="rd_value_TanSuatCapNhat" style="width:30px;" />
+                        <span style="width:30px;">Không cập nhật</span>
+                    </li>
+                </ul>
+                @Html.HiddenFor(model => model.TanSuatCapNhat)
+                @Html.CheckBox("chk_value_TanSuatCapNhat", new { @style = "margin-left: 30px;" })
+                @Html.ValidationMessageFor(model => model.TanSuatCapNhat, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div>3) Thông tin chỉ đạo, điều hành của đơn vị</div>
+        <div>Ghi chú : Văn bản chỉ đạo điều hành là quyết định, thông báo, báo cáo, công văn, tờ trình, và các văn bản khác đơn vị ban hành để chỉ đạo, điều hành công việc</div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.VBChiDao_DonVi, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.VBChiDao_DonVi, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.VBChiDao_DonVi, "", new { @class = "text-danger" })
+                @Html.LabelFor(model => model.VBChiDao_DonVi, new { @style = "display:none" })
+                @Html.CheckBox("chk_value_VBChiDao_DonVi")
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.VBChiDao_DieuHanh, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.VBChiDao_DieuHanh, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.VBChiDao_DieuHanh, "", new { @class = "text-danger" })
+                @Html.LabelFor(model => model.VBChiDao_DieuHanh, new { @style = "display:none" })
+                @Html.CheckBox("chk_value_VBChiDao_DieuHanh")
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.LichLamViec, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <ul style="list-style:none">
+                    <li>
+                        <input type="radio" id="rd_value_LichLamViec_1" name="rd_value_LichLamViec" style="width:30px;" checked="checked" />
+                        <span style="width:30px;">Lịch tuần</span>
+                    </li>
+                    <li>
+                        <input type="radio" id="rd_value_LichLamViec_2" name="rd_value_LichLamViec" style="width:30px;" />
+                        <span style="width:30px;">Lịch tháng</span>
+                    </li>
+                    <li>
+                        <input type="radio" id="rd_value_LichLamViec_3" name="rd_value_LichLamViec" style="width:30px;" />
+                        <span style="width:30px;">Không đăng lịch làm việc</span>
+                    </li>
+                </ul>
+                @Html.HiddenFor(model => model.LichLamViec)
+                @Html.CheckBox("chk_value_LichLamViec", new { @style = "margin-left: 30px;" })
+                @Html.ValidationMessageFor(model => model.LichLamViec, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div>4) Thông tin tuyên truyền, phổ biến, hướng dẫn thực hiện pháp luật, chế độ, chính sách</div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PhoBienVBQPPL, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <ul style="list-style:none">
+                    <li>
+                        <input type="radio" id="rd_value_PhoBienVanBan_1" name="rd_value_PhoBienVanBan" style="width:30px;" checked="checked" />
+                        <span style="width:30px;">Có</span>
+                    </li>
+                    <li>
+                        <input type="radio" id="rd_value_PhoBienVanBan_2" name="rd_value_PhoBienVanBan" style="width:30px;" />
+                        <span style="width:30px;">Không</span>
+                    </li>
+                </ul>
+                @Html.HiddenFor(model => model.PhoBienVBQPPL)
+                @Html.CheckBox("chk_value_PhoBienVBQPPL", new { @style = "margin-left: 30px;" })
+                @Html.ValidationMessageFor(model => model.PhoBienVBQPPL, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TinBai_DangTai, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <ul style="list-style:none">
+                    <li>
+                        <input type="radio" id="rd_value_Tin_BaiViet_1" name="rd_value_Tin_BaiViet" style="width:30px;" checked="checked" />
+                        <span style="width:30px;">Từ 10 bài/ tháng trở lên</span>
+                    </li>
+                    <li>
+                        <input type="radio" id="rd_value_Tin_BaiViet_2" name="rd_value_Tin_BaiViet" style="width:30px;" />
+                        <span style="width:30px;">Từ 5 đến 9 bài/ tháng</span>
+                    </li>
+                    <li>
+                        <input type="radio" id="rd_value_Tin_BaiViet_3" name="rd_value_Tin_BaiViet" style="width:30px;" />
+                        <span style="width:30px;">Từ 1 đến 4 bài/ tháng</span>
+                    </li>
+                    <li>
+                        <input type="radio" id="rd_value_Tin_BaiViet_4" name="rd_value_Tin_BaiViet" style="width:30px;" />
+                        <span style="width:30px;">Dưới 1 bài/ tháng</span>
+                    </li>
+                </ul>
+                @Html.HiddenFor(model => model.TinBai_DangTai)
+                @Html.CheckBox("chk_value_TinBai_DangTai", new { @style = "margin-left: 30px;" })
+                @Html.ValidationMessageFor(model => model.TinBai_DangTai, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div>5) Chiến lược, định hướng, quy hoạch, kế hoạch của ngành hoặc địa phương</div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ChuyenMuc_ChienLuoc, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <ul style="list-style:none">
+                    <li>
+                        <input type="radio" id="rd_value_ChuyenMuc_ChuyenTrang_1" name="rd_value_ChuyenMuc_ChuyenTrang" style="width:30px;" checked="checked" />
+                        <span style="width:30px;">Có</span>
+                    </li>
+                    <li>
+                        <input type="radio" id="rd_value_ChuyenMuc_ChuyenTrang_2" name="rd_value_ChuyenMuc_ChuyenTrang" style="width:30px;" />
+                        <span style="width:30px;">Không</span>
+                    </li>
+                    (Nếu có thì điền tiếp mục 2, 3, 4)
+                </ul>
+                @Html.HiddenFor(model => model.ChuyenMuc_ChienLuoc)
+                @Html.CheckBox("chk_value_ChuyenMuc_ChienLuoc", new { @style = "margin-left: 30px;" })
+                @Html.ValidationMessageFor(model => model.ChuyenMuc_ChienLuoc, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ChienLuoc_DangTai, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <ul style="list-style:none">
+                    <li>
+                        <input type="radio" id="rd_value_ChienLuoc_QuyHoach_1" name="rd_value_ChienLuoc_QuyHoach" style="width:30px;" checked="checked" />
+                        <span style="width:30px;">Đăng tải đầy đủ</span>
+                    </li>
+                    <li>
+                        <input type="radio" id="rd_value_ChienLuoc_QuyHoach_2" name="rd_value_ChienLuoc_QuyHoach" style="width:30px;" />
+                        <span style="width:30px;">Đăng tải không đầy đủ</span>
+                    </li>
+                    <li>
+                        <input type="radio" id="rd_value_ChienLuoc_QuyHoach_3" name="rd_value_ChienLuoc_QuyHoach" style="width:30px;" />
+                        <span style="width:30px;">Không đăng tải</span>
+                    </li>
+                </ul>
+                @Html.HiddenFor(model => model.ChienLuoc_DangTai)
+                @Html.CheckBox("chk_value_ChienLuoc_DangTai", new { @style = "margin-left: 30px;" })
+                @Html.ValidationMessageFor(model => model.ChienLuoc_DangTai, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.KeHoachPhatTrien, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <ul style="list-style:none">
+                    <li>
+                        <input type="radio" id="rd_value_KeHoachPhatTrien_1" name="rd_value_KeHoachPhatTrien" style="width:30px;" checked="checked" />
+                        <span style="width:30px;">Đăng tải đầy đủ</span>
+                    </li>
+                    <li>
+                        <input type="radio" id="rd_value_KeHoachPhatTrien_2" name="rd_value_KeHoachPhatTrien" style="width:30px;" />
+                        <span style="width:30px;">Đăng tải không đầy đủ</span>
+                    </li>
+                    <li>
+                        <input type="radio" id="rd_value_KeHoachPhatTrien_3" name="rd_value_KeHoachPhatTrien" style="width:30px;" />
+                        <span style="width:30px;">Không đăng tải</span>
+                    </li>
+                </ul>
+                @Html.HiddenFor(model => model.KeHoachPhatTrien)
+                @Html.CheckBox("chk_value_KeHoachPhatTrien", new { @style = "margin-left: 30px;" })
+                @Html.ValidationMessageFor(model => model.KeHoachPhatTrien, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div>6) Văn bản quy phạm pháp luật cảu ngành hoặc địa phương</div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ChuyenTrang_QPPL, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <ul style="list-style:none">
+                    <li>
+                        <input type="radio" id="rd_value_VanBanQuyPham_1" name="rd_value_VanBanQuyPham" style="width:30px;" checked="checked" />
+                        <span style="width:30px;">Có</span>
+                    </li>
+                    <li>
+                        <input type="radio" id="rd_value_VanBanQuyPham_2" name="rd_value_VanBanQuyPham" style="width:30px;" />
+                        <span style="width:30px;">Không(chưa có)</span>
+                    </li>
+                    (Nếu có thì điền tiếp mục 2,3,4, nếu không thì bị trừ 1 điểm)
+                </ul>
+                @Html.HiddenFor(model => model.ChuyenTrang_QPPL)
+                @Html.CheckBox("chk_value_ChuyenTrang_QPPL", new { @style = "margin-left: 30px;" })
+                @Html.ValidationMessageFor(model => model.ChuyenTrang_QPPL, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.VBQPPL_DangTai, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <ul style="list-style:none">
+                    <li>
+                        <input type="radio" id="rd_value_VanBanQuyPham_DangTai_1" name="rd_value_VanBanQuyPham_DangTai" style="width:30px;" checked="checked" />
+                        <span style="width:30px;">Từ 90% số văn bản quy phạm pháp luật của ngành hoặc địa phương trở lên</span>
+                    </li>
+                    <li>
+                        <input type="radio" id="rd_value_VanBanQuyPham_DangTai_2" name="rd_value_VanBanQuyPham_DangTai" style="width:30px;" />
+                        <span style="width:30px;">Từ 70% đến dưới 90% số văn bản quy phạm pháp luật của ngành hoặc địa phương</span>
+                    </li>
+                    <li>
+                        <input type="radio" id="rd_value_VanBanQuyPham_DangTai_3" name="rd_value_VanBanQuyPham_DangTai" style="width:30px;" />
+                        <span style="width:30px;">Từ 50% đến dưới 70% số văn bản quy phạm pháp luật của ngành hoặc địa phương</span>
+                    </li>
+                    <li>
+                        <input type="radio" id="rd_value_VanBanQuyPham_DangTai_4" name="rd_value_VanBanQuyPham_DangTai" style="width:30px;" />
+                        <span style="width:30px;">Từ 40% đến dưới 50% số văn bản quy phạm pháp luật của ngành hoặc địa phương</span>
+                    </li>
+                    <li>
+                        <input type="radio" id="rd_value_VanBanQuyPham_DangTai_5" name="rd_value_VanBanQuyPham_DangTai" style="width:30px;" />
+                        <span style="width:30px;">Dưới 40% số văn bản quy phạm pháp luật của ngành hoặc địa phương</span>
+                    </li>
+                </ul>
+                @Html.HiddenFor(model => model.VBQPPL_DangTai)
+                @Html.CheckBox("chk_value_VBQPPL_DangTai", new { @style = "margin-left: 30px;" })
+                @Html.ValidationMessageFor(model => model.VBQPPL_DangTai, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.LienKet, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <ul style="list-style:none">
+                    <li>
+                        <input type="radio" id="rd_value_ChuyenTrang_QuanLy_1" name="rd_value_ChuyenTrang_QuanLy" style="width:30px;" checked="checked" />
+                        <span style="width:30px;">Có</span>
+                    </li>
+                    <li>
+                        <input type="radio" id="rd_value_ChuyenTrang_QuanLy_2" name="rd_value_ChuyenTrang_QuanLy" style="width:30px;" />
+                        <span style="width:30px;">Không</span>
+                    </li>
+                </ul>
+                @Html.HiddenFor(model => model.LienKet)
+                @Html.CheckBox("chk_value_LienKet", new { @style = "margin-left: 30px;" })
+                @Html.ValidationMessageFor(model => model.LienKet, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ChoPhepTai, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <ul style="list-style:none">
+                    <li>
+                        <input type="radio" id="rd_value_VanBanQuyPham_TaiVe_1" name="rd_value_VanBanQuyPham_TaiVe" style="width:30px;" checked="checked" />
+                        <span style="width:30px;">Cho phép</span>
+                    </li>
+                    <li>
+                        <input type="radio" id="rd_value_VanBanQuyPham_TaiVe_2" name="rd_value_VanBanQuyPham_TaiVe" style="width:30px;" />
+                        <span style="width:30px;">Không cho phép</span>
+                    </li>
+                </ul>
+                @Html.HiddenFor(model => model.ChoPhepTai)
+                @Html.CheckBox("chk_value_ChoPhepTai", new { @style = "margin-left: 30px;" })
+                @Html.ValidationMessageFor(model => model.ChoPhepTai, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div>7) Thông tin về dự án, hạng mục đầu tư, đấu thầu mua sắm công của đơn vị</div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DauTu_MuaSam, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <ul style="list-style:none">
+                    <li>
+                        <input type="radio" id="rd_value_HangMucDauTu_1" name="rd_value_HangMucDauTu" style="width:30px;" checked="checked" />
+                        <span style="width:30px;">Có</span>
+                    </li>
+                    <li>
+                        <input type="radio" id="rd_value_HangMucDauTu_2" name="rd_value_HangMucDauTu" style="width:30px;" />
+                        <span style="width:30px;">Không</span>
+                    </li>
+                    (Nếu có thì điền tiếp mục 2, 3, nếu không thì bị trừ 1 điểm)
+                </ul>
+                @Html.HiddenFor(model => model.DauTu_MuaSam)
+                @Html.CheckBox("chk_value_DauTu_MuaSam", new { @style = "margin-left: 30px;" })
+                @Html.ValidationMessageFor(model => model.DauTu_MuaSam, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DangTai_DauThau, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <ul style="list-style:none">
+                    <li>
+                        <input type="radio" id="rd_value_SoDuAn_1" name="rd_value_SoDuAn" style="width:30px;" checked="checked" />
+                        <span style="width:30px;">Từ 80% số dự án, hạng mục đầu tư của đơn vị trở lên</span>
+                    </li>
+                    <li>
+                        <input type="radio" id="rd_value_SoDuAn_2" name="rd_value_SoDuAn" style="width:30px;" />
+                        <span style="width:30px;">Từ 50% đến dưới 80% số dự án, hạng mục đầu tư của đơn vị</span>
+                    </li>
+                    <li>
+                        <input type="radio" id="rd_value_SoDuAn_3" name="rd_value_SoDuAn" style="width:30px;" />
+                        <span style="width:30px;">Dưới 50% số dự án, hạng mục đầu tư của đơn vị</span>
+                    </li>
+                </ul>
+                @Html.HiddenFor(model => model.DangTai_DauThau)
+                @Html.CheckBox("chk_value_DangTai_DauThau", new { @style = "margin-left: 30px;" })
+                @Html.ValidationMessageFor(model => model.DangTai_DauThau, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DangTai_ThongTinToiThieu, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <ul style="list-style:none">
+                    <li>
+                        <input type="radio" id="rd_value_ThongTinToiThieu_1" name="rd_value_ThongTinToiThieu" style="width:30px;" checked="checked" />
+                        <span style="width:30px;">Đầy đủ thông tin</span>
+                    </li>
+                    <li>
+                        <input type="radio" id="rd_value_ThongTinToiThieu_2" name="rd_value_ThongTinToiThieu" style="width:30px;" />
+                        <span style="width:30px;">Không đầy đủ thông tin</span>
+                    </li>
+                </ul>
+                @Html.HiddenFor(model => model.DangTai_ThongTinToiThieu)
+                @Html.CheckBox("chk_value_DangTai_ThongTinToiThieu", new { @style = "margin-left: 30px;" })
+                @Html.ValidationMessageFor(model => model.DangTai_ThongTinToiThieu, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div>8) Thông tin về đề tài khoa học có sử dụng ngân sách nhà nước của đơn vị</div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DeTai_KhoaHoc, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <ul style="list-style:none">
+                    <li>
+                        <input type="radio" id="rd_value_DeTaiKhoaHoc_1" name="rd_value_DeTaiKhoaHoc" style="width:30px;" checked="checked" />
+                        <span style="width:30px;">Có</span>
+                    </li>
+                    <li>
+                        <input type="radio" id="rd_value_DeTaiKhoaHoc_2" name="rd_value_DeTaiKhoaHoc" style="width:30px;" />
+                        <span style="width:30px;">Không</span>
+                    </li>
+                    (Nếu có thì điền tiếp mục 2,3, nếu không thì bị trừ 1 điểm)
+                </ul>
+                @Html.HiddenFor(model => model.DeTai_KhoaHoc)
+                @Html.CheckBox("chk_value_DeTai_KhoaHoc", new { @style = "margin-left: 30px;" })
+                @Html.ValidationMessageFor(model => model.DeTai_KhoaHoc, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.SoLuongDeTaiKH_DangTai, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <ul style="list-style:none">
+                    <li>
+                        <input type="radio" id="rd_value_SoLuongDeTaiKH_DangTai_1" name="rd_value_SoLuongDeTaiKH_DangTai" style="width:30px;" checked="checked" />
+                        <span style="width:30px;">Từ 80% số đề tài khoa học của đơn vị trở lên</span>
+                    </li>
+                    <li>
+                        <input type="radio" id="rd_value_SoLuongDeTaiKH_DangTai_2" name="rd_value_SoLuongDeTaiKH_DangTai" style="width:30px;" />
+                        <span style="width:30px;">Từ 50% đến duwois 80% số đề tài khoa học của đơn vị</span>
+                    </li>
+                    <li>
+                        <input type="radio" id="rd_value_SoLuongDeTaiKH_DangTai_3" name="rd_value_SoLuongDeTaiKH_DangTai" style="width:30px;" />
+                        <span style="width:30px;">Dưới 50% số đề tài khoa học của đơn vị</span>
+                    </li>
+                </ul>
+                @Html.HiddenFor(model => model.SoLuongDeTaiKH_DangTai)
+                @Html.CheckBox("chk_value_SoLuongDeTaiKH_DangTai", new { @style = "margin-left: 30px;" })
+                @Html.ValidationMessageFor(model => model.SoLuongDeTaiKH_DangTai, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+        <div>9) Lấy ý kiến, góp ý của tổ chức, cá nhân</div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ChuyenMucGopY, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <ul style="list-style:none">
+                    <li>
+                        <input type="radio" id="rd_value_GopY_1" name="rd_value_GopY" style="width:30px;" checked="checked" />
+                        <span style="width:30px;">Có</span>
+                    </li>
+                    <li>
+                        <input type="radio" id="rd_value_GopY_2" name="rd_value_GopY" style="width:30px;" />
+                        <span style="width:30px;">Không</span>
+                    </li>
+                    (Nếu có thì điền tiếp mục 2, 3, nếu không thì bị trừ 1 điểm)
+                </ul>
+                @Html.HiddenFor(model => model.ChuyenMucGopY)
+                @Html.CheckBox("chk_value_ChuyenMucGopY", new { @style = "margin-left: 30px;" })
+                @Html.ValidationMessageFor(model => model.ChuyenMucGopY, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.XinYKien_VBQPPL, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <ul style="list-style:none">
+                    <li>
+                        <input type="radio" id="rd_value_YKienDangTai_1" name="rd_value_YKienDangTai" style="width:30px;" checked="checked" />
+                        <span style="width:30px;">Từ 90% số văn bản quy phạm pháp luật cần xin ý kiến của đơn vị trở lên</span>
+                    </li>
+                    <li>
+                        <input type="radio" id="rd_value_YKienDangTai_2" name="rd_value_YKienDangTai" style="width:30px;" />
+                        <span style="width:30px;">Từ 50% đến dưới 90% số văn bản quy phạm pháp luật cần xin ý kiến của đơn vị</span>
+                    </li>
+                    <li>
+                        <input type="radio" id="rd_value_YKienDangTai_3" name="rd_value_YKienDangTai" style="width:30px;" />
+                        <span style="width:30px;">Dưới 50% số văn bản quy phạm pháp luật cần xin ý kiến của đơn vị</span>
+                    </li>
+                </ul>
+                @Html.HiddenFor(model => model.XinYKien_VBQPPL)
+                @Html.CheckBox("chk_value_XinYKien_VBQPPL", new { @style = "margin-left: 30px;" })
+                @Html.ValidationMessageFor(model => model.XinYKien_VBQPPL, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CungCapThongTin, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <ul style="list-style:none">
+                    <li>
+                        <input type="radio" id="rd_value_CungCapThongTin_1" name="rd_value_CungCapThongTin" style="width:30px;" checked="checked" />
+                        <span style="width:30px;">Đầy đủ thông tin và chức năng</span>
+                    </li>
+                    <li>
+                        <input type="radio" id="rd_value_CungCapThongTin_2" name="rd_value_CungCapThongTin" style="width:30px;" />
+                        <span style="width:30px;">Không đầy đủ thông tin và chức năng</span>
+                    </li>
+                    <li>
+                        <input type="radio" id="rd_value_CungCapThongTini_3" name="rd_value_CungCapThongTin" style="width:30px;" />
+                        <span style="width:30px;">Không đăng tải thông tin</span>
+                    </li>
+                </ul>
+                @Html.HiddenFor(model => model.CungCapThongTin)
+                @Html.CheckBox("chk_value_CungCapThongTin", new { @style = "margin-left: 30px;" })
+                @Html.ValidationMessageFor(model => model.CungCapThongTin, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div>10) Chức năng hỗ trợ khai thác thông tin</div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ChucNangTimKiem, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <ul style="list-style:none">
+                    <li>
+                        <input type="radio" id="rd_value_ChucNangTimKiem_1" name="rd_value_ChucNangTimKiem" style="width:30px;" checked="checked" />
+                        <span style="width:30px;">Có</span>
+                    </li>
+                    <li>
+                        <input type="radio" id="rd_value_ChucNangTimKiem_2" name="rd_value_ChucNangTimKiem" style="width:30px;" />
+                        <span style="width:30px;">Không</span>
+                    </li>
+                </ul>
+                @Html.HiddenFor(model => model.ChucNangTimKiem)
+                @Html.CheckBox("chk_value_ChucNangTimKiem", new { @style = "margin-left: 30px;" })
+                @Html.ValidationMessageFor(model => model.ChucNangTimKiem, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.SoDoWeb_CayCauTruc, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <ul style="list-style:none">
+                    <li>
+                        <input type="radio" id="rd_value_SoDoWebsite_1" name="rd_value_SoDoWebsite" style="width:30px;" checked="checked" />
+                        <span style="width:30px;">Có</span>
+                    </li>
+                    <li>
+                        <input type="radio" id="rd_value_SoDoWebsite_2" name="rd_value_SoDoWebsite" style="width:30px;" />
+                        <span style="width:30px;">Không</span>
+                    </li>
+                </ul>
+                @Html.HiddenFor(model => model.SoDoWeb_CayCauTruc)
+                @Html.CheckBox("chk_value_SoDoWeb_CayCauTruc", new { @style = "margin-left: 30px;" })
+                @Html.ValidationMessageFor(model => model.SoDoWeb_CayCauTruc, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DangCauHoi_TraLoi, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <ul style="list-style:none">
+                    <li>
+                        <input type="radio" id="rd_value_TraoDoi_HoiDap_1" name="rd_value_TraoDoi_HoiDap" style="width:30px;" checked="checked" />
+                        <span style="width:30px;">Có</span>
+                    </li>
+                    <li>
+                        <input type="radio" id="rd_value_TraoDoi_HoiDap_2" name="rd_value_TraoDoi_HoiDap" style="width:30px;" />
+                        <span style="width:30px;">Không</span>
+                    </li>
+                </ul>
+                @Html.HiddenFor(model => model.DangCauHoi_TraLoi)
+                @Html.CheckBox("chk_value_DangCauHoi_TraLoi", new { @style = "margin-left: 30px;" })
+                @Html.ValidationMessageFor(model => model.DangCauHoi_TraLoi, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DuLieuDacTa, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <ul style="list-style:none">
+                    <li>
+                        <input type="radio" id="rd_value_DuLieuDacTa_1" name="rd_value_DuLieuDacTa" style="width:30px;" checked="checked" />
+                        <span style="width:30px;">Cung cấp đầy đủ</span>
+                    </li>
+                    <li>
+                        <input type="radio" id="rd_value_DuLieuDacTa_2" name="rd_value_DuLieuDacTa" style="width:30px;" />
+                        <span style="width:30px;">Cung cấp không đầy đủ</span>
+                    </li>
+                    <li>
+                        <input type="radio" id="rd_value_DuLieuDacTa_3" name="rd_value_DuLieuDacTa" style="width:30px;" />
+                        <span style="width:30px;">Không cung cấp</span>
+                    </li>
+                </ul>
+                @Html.HiddenFor(model => model.DuLieuDacTa)
+                @Html.CheckBox("chk_value_DuLieuDacTa", new { @style = "margin-left: 30px;" })
+                @Html.ValidationMessageFor(model => model.DuLieuDacTa, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.MaUnicode, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <ul style="list-style:none">
+                    <li>
+                        <input type="radio" id="rd_value_Unicode_1" name="rd_value_Unicode" style="width:30px;" checked="checked" />
+                        <span style="width:30px;">Cung cấp đầy đủ</span>
+                    </li>
+                    <li>
+                        <input type="radio" id="rd_value_Unicode_2" name="rd_value_Unicode" style="width:30px;" />
+                        <span style="width:30px;">Cung cấp không đầy đủ</span>
+                    </li>
+                </ul>
+                @Html.HiddenFor(model => model.MaUnicode)
+                @Html.CheckBox("chk_value_MaUnicode", new { @style = "margin-left: 30px;" })
+                @Html.ValidationMessageFor(model => model.MaUnicode, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.KhaNangTuongThich, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <ul style="list-style:none">
+                    <li>
+                        <input type="radio" id="rd_value_TuongThichTrinhDuyet_1" name="rd_value_TuongThichTrinhDuyet" style="width:30px;" checked="checked" />
+                        <span style="width:30px;">Có khả năng tương thích từ 3 trình duyệt trở lên</span>
+                    </li>
+                    <li>
+                        <input type="radio" id="rd_value_TuongThichTrinhDuyet_2" name="rd_value_TuongThichTrinhDuyet" style="width:30px;" />
+                        <span style="width:30px;">Không có khả năng tương thích từ 3 trình duyệt</span>
+                    </li>
+                </ul>
+                @Html.HiddenFor(model => model.KhaNangTuongThich)
+                @Html.CheckBox("chk_value_KhaNangTuongThich", new { @style = "margin-left: 30px;" })
+                @Html.ValidationMessageFor(model => model.KhaNangTuongThich, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.LienKetWeb, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <ul style="list-style:none">
+                    <li>
+                        <input type="radio" id="rd_value_LienKetWebsite_1" name="rd_value_TLienKetWebsite" style="width:30px;" checked="checked" />
+                        <span style="width:30px;">Có</span>
+                    </li>
+                    <li>
+                        <input type="radio" id="rd_value_LienKetWebsite_2" name="rd_value_TLienKetWebsite" style="width:30px;" />
+                        <span style="width:30px;">Không</span>
+                    </li>
+                </ul>
+                @Html.HiddenFor(model => model.LienKetWeb)
+                @Html.CheckBox("chk_value_LienKetWeb", new { @style = "margin-left: 30px;" })
+                @Html.ValidationMessageFor(model => model.LienKetWeb, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.HoTro_NguoiKhuyetTat, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <ul style="list-style:none">
+                    <li>
+                        <input type="radio" id="rd_value_NguoiKhuyetTat_1" name="rd_value_NguoiKhuyetTat" style="width:30px;" checked="checked" />
+                        <span style="width:30px;">Có</span>
+                    </li>
+                    <li>
+                        <input type="radio" id="rd_value_NguoiKhuyetTat_2" name="rd_value_NguoiKhuyetTat" style="width:30px;" />
+                        <span style="width:30px;">Không</span>
+                    </li>
+                </ul>
+                @Html.HiddenFor(model => model.HoTro_NguoiKhuyetTat)
+                @Html.CheckBox("chk_value_HoTro_NguoiKhuyetTat", new { @style = "margin-left: 30px;" })
+                @Html.ValidationMessageFor(model => model.HoTro_NguoiKhuyetTat, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TenMien_CongTTDT, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <ul style="list-style:none">
+                    <li>
+                        <input type="radio" id="rd_value_TenMien_CTTDT_1" name="rd_value_TenMien_CTTDT" style="width:30px;" checked="checked" />
+                        <span style="width:30px;">Đặt đúng quy định</span>
+                    </li>
+                    <li>
+                        <input type="radio" id="rd_value_TenMien_CTTDT_2" name="rd_value_TenMien_CTTDT" style="width:30px;" />
+                        <span style="width:30px;">Không đặt đúng quy định</span>
+                    </li>
+                </ul>
+                <p>
+                    Ghi chú: Theo điều 6 Nghị định 43/2011/NĐ-CP quy định tên miền như sau:
+                    <br />+ Đối với Sở, ban, ngành cấp tỉnh: tên cơ quan, tên tỉnh thành gov.vn
+                    <br />+ Đối với cấp huyện: tên huyện, tên tỉnh thành gov.vn
+                </p>
+                @Html.HiddenFor(model => model.TenMien_CongTTDT)
+                @Html.CheckBox("chk_value_TenMien_CongTTDT", new { @style = "margin-left: 30px;" })
+                @Html.ValidationMessageFor(model => model.TenMien_CongTTDT, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div>11) Cung cấp dịch vụ công trực tuyến trên Cổng Thông tin điện tử của đơn vị</div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TTHC_DV, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TTHC_DV, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TTHC_DV, "", new { @class = "text-danger" })
+                @Html.LabelFor(model => model.TTHC_DV, new { @style = "display:none" })
+                @Html.CheckBox("chk_value_TTHC_DV")
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DVC_Muc1, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.DVC_Muc1, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DVC_Muc1, "", new { @class = "text-danger" })
+                @Html.LabelFor(model => model.DVC_Muc1, new { @style = "display:none" })
+                @Html.CheckBox("chk_value_DVC_Muc1")
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DVC_Muc2, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.DVC_Muc2, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DVC_Muc2, "", new { @class = "text-danger" })
+                @Html.LabelFor(model => model.DVC_Muc2, new { @style = "display:none" })
+                @Html.CheckBox("chk_value_DVC_Muc2")
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DVC_Muc3, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.DVC_Muc3, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DVC_Muc3, "", new { @class = "text-danger" })
+                @Html.LabelFor(model => model.DVC_Muc3, new { @style = "display:none" })
+                @Html.CheckBox("chk_value_DVC_Muc3")
+            </div>
+        </div>
+
+        <div>12) Đảm bảo nhân lực</div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ThanhLap_BanBienTap, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <ul style="list-style:none">
+                    <li>
+                        <input type="radio" id="rd_value_BanBienTap_1" name="rd_value_BanBienTap" style="width:30px;" checked="checked" />
+                        <span style="width:30px;">Có</span>
+                    </li>
+                    <li>
+                        <input type="radio" id="rd_value_BanBienTap_2" name="rd_value_BanBienTap" style="width:30px;" />
+                        <span style="width:30px;">Không</span>
+                    </li>
+                </ul>
+                <p>Đường liên kết (Link) đăng tải văn bản</p>
+                @Html.HiddenFor(model => model.ThanhLap_BanBienTap)
+                @Html.CheckBox("chk_value_ThanhLap_BanBienTap", new { @style = "margin-left: 30px;" })
+                @Html.ValidationMessageFor(model => model.ThanhLap_BanBienTap, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.BoTri_QuanTriKyThuat, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <ul style="list-style:none">
+                    <li>
+                        <input type="radio" id="rd_value_QuanTriKyThuat_1" name="rd_value_QuanTriKyThuat" style="width:30px;" checked="checked" />
+                        <span style="width:30px;">Có</span>
+                    </li>
+                    <li>
+                        <input type="radio" id="rd_value_QuanTriKyThuat_2" name="rd_value_QuanTriKyThuat" style="width:30px;" />
+                        <span style="width:30px;">Không</span>
+                    </li>
+                </ul>
+                @Html.HiddenFor(model => model.BoTri_QuanTriKyThuat)
+                @Html.CheckBox("chk_value_BoTri_QuanTriKyThuat", new { @style = "margin-left: 30px;" })
+                @Html.ValidationMessageFor(model => model.BoTri_QuanTriKyThuat, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.BoTri_XuLyDVCong, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <ul style="list-style:none">
+                    <li>
+                        <input type="radio" id="rd_value_DichVuCongTT_1" name="rd_value_DichVuCongTT" style="width:30px;" checked="checked" />
+                        <span style="width:30px;">Có</span>
+                    </li>
+                    <li>
+                        <input type="radio" id="rd_value_DichVuCongTT_2" name="rd_value_DichVuCongTT" style="width:30px;" />
+                        <span style="width:30px;">Không</span>
+                    </li>
+                </ul>
+                @Html.HiddenFor(model => model.BoTri_XuLyDVCong)
+                @Html.CheckBox("chk_value_BoTri_XuLyDVCong", new { @style = "margin-left: 30px;" })
+                @Html.ValidationMessageFor(model => model.BoTri_XuLyDVCong, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TapHuan_DaoTaoCanBo, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <ul style="list-style:none">
+                    <li>
+                        <input type="radio" id="rd_value_TapHuanDaoTao_1" name="rd_value_TapHuanDaoTao" style="width:30px;" checked="checked" />
+                        <span style="width:30px;">Có</span>
+                    </li>
+                    <li>
+                        <input type="radio" id="rd_value_TapHuanDaoTao_2" name="rd_value_TapHuanDaoTao" style="width:30px;" />
+                        <span style="width:30px;">Không</span>
+                    </li>
+                </ul>
+                @Html.HiddenFor(model => model.TapHuan_DaoTaoCanBo)
+                @Html.CheckBox("chk_value_TapHuan_DaoTaoCanBo", new { @style = "margin-left: 30px;" })
+                @Html.ValidationMessageFor(model => model.TapHuan_DaoTaoCanBo, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div>13) Đảm bảo an toàn thông tin và dữ liệu</div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DamBaoAnToanTTDuLieu, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <ul style="list-style:none">
+                    <li>
+                        <input type="radio" id="rd_value_BienPhapKyThuat_1" name="rd_value_BienPhapKyThuat" style="width:30px;" checked="checked" />
+                        <span style="width:30px;">Có</span>
+                    </li>
+                    <li>
+                        <input type="radio" id="rd_value_BienPhapKyThuat_2" name="rd_value_BienPhapKyThuat" style="width:30px;" />
+                        <span style="width:30px;">Không</span>
+                    </li>
+                </ul>
+                @Html.HiddenFor(model => model.DamBaoAnToanTTDuLieu)
+                @Html.CheckBox("chk_value_DamBaoAnToanTTDuLieu", new { @style = "margin-left: 30px;" })
+                @Html.ValidationMessageFor(model => model.DamBaoAnToanTTDuLieu, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.XayDungGiaiPhap, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <ul style="list-style:none">
+                    <li>
+                        <input type="radio" id="rd_value_GiaiPhapHieuQua_1" name="rd_value_GiaiPhapHieuQua" style="width:30px;" checked="checked" />
+                        <span style="width:30px;">Có</span>
+                    </li>
+                    <li>
+                        <input type="radio" id="rd_value_GiaiPhapHieuQua_2" name="rd_value_GiaiPhapHieuQua" style="width:30px;" />
+                        <span style="width:30px;">Không</span>
+                    </li>
+                </ul>
+                @Html.HiddenFor(model => model.XayDungGiaiPhap)
+                @Html.CheckBox("chk_value_XayDungGiaiPhap", new { @style = "margin-left: 30px;" })
+                @Html.ValidationMessageFor(model => model.XayDungGiaiPhap, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.XDPhuongAnDuPhong, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <ul style="list-style:none">
+                    <li>
+                        <input type="radio" id="rd_value_PhuongAnDuPhong_1" name="rd_value_PhuongAnDuPhong" style="width:30px;" checked="checked" />
+                        <span style="width:30px;">Có</span>
+                    </li>
+                    <li>
+                        <input type="radio" id="rd_value_PhuongAnDuPhong_2" name="rd_value_PhuongAnDuPhong" style="width:30px;" />
+                        <span style="width:30px;">Không</span>
+                    </li>
+                </ul>
+                @Html.HiddenFor(model => model.XDPhuongAnDuPhong)
+                @Html.CheckBox("chk_value_XDPhuongAnDuPhong", new { @style = "margin-left: 30px;" })
+                @Html.ValidationMessageFor(model => model.XDPhuongAnDuPhong, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div>14) Văn bản về chính sách quản trị và vận hành Cổng TTĐT</div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.BanHanhQuyChePhoiHop, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <ul style="list-style:none">
+                    <li>
+                        <input type="radio" id="rd_value_BanHanhQuyChe_1" name="rd_value_BanHanhQuyChe" style="width:30px;" checked="checked" />
+                        <span style="width:30px;">Có</span>
+                    </li>
+                    <li>
+                        <input type="radio" id="rd_value_BanHanhQuyChe_2" name="rd_value_BanHanhQuyChe" style="width:30px;" />
+                        <span style="width:30px;">Không</span>
+                    </li>
+                </ul>
+                <p>Đường liên kết (Link) đăng tải văn bản</p>
+                @Html.HiddenFor(model => model.BanHanhQuyChePhoiHop)
+                @Html.CheckBox("chk_value_BanHanhQuyChePhoiHop", new { @style = "margin-left: 30px;" })
+                @Html.ValidationMessageFor(model => model.BanHanhQuyChePhoiHop, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.BanHanhQuyCheHoatDong, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <ul style="list-style:none">
+                    <li>
+                        <input type="radio" id="rd_value_BanHanhQuyChe_TTDT_1" name="rd_value_BanHanhQuyChe_TTDT" style="width:30px;" checked="checked" />
+                        <span style="width:30px;">Có</span>
+                    </li>
+                    <li>
+                        <input type="radio" id="rd_value_BanHanhQuyChe_TTDT_2" name="rd_value_BanHanhQuyChe_TTDT" style="width:30px;" />
+                        <span style="width:30px;">Không</span>
+                    </li>
+                </ul>
+                <p>Đường liên kết (Link) đăng tải văn bản</p>
+                @Html.HiddenFor(model => model.BanHanhQuyCheHoatDong)
+                @Html.CheckBox("chk_value_BanHanhQuyCheHoatDong", new { @style = "margin-left: 30px;" })
+                @Html.ValidationMessageFor(model => model.BanHanhQuyCheHoatDong, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.BaoCaoDinhKy_Nam, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <ul style="list-style:none">
+                    <li>
+                        <input type="radio" id="rd_value_BaoCaoDinhKy_Nam_1" name="rd_value_BaoCaoDinhKy_Nam" style="width:30px;" checked="checked" />
+                        <span style="width:30px;">Thực hiện đúng quy định</span>
+                    </li>
+                    <li>
+                        <input type="radio" id="rd_value_BaoCaoDinhKy_Nam_2" name="rd_value_BaoCaoDinhKy_Nam" style="width:30px;" />
+                        <span style="width:30px;">Không thực hiện đúng quy định</span>
+                    </li>
+                </ul>
+                @Html.HiddenFor(model => model.BaoCaoDinhKy_Nam)
+                @Html.CheckBox("chk_value_BaoCaoDinhKy_Nam", new { @style = "margin-left: 30px;" })
+                @Html.ValidationMessageFor(model => model.BaoCaoDinhKy_Nam, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div>15) Đăng tải thông tin theo quy định</div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CapNhatThongTin, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <ul style="list-style:none">
+                    <li>
+                        <input type="radio" id="rd_value_CapNhatThongTin_1" name="rd_value_CapNhatThongTin" style="width:30px;" checked="checked" />
+                        <span style="width:30px;">Thực hiện đúng quy định</span>
+                    </li>
+                    <li>
+                        <input type="radio" id="rd_value_CapNhatThongTin_2" name="rd_value_CapNhatThongTin" style="width:30px;" />
+                        <span style="width:30px;">Không thực hiện đúng quy định</span>
+                    </li>
+                </ul>
+                @Html.HiddenFor(model => model.CapNhatThongTin)
+                @Html.CheckBox("chk_value_CapNhatThongTin", new { @style = "margin-left: 30px;" })
+                @Html.ValidationMessageFor(model => model.CapNhatThongTin, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.NoiDungThongTin, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <ul style="list-style:none">
+                    <li>
+                        <input type="radio" id="rd_value_NoiDungThongTin_1" name="rd_value_NoiDungThongTin" style="width:30px;" checked="checked" />
+                        <span style="width:30px;">Đúng quy định</span>
+                    </li>
+                    <li>
+                        <input type="radio" id="rd_value_NoiDungThongTin_2" name="rd_value_NoiDungThongTin" style="width:30px;" />
+                        <span style="width:30px;">Không thực hiện đúng quy định</span>
+                    </li>
+                </ul>
+                @Html.HiddenFor(model => model.NoiDungThongTin)
+                @Html.CheckBox("chk_value_NoiDungThongTin", new { @style = "margin-left: 30px;" })
+                @Html.ValidationMessageFor(model => model.NoiDungThongTin, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.QuyDinhKhac, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <ul style="list-style:none">
+                    <li>
+                        <input type="radio" id="rd_value_QuyDinhKhac_1" name="rd_value_QuyDinhKhac" style="width:30px;" checked="checked" />
+                        <span style="width:30px;">Đúng quy định</span>
+                    </li>
+                    <li>
+                        <input type="radio" id="rd_value_QuyDinhKhac_2" name="rd_value_QuyDinhKhac" style="width:30px;" />
+                        <span style="width:30px;">Không thực hiện đúng quy định</span>
+                    </li>
+                </ul>
+                @Html.HiddenFor(model => model.QuyDinhKhac)
+                @Html.CheckBox("chk_value_QuyDinhKhac", new { @style = "margin-left: 30px;" })
+                @Html.ValidationMessageFor(model => model.QuyDinhKhac, "", new { @class = "text-danger" })
+            </div>
+        </div> 
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.SXKD_PhanCung, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.SXKD_PhanCung, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.SXKD_PhanCung, "", new { @class = "text-danger" })
+                @Html.LabelFor(model => model.SXKD_PhanCung, new { @style = "display:none" })
+                @Html.CheckBox("chk_value_SXKD_PhanCung")
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.SXKD_PhanMem, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.SXKD_PhanMem, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.SXKD_PhanMem, "", new { @class = "text-danger" })
+                @Html.LabelFor(model => model.SXKD_PhanMem, new { @style = "display:none" })
+                @Html.CheckBox("chk_value_SXKD_PhanMem")
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CungCapDVNDSo, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.CungCapDVNDSo, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.CungCapDVNDSo, "", new { @class = "text-danger" })
+                @Html.LabelFor(model => model.CungCapDVNDSo, new { @style = "display:none" })
+                @Html.CheckBox("chk_value_CungCapDVNDSo")
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TongDoanhThu, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TongDoanhThu, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TongDoanhThu, "", new { @class = "text-danger" })
+                @Html.LabelFor(model => model.TongDoanhThu, new { @style = "display:none" })
+                @Html.CheckBox("chk_value_TongDoanhThu")
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="button" value="Gửi cấp trên" class="btn btn-default" onclick="SendReport()" />
+                <input type="button" value="Yêu cầu nhập lại" class="btn btn-default" onclick="OpenDatePopup()" />
+            </div>
+        </div>
+        <div class="form-group" style="display:none;" id="fsLichNhapLieu">
+            <fieldset>
+                <legend>Đặt lịch sửa báo cáo</legend>
+                <div class="form-group">
+                    @Html.Label("", "Từ ngày", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.Editor("TuNgay", "", new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.Label("", "Đến ngày", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.Editor("DenNgay", "", new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                </div>
+                <input type="button" value="Đặt lịch" class="btn btn-default" onclick="NhapLaiRequest()" />
+            </fieldset>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+<script type="text/javascript">
+
+    var listInputRadio = '@ViewBag.listInputRadio';
+
+    $(document).ready(function () {
+        CheckInputRadioByValue();
+
+        var start = $("#TuNgay").kendoDatePicker({
+            change: startChange
+            , format: "dd/MM/yyyy"
+        }).data("kendoDatePicker");
+
+        var end = $("#DenNgay").kendoDatePicker({
+            change: endChange
+            , format: "dd/MM/yyyy"
+        }).data("kendoDatePicker");
+
+        start.max(end.value());
+        end.min(start.value());
+
+        SetIncorectHtml();
+
+
+    });
+
+    // Duyệt báo cáo thành công, thay đổi trạng thái nhập liệu
+    function SendReport() {
+        if (!confirm("Kết thúc quá trình nhập dữ liệu của đơn vị ?")) return;
+        var id = $("#CongThongTinDienTuHuyen_ID").val();
+        var lichNhap_ID = $("#lichNhap_ID").val();
+        $.post("ConfirmReport", { "id": id, "lichNhap_ID": lichNhap_ID }).done(function (data) {
+            if (data.msg == null) {
+                window.location.href = "/Ht_QuanLyNhapLieu/Index";
+            } else {
+                alert(data.msg);
+            }
+        });
+    }
+
+    // Yêu cầu nhập lại báo cáo
+    function NhapLaiRequest() {
+        var id = $("#CongThongTinDienTuHuyen_ID").val();
+        var lichNhap_ID = $("#lichNhap_ID").val();
+        var truongNhapLai = $("#TruongNhapLai").val();
+        var tuNgay = $("#TuNgay").val();
+        var denNgay = $("#DenNgay").val();
+        $.post("NhapLaiRequest", {
+            "id": id,
+            "lichNhap_ID": lichNhap_ID,
+            "truongNhapLai": truongNhapLai,
+            "tuNgay": tuNgay,
+            "denNgay": denNgay
+        }).done(function (data) {
+            if (data.msg == null) {
+                window.location.href = "/Ht_QuanLyNhapLieu/Index";
+            } else {
+                alert(data.msg);
+            }
+        });
+    }
+
+    // Đóng/ mở fiedset lịch nhập lại báo cáo
+    function OpenDatePopup() {
+        if ($("#fsLichNhapLieu").css('display') == 'none') {
+            $("#fsLichNhapLieu").show();
+        } else {
+            $("#fsLichNhapLieu").hide();
+        }
+    }
+
+    // Sự kiện nhấn nút Checkbox để yêu cầu nhập lại trường dữ liệu đó
+    $("input[type='checkbox']").change(function () {
+        if (this.id.indexOf("chk_value_") != -1) {
+            var radio_ID = $(this).attr('id');
+            var base_ID = radio_ID.substring(10, radio_ID.length);
+            var arrLabel = $("#txtTruongNhapLai").val();
+            var arrID = $("#TruongNhapLai").val();
+            var label = $('label[for="' + base_ID + '"]').html();
+            var listInput = arrID.split(',');
+
+            // Nếu không có mới insert
+            if (this.checked) {
+                if ($.inArray(base_ID, listInput) == -1) {
+                    arrID += base_ID + ",";
+                    arrLabel += label + ",";
+
+                    $("#TruongNhapLai").val(arrID);
+                    $("#txtTruongNhapLai").val(arrLabel);
+                }
+            } else {
+                arrID = arrID.replace(base_ID + ",", "");
+                $("#TruongNhapLai").val(arrID);
+
+                arrLabel = arrLabel.replace(label + ",", "");
+                $("#txtTruongNhapLai").val(arrLabel);
+            }
+        }
+    })
+</script>

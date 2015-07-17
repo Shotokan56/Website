@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="14bfb72a844247d6a5894508a135cee4" Name="Diagram1" ZoomLevel="14">
+        <EntityTypeShape EntityType="S4T_HaTinhModel.AspNetRole" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="S4T_HaTinhModel.AspNetUserClaim" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="S4T_HaTinhModel.AspNetUserLogin" Width="1.5" PointX="3" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="S4T_HaTinhModel.AspNetUserRole" Width="1.5" PointX="5.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="S4T_HaTinhModel.AspNetUser" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="S4T_HaTinhModel.CongNghiepCNTT" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="S4T_HaTinhModel.CongThongTinDienTu" Width="1.5" PointX="2.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="S4T_HaTinhModel.Dm_DanhMucChung" Width="1.5" PointX="4.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="S4T_HaTinhModel.Dm_DonVi" Width="1.5" PointX="6.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="S4T_HaTinhModel.Dm_LoaiDanhMuc" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="S4T_HaTinhModel.Dm_LoaiKeHoach" Width="1.5" PointX="7.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="S4T_HaTinhModel.Dm_LoaiVanBan" Width="1.5" PointX="8.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="S4T_HaTinhModel.Dm_ThongTinDonVi" Width="1.5" PointX="8.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="S4T_HaTinhModel.HaTangKyThuatCNTT" Width="1.75" PointX="10.5" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="S4T_HaTinhModel.HaTangNhanLucCNTT" Width="2.25" PointX="4.5" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="S4T_HaTinhModel.Ht_CauHinhUpload" Width="1.5" PointX="12.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="S4T_HaTinhModel.Ht_LichNhapLieu" Width="1.5" PointX="12.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="S4T_HaTinhModel.Ht_PhanHe" Width="1.5" PointX="12.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="S4T_HaTinhModel.Ht_PhanHeChucNang" Width="1.5" PointX="12.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="S4T_HaTinhModel.Ht_User" Width="1.5" PointX="10.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="S4T_HaTinhModel.KeHoach" Width="1.5" PointX="12.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="S4T_HaTinhModel.TienDo" Width="1.5" PointX="14.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="S4T_HaTinhModel.ToChucChinhSachCNTT" Width="1.5" PointX="14.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="S4T_HaTinhModel.UngDungCNTT" Width="2.875" PointX="16.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="S4T_HaTinhModel.UngDungCNTTTaiDN" Width="1.5" PointX="16.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="S4T_HaTinhModel.VanBan" Width="1.5" PointX="4.75" PointY="17.75" IsExpanded="true" />
+        <AssociationConnector Association="S4T_HaTinhModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="S4T_HaTinhModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="S4T_HaTinhModel.TinhHinhSXDN" Width="1.5" PointX="7" PointY="13.5" />
+        <EntityTypeShape EntityType="S4T_HaTinhModel.Ht_FileDinhKem" Width="1.5" PointX="9.375" PointY="17.75" />
+        <EntityTypeShape EntityType="S4T_HaTinhModel.CongThongTinDienTu_Huyen" Width="1.5" PointX="11.375" PointY="17.75" />
+        <EntityTypeShape EntityType="S4T_HaTinhModel.HaTangKyThuatCNTT_Huyen" Width="1.5" PointX="13.375" PointY="17.75" />
+        <EntityTypeShape EntityType="S4T_HaTinhModel.HaTangNhanLucCNTT_Huyen" Width="1.5" PointX="15.375" PointY="18.75" />
+        <EntityTypeShape EntityType="S4T_HaTinhModel.UngDungCNTT_Huyen" Width="1.5" PointX="17.375" PointY="18.75" />
+        <EntityTypeShape EntityType="S4T_HaTinhModel.PhanMemQLCN" Width="1.5" PointX="15.375" PointY="7.75" />
+        <EntityTypeShape EntityType="S4T_HaTinhModel.Ht_Role_PhanHe_ChucNang" Width="1.5" PointX="17.375" PointY="7.75" />
+        <EntityTypeShape EntityType="S4T_HaTinhModel.Ht_ThamSoHeThong" Width="1.5" PointX="19.375" PointY="7.75" />
+        <EntityTypeShape EntityType="S4T_HaTinhModel.HT_Log" Width="1.5" PointX="19.375" PointY="10.75" />
+        <EntityTypeShape EntityType="S4T_HaTinhModel.TN_Chuyen" Width="1.5" PointX="19.375" PointY="18.75" />
+        <EntityTypeShape EntityType="S4T_HaTinhModel.TN_DauViec" Width="1.5" PointX="19.375" PointY="13.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

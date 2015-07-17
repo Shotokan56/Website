@@ -1,0 +1,83 @@
+﻿@model IEnumerable<S4T_HaTinh.Models.Dm_DanhMucChung>
+@{
+    ViewBag.Title = "DANH MỤC CHUNG";
+    var listTrangThai = MvcApplication.ListTrangThai();
+    var listLoaiDanhMuc = MvcApplication.ListLoaiDanhMuc.ToList();
+}
+
+<h2>@ViewBag.Title</h2>
+
+<p>
+    @Html.ActionLink("Tạo mới", "Create")
+</p>
+@using (Html.BeginForm("Index", "Dm_DanhMucChung", FormMethod.Get))
+{
+    <p>
+        Loại danh mục : @Html.DropDownList("ddlLoaiDanhMuc", listLoaiDanhMuc, "Tất cả")
+        <input type="text" name="status" value="1" style="display:none" />
+        <input type="submit" value="Tìm kiếm" />
+    </p>
+}
+<table class="tableDefault">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TenDanhMuc)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LoaiDanhMuc_ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TrangThai)
+        </th>
+        <th></th>
+    </tr>
+    
+
+    @if (Model != null) { 
+        foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TenDanhMuc)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => listLoaiDanhMuc.FirstOrDefault(o => o.Value == item.LoaiDanhMuc_ID.ToString()).Text)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => listTrangThai.FirstOrDefault(o => o.DanhMuc_ID == item.TrangThai).TenDanhMuc)
+                </td>
+                <td>
+                    @Html.ActionLink("Sửa", "Edit", new { id = item.DanhMuc_ID }) |
+                    <a title="Xóa" onclick="Delete(@item.DanhMuc_ID)">Xóa</a>
+                </td>
+            </tr>
+        }
+    }
+</table>
+<script type="text/javascript">
+    function Delete(id) {
+        if (!confirm("Bạn có chắc chắn xóa dữ liệu này?")) return;
+
+        $.ajax({
+            type: 'POST',
+            url: "Dm_DanhMucChung/Delete?id=" + id,
+            success: function (data) {
+                if (data.msg == "ok") {
+                    alert("Đã xóa thành công");
+                    location.reload();
+                } else {
+                    alert(data.msg);
+                }},
+            async:true
+        });
+
+        //$.post("Delete", { "id": id }).done(function (data) {
+        //    if (data.msg == "ok") {
+        //        alert("Đã xóa thành công");
+        //        location.reload();
+        //    } else {
+        //        alert(data.msg);
+        //    }
+        //});
+    }
+</script>

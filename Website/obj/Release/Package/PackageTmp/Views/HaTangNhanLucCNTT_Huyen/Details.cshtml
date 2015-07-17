@@ -1,0 +1,539 @@
+﻿@model S4T_HaTinh.Models.HaTangNhanLucCNTT_Huyen
+
+@{
+    ViewBag.Title = "HẠ TẦNG NHÂN LỰC CNTT Huyện";
+    var listStatusNhapLieu = MvcApplication.ListTrangThaiNhapLieu();
+}
+
+<h2>CHI TIẾT</h2>
+
+<script src="~/Scripts/s4t-hatinh.js" type="text/javascript"></script>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>HẠ TẦNG NHÂN LỰC CNTT Huyện</h4>
+        <hr />
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Success, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(Model => listStatusNhapLieu.FirstOrDefault(o => o.DanhMuc_ID == Model.Success).TenDanhMuc, new { @class = "form-control", @readonly = "readonly" })
+            </div>
+        </div>
+        @*<div class="form-group">
+                @Html.LabelFor(model => model.LichNhap_ID, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.LichNhap_ID, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.LichNhap_ID, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DonVi_ID, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBox("txtTenDonVi", (string)ViewBag.TenDonVi, new { @class = "form-control", @readonly = "readonly" })
+                @Html.HiddenFor(model => model.DonVi_ID)
+                @Html.ValidationMessageFor(model => model.DonVi_ID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        @*<div class="form-group">
+                @Html.LabelFor(model => model.FileUpload, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.FileUpload, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.FileUpload, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
+        <div>
+            1.	Đào tạo nguồn nhân lực <span id="lblDaotaonhanluc"></span>
+            <table class="tableDefault">
+                <tr>
+                    <th></th>
+                    <th>Số trường</th>
+                    <th>Môn Tin học</th>
+                    <th>Ngành CNTT</th>
+                    <th>Khoa CNTT</th>
+                    <th>Giáo viên CNTT</th>
+                    <th>GV TS CNTT</th>
+                    <th>GV Th.S CNTT</th>
+                    <th>SV tốt nghiệp CNTT</th>
+                </tr>
+                <tr>
+                    <td>Tiểu học</td>
+                    <td>
+                        @Html.EditorFor(model => model.TieuHoc_SoTruong, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                        @Html.ValidationMessageFor(model => model.TieuHoc_SoTruong, "", new { @class = "text-danger" })
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.TieuHoc_TinHoc, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                        @Html.ValidationMessageFor(model => model.TieuHoc_TinHoc, "", new { @class = "text-danger" })
+                    </td>
+                    <td></td>
+                    <td></td>
+                    <td>
+                        @Html.EditorFor(model => model.TieuHoc_GVCNTT, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                        @Html.ValidationMessageFor(model => model.TieuHoc_GVCNTT, "", new { @class = "text-danger" })
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.TieuHoc_TSCNTT, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                        @Html.ValidationMessageFor(model => model.TieuHoc_TSCNTT, "", new { @class = "text-danger" })
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.TieuHoc_ThSCNTT, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                        @Html.ValidationMessageFor(model => model.TieuHoc_ThSCNTT, "", new { @class = "text-danger" })
+                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>THCS</td>
+                    <td>
+                        @Html.EditorFor(model => model.THCS_SoTruong, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                        @Html.ValidationMessageFor(model => model.THCS_SoTruong, "", new { @class = "text-danger" })
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.THCS_TinHoc, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                        @Html.ValidationMessageFor(model => model.THCS_TinHoc, "", new { @class = "text-danger" })
+                    </td>
+                    <td></td>
+                    <td></td>
+                    <td>
+                        @Html.EditorFor(model => model.THCS_GVCNTT, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                        @Html.ValidationMessageFor(model => model.THCS_GVCNTT, "", new { @class = "text-danger" })
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.THCS_TSCNTT, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                        @Html.ValidationMessageFor(model => model.THCS_TSCNTT, "", new { @class = "text-danger" })
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.THCS_ThSCNTT, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                        @Html.ValidationMessageFor(model => model.THCS_ThSCNTT, "", new { @class = "text-danger" })
+                    </td>
+                    <td></td>
+                </tr>
+
+                <tr>
+                    <td>THPT</td>
+                    <td>
+                        @Html.EditorFor(model => model.THPT_SoTruong, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                        @Html.ValidationMessageFor(model => model.THPT_SoTruong, "", new { @class = "text-danger" })
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.THPT_TinHoc, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                        @Html.ValidationMessageFor(model => model.THPT_TinHoc, "", new { @class = "text-danger" })
+                    </td>
+                    <td></td>
+                    <td></td>
+                    <td>
+                        @Html.EditorFor(model => model.THPT_GVCNTT, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                        @Html.ValidationMessageFor(model => model.THPT_GVCNTT, "", new { @class = "text-danger" })
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.THPT_TSCNTT, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                        @Html.ValidationMessageFor(model => model.THPT_TSCNTT, "", new { @class = "text-danger" })
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.THPT_ThSCNTT, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                        @Html.ValidationMessageFor(model => model.THPT_ThSCNTT, "", new { @class = "text-danger" })
+                    </td>
+                    <td></td>
+                </tr>
+
+                <tr>
+                    <td>Trung cấp</td>
+                    <td>
+                        @Html.EditorFor(model => model.TrungCap_SoTruong, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                        @Html.ValidationMessageFor(model => model.TrungCap_SoTruong, "", new { @class = "text-danger" })
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.TrungCap_TinHoc, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                        @Html.ValidationMessageFor(model => model.TrungCap_TinHoc, "", new { @class = "text-danger" })
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.TrungCap_NganhCNTT, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                        @Html.ValidationMessageFor(model => model.TrungCap_NganhCNTT, "", new { @class = "text-danger" })
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.TrungCap_KhoaCNTT, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                        @Html.ValidationMessageFor(model => model.TrungCap_KhoaCNTT, "", new { @class = "text-danger" })
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.TrungCap_GVCNTT, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                        @Html.ValidationMessageFor(model => model.TrungCap_GVCNTT, "", new { @class = "text-danger" })
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.TrungCap_TSCNTT, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                        @Html.ValidationMessageFor(model => model.TrungCap_TSCNTT, "", new { @class = "text-danger" })
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.TrungCap_ThSCNTT, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                        @Html.ValidationMessageFor(model => model.TrungCap_ThSCNTT, "", new { @class = "text-danger" })
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.TrungCap_TotNghiep, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                        @Html.ValidationMessageFor(model => model.TrungCap_TotNghiep, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Cao Đẳng</td>
+                    <td>
+                        @Html.EditorFor(model => model.CaoDang_SoTruong, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                        @Html.ValidationMessageFor(model => model.CaoDang_SoTruong, "", new { @class = "text-danger" })
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.CaoDang_TinHoc, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                        @Html.ValidationMessageFor(model => model.CaoDang_TinHoc, "", new { @class = "text-danger" })
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.CaoDang_NganhCNTT, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                        @Html.ValidationMessageFor(model => model.CaoDang_NganhCNTT, "", new { @class = "text-danger" })
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.CaoDang_KhoaCNTT, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                        @Html.ValidationMessageFor(model => model.CaoDang_KhoaCNTT, "", new { @class = "text-danger" })
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.CaoDang_GVCNTT, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                        @Html.ValidationMessageFor(model => model.CaoDang_GVCNTT, "", new { @class = "text-danger" })
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.CaoDang_TSCNTT, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                        @Html.ValidationMessageFor(model => model.CaoDang_TSCNTT, "", new { @class = "text-danger" })
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.CaoDang_ThSCNTT, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                        @Html.ValidationMessageFor(model => model.CaoDang_ThSCNTT, "", new { @class = "text-danger" })
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.CaoDang_TotNghiep, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                        @Html.ValidationMessageFor(model => model.CaoDang_TotNghiep, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Đại học</td>
+                    <td>
+                        @Html.EditorFor(model => model.DaiHoc_SoTruong, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                        @Html.ValidationMessageFor(model => model.CaoDang_SoTruong, "", new { @class = "text-danger" })
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.DaiHoc_TinHoc, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                        @Html.ValidationMessageFor(model => model.DaiHoc_TinHoc, "", new { @class = "text-danger" })
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.DaiHoc_NganhCNTT, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                        @Html.ValidationMessageFor(model => model.DaiHoc_NganhCNTT, "", new { @class = "text-danger" })
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.DaiHoc_KhoaCNTT, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                        @Html.ValidationMessageFor(model => model.DaiHoc_KhoaCNTT, "", new { @class = "text-danger" })
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.DaiHoc_GVCNTT, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                        @Html.ValidationMessageFor(model => model.DaiHoc_GVCNTT, "", new { @class = "text-danger" })
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.DaiHoc_TSCNTT, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                        @Html.ValidationMessageFor(model => model.DaiHoc_TSCNTT, "", new { @class = "text-danger" })
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.DaiHoc_ThSCNTT, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                        @Html.ValidationMessageFor(model => model.DaiHoc_ThSCNTT, "", new { @class = "text-danger" })
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.DaiHoc_TotNghiep, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                        @Html.ValidationMessageFor(model => model.DaiHoc_TotNghiep, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Cơ sở ĐT #</td>
+                    <td>
+                        @Html.EditorFor(model => model.Khac_SoTruong, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                        @Html.ValidationMessageFor(model => model.Khac_SoTruong, "", new { @class = "text-danger" })
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.Khac_TinHoc, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                        @Html.ValidationMessageFor(model => model.Khac_TinHoc, "", new { @class = "text-danger" })
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.Khac_NganhCNTT, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                        @Html.ValidationMessageFor(model => model.Khac_NganhCNTT, "", new { @class = "text-danger" })
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.Khac_KhoaCNTT, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                        @Html.ValidationMessageFor(model => model.Khac_KhoaCNTT, "", new { @class = "text-danger" })
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.Khac_GVCNTT, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                        @Html.ValidationMessageFor(model => model.Khac_GVCNTT, "", new { @class = "text-danger" })
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.Khac_TSCNTT, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                        @Html.ValidationMessageFor(model => model.Khac_TSCNTT, "", new { @class = "text-danger" })
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.Khac_ThSCNTT, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                        @Html.ValidationMessageFor(model => model.Khac_ThSCNTT, "", new { @class = "text-danger" })
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.Khac_TotNghiep, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                        @Html.ValidationMessageFor(model => model.Khac_TotNghiep, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <div>
+            2.	Cán bộ chuyên trách CNTT <span id="lblcanbochuyentrachCNTT"></span>
+            <table class=" tableDefault">
+                <tr>
+                    <th></th>
+                    <th>Số lượng</th>
+                    <th>Tiến sỹ</th>
+                    <th>Thạc sỹ</th>
+                    <th>Đại học CQ</th>
+                    <th>Đại học KCQ</th>
+                    <th>Lượt</th>
+                </tr>
+                <tr>
+                    <td>
+                        Cấp huyện
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.Huyen_SoLuong, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                        @Html.ValidationMessageFor(model => model.Huyen_SoLuong, "", new { @class = "text-danger" })
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.Huyen_TienSy, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                        @Html.ValidationMessageFor(model => model.Huyen_TienSy, "", new { @class = "text-danger" })
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.Huyen_ThacSy, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                        @Html.ValidationMessageFor(model => model.Huyen_ThacSy, "", new { @class = "text-danger" })
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.Huyen_DHCQ, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                        @Html.ValidationMessageFor(model => model.Huyen_DHCQ, "", new { @class = "text-danger" })
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.Huyen_KhongCQ, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                        @Html.ValidationMessageFor(model => model.Huyen_KhongCQ, "", new { @class = "text-danger" })
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.Huyen_Luot, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                        @Html.ValidationMessageFor(model => model.Huyen_Luot, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td>Cấp xã</td>
+                    <td>
+                        @Html.EditorFor(model => model.Xa_SoLuong, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                        @Html.ValidationMessageFor(model => model.Xa_SoLuong, "", new { @class = "text-danger" })
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.Xa_TienSy, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                        @Html.ValidationMessageFor(model => model.Xa_TienSy, "", new { @class = "text-danger" })
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.Xa_ThacSy, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                        @Html.ValidationMessageFor(model => model.Xa_ThacSy, "", new { @class = "text-danger" })
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.Xa_DHCQ, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                        @Html.ValidationMessageFor(model => model.Xa_DHCQ, "", new { @class = "text-danger" })
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.Xa_KhongCQ, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                        @Html.ValidationMessageFor(model => model.Xa_KhongCQ, "", new { @class = "text-danger" })
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.Xa_Luot, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                        @Html.ValidationMessageFor(model => model.Xa_Luot, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <div>
+            3.	CBCCVC biết sử dụng thành thạo máy tính <span id="lblCanbothanhthaomaytinh"></span>
+            <table class="tableDefault">
+                <tr>
+                    <th></th>
+                    <th>Sử dụng thành thạo máy tính</th>
+                    <th>Lượt</th>
+                    <th>Tiến sỹ CNTT</th>
+                    <th>Thạc sỹCNTT</th>
+                </tr>
+
+                <tr>
+                    <td>UBND cấp huyện</td>
+                    <td>
+                        @Html.EditorFor(model => model.UBND_ThanhThao, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                        @Html.ValidationMessageFor(model => model.UBND_ThanhThao, "", new { @class = "text-danger" })
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.UBND_Luot, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                        @Html.ValidationMessageFor(model => model.UBND_Luot, "", new { @class = "text-danger" })
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.UBND_TSCNTT, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                        @Html.ValidationMessageFor(model => model.UBND_TSCNTT, "", new { @class = "text-danger" })
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.UBND_ThSCNTT, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                        @Html.ValidationMessageFor(model => model.UBND_ThSCNTT, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Cấp huyện ủy</td>
+                    <td>
+                        @Html.EditorFor(model => model.HuyenUy_ThanhThao, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                        @Html.ValidationMessageFor(model => model.HuyenUy_ThanhThao, "", new { @class = "text-danger" })
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.HuyenUy_Luot, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                        @Html.ValidationMessageFor(model => model.HuyenUy_Luot, "", new { @class = "text-danger" })
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.HuyenUy_TSCNTT, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                        @Html.ValidationMessageFor(model => model.HuyenUy_TSCNTT, "", new { @class = "text-danger" })
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.HuyenUy_ThSCNTT, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                        @Html.ValidationMessageFor(model => model.HuyenUy_ThSCNTT, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Cấp xã</td>
+                    <td>
+                        @Html.EditorFor(model => model.Xa_ThanhThao, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                        @Html.ValidationMessageFor(model => model.Xa_ThanhThao, "", new { @class = "text-danger" })
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.Xa_Luot_ThanhThao, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                        @Html.ValidationMessageFor(model => model.Xa_Luot_ThanhThao, "", new { @class = "text-danger" })
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.Xa_TSCNTT, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                        @Html.ValidationMessageFor(model => model.Xa_TSCNTT, "", new { @class = "text-danger" })
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.Xa_ThSCNTT, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                        @Html.ValidationMessageFor(model => model.Xa_ThSCNTT, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Giáo dục</td>
+                    <td>
+                        @Html.EditorFor(model => model.GiaoDuc_ThanhThao, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                        @Html.ValidationMessageFor(model => model.GiaoDuc_ThanhThao, "", new { @class = "text-danger" })
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.GiaoDuc_Luot, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                        @Html.ValidationMessageFor(model => model.GiaoDuc_Luot, "", new { @class = "text-danger" })
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.GiaoDuc_TSCNTT, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                        @Html.ValidationMessageFor(model => model.GiaoDuc_TSCNTT, "", new { @class = "text-danger" })
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.GiaoDuc_ThSCNTT, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                        @Html.ValidationMessageFor(model => model.GiaoDuc_ThSCNTT, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Y tế</td>
+                    <td>
+                        @Html.EditorFor(model => model.YTe_ThanhThao, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                        @Html.ValidationMessageFor(model => model.YTe_ThanhThao, "", new { @class = "text-danger" })
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.YTe_Luot, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                        @Html.ValidationMessageFor(model => model.YTe_Luot, "", new { @class = "text-danger" })
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.YTe_TSCNTT, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                        @Html.ValidationMessageFor(model => model.YTe_TSCNTT, "", new { @class = "text-danger" })
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.YTe_ThSCNTT, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                        @Html.ValidationMessageFor(model => model.YTe_ThSCNTT, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Đơn vị sự nghiệp</td>
+                    <td>
+                        @Html.EditorFor(model => model.DVSN_ThanhThao, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                        @Html.ValidationMessageFor(model => model.DVSN_ThanhThao, "", new { @class = "text-danger" })
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.DVSN_Luot, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                        @Html.ValidationMessageFor(model => model.DVSN_Luot, "", new { @class = "text-danger" })
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.DVSN_TSCNTT, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                        @Html.ValidationMessageFor(model => model.DVSN_TSCNTT, "", new { @class = "text-danger" })
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.DVSN_ThSCNTT, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                        @Html.ValidationMessageFor(model => model.DVSN_ThSCNTT, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Doanh nghiệpCNTT</td>
+                    <td>
+                        @Html.EditorFor(model => model.DN_ThanhThao, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                        @Html.ValidationMessageFor(model => model.DN_ThanhThao, "", new { @class = "text-danger" })
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.DN_Luot, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                        @Html.ValidationMessageFor(model => model.DN_Luot, "", new { @class = "text-danger" })
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.DN_TSCNTT, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                        @Html.ValidationMessageFor(model => model.DN_TSCNTT, "", new { @class = "text-danger" })
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.DN_ThSCNTT, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                        @Html.ValidationMessageFor(model => model.DN_ThSCNTT, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Doanh nghiệp #</td>
+                    <td>
+                        @Html.EditorFor(model => model.Khac_ThanhThao, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                        @Html.ValidationMessageFor(model => model.Khac_ThanhThao, "", new { @class = "text-danger" })
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.Khac_Luot, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                        @Html.ValidationMessageFor(model => model.Khac_Luot, "", new { @class = "text-danger" })
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.Khac_TSCNTT_ThanhThao, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                        @Html.ValidationMessageFor(model => model.Khac_TSCNTT_ThanhThao, "", new { @class = "text-danger" })
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.Khac_ThSCNTT_ThanhThao, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                        @Html.ValidationMessageFor(model => model.Khac_ThSCNTT_ThanhThao, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+}
+
+<div>
+    <a href="/HaTangNhanLucCNTT_Huyen/Index">Quay lại</a>
+</div>

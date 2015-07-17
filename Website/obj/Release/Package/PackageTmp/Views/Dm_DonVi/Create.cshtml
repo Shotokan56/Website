@@ -1,0 +1,139 @@
+﻿@model S4T_HaTinh.Models.Dm_DonVi
+
+@{
+    ViewBag.Title = "TẠO MỚI";
+    var listTrangThai = new SelectList(MvcApplication.ListTrangThai(), "DanhMuc_ID", "TenDanhMuc");
+    var listNhomDonVi = new SelectList(MvcApplication.ListNhomDonVi(), "DanhMuc_ID", "TenDanhMuc");
+    var listNganhNghe = new SelectList(MvcApplication.ListNganhNghe(), "DanhMuc_ID", "TenDanhMuc");
+    var listLoaiHinhDoanhNghiep = new SelectList(MvcApplication.ListLoaiHinhDoanhNghiep(), "DanhMuc_ID", "TenDanhMuc");
+    var items = new List<SelectListItem>();
+    items.Add(new SelectListItem() { Text = "(Không có)", Value = "-1", Selected = true }); ;
+    var listDonViCap1 = new SelectList(items, "Value", "Text");
+}
+
+<h2>@ViewBag.Title</h2>
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.TenDonVi, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TenDonVi, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TenDonVi, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.NhomDonVi_ID, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.NhomDonVi_ID, listNhomDonVi, new { htmlAttributes = new { @class = "form-control", @onchange = "NhomDonVi_OnChange()" } })
+                @Html.ValidationMessageFor(model => model.NhomDonVi_ID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DonViCap1_ID, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.DonViCap1_ID, listDonViCap1, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DonViCap1_ID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ChuyenVienPhuTrach, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ChuyenVienPhuTrach, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ChuyenVienPhuTrach, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.SoDienThoai, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.SoDienThoai, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.SoDienThoai, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.NganhNghe_ID, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.NganhNghe_ID, listNganhNghe, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.NganhNghe_ID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.LoaiHinhDoanhNghiep_ID, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.LoaiHinhDoanhNghiep_ID, listLoaiHinhDoanhNghiep, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.LoaiHinhDoanhNghiep_ID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TrangThai, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.TrangThai, listTrangThai, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TrangThai, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DiaChi, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.DiaChi, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DiaChi, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.QuyMo, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.QuyMo, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.QuyMo, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Tạo mới" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+<script type="text/javascript">
+    $(document).ready(function () {
+        NhomDonVi_OnChange();
+    });
+
+    // Lấy danh sách đơn vị cấp 1 theo nhóm đơn vị
+    function NhomDonVi_OnChange() {
+        var nhomDonVi_ID = $("#NhomDonVi_ID").val();
+        if (nhomDonVi_ID != "") {
+            $.post("NhomDonVi_OnChange", { "nhomDonVi_ID": nhomDonVi_ID, "donViCap1_ID" : "-1" }).done(function (data) {
+                if (data.msg == null) {
+                    $("#DonViCap1_ID").html(data.danhSach);
+                } else {
+                    alert(data.msg);
+                }
+            });
+        } else {
+            alert("Không tìm thấy mã nhóm đơn vị");
+        }
+    }
+</script>
