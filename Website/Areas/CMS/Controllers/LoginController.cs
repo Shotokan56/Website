@@ -45,7 +45,7 @@ namespace Website.Areas.CMS.Controllers
                 ModelState.AddModelError("Message", TextMessage.LoginController_Validate_NotValid);
             }
 
-            ModelState.AddModelError("Message", "OK");
+            ModelState.AddModelError("Message", "ok");
             return View("Login", userVm);
         }
 
