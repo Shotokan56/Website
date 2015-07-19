@@ -19,7 +19,7 @@ namespace Website.Areas.CMS.Controllers
         // GET: /CMS/Login/
         public ActionResult Index()
         {
-            return View("Login"); 
+            return View("Login");
         }
 
         [HttpPost]
