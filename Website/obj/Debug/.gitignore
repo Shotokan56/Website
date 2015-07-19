@@ -3,3 +3,5 @@
 *.pdb
 *.cache
 /Website.csproj.GenerateResource.Cache
+/Website.dll
+*.csproj.FileListAbsolute.txt
