@@ -1,3 +1,4 @@
 WebSite/bin/*
 WebSite/obj/Debug/*
 *.v12.suo
+/Website.csproj.FileListAbsolute.txt
