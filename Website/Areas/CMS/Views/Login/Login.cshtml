@@ -1,4 +1,4 @@
-﻿<html>
+﻿
 <head>
     @model Website.Areas.CMS.Models.UserViewModel
     <meta charset="utf-8">
@@ -12,6 +12,7 @@
 
     <script src="~/Scripts/jquery-1.11.1.js"></script>
     <script src="~/Content/CMS/Script/backstretch.min.js"></script>
+    
 </head>
 
 <body>
@@ -21,10 +22,10 @@
                 <legend>Sign in to <span class="blue">MyApp</span></legend>
                 <div class="body">
                     <label>Username</label>
-                    @Html.TextBoxFor(m => m.UserName)
+                    @Html.TextBoxFor(m => m.UserName, new { @Style = "height: 30px;" })
                     @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
                     <label>Password</label>
-                    @Html.TextBoxFor(m => m.PassWord)
+                    @Html.TextBoxFor(m => m.PassWord, new { @Style = "height: 30px;" })
                     @Html.ValidationMessageFor(m => m.PassWord, "", new { @class = "text-danger" })
                 </div>
                 @if (!string.IsNullOrEmpty(Model.Message))
@@ -41,7 +42,7 @@
         </div>
     </div>
 </body>
-@*</html>*@
+
 <script>
     jQuery(document).ready(function ($) {
 
