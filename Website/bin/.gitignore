@@ -1,4 +1,1 @@
-*.pdb
-/Website.csproj.GenerateResource.Cache
-/Website.dll
-/Website.dll.config
+*.*

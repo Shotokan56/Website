@@ -1,10 +1,1 @@
-*.csprojResolveAssemblyReference.cache
-*.dll
-*.pdb
-*.cache
-/Website.csproj.GenerateResource.Cache
-/Website.dll
-*.csproj.FileListAbsolute.txt
-/Website.csproj.FileListAbsolute.txt
-*.csproj.GenerateResource.Cache
-/Website.dll.config
+*.*
