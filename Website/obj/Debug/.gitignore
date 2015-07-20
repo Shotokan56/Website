@@ -6,3 +6,4 @@
 /Website.dll
 *.csproj.FileListAbsolute.txt
 /Website.csproj.FileListAbsolute.txt
+*.csproj.GenerateResource.Cache
