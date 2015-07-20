@@ -381,4 +381,8 @@ footer.navbar-fixed-bottom {
     display: block;
     margin: 0 auto;
   }
+
+  input[type="text"] {
+      height: 30px!important;
+  }
 }

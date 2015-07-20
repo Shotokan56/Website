@@ -19,7 +19,8 @@ namespace Website.Areas.CMS.Controllers
         // GET: /CMS/Login/
         public ActionResult Index()
         {
-            return View("Login"); 
+            var userVM = new UserViewModel();
+            return View("Login", userVM); 
         }
 
         [HttpPost]

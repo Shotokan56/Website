@@ -1,17 +1,17 @@
-﻿<head>
+﻿<html>
+<head>
     @model Website.Areas.CMS.Models.UserViewModel
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LOGIN SYSTEM</title>
 
     <!-- styles -->
-    <link href="~/Areas/CMS/Script/bootstrap.min.css" rel="stylesheet" />
-    <link href="~/Areas/CMS/Style/bootstrap-responsive.min.css" rel="stylesheet" />
-    <link href="~/Areas/CMS/Style/typica-login.css" rel="stylesheet" />
+    <link href="~/Content/CMS/Script/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/CMS/Style/bootstrap-responsive.min.css" rel="stylesheet" />
+    <link href="~/Content/CMS/Style/typica-login.css" rel="stylesheet" />
 
     <script src="~/Scripts/jquery-1.11.1.js"></script>
-    <script src="~/Areas/CMS/Script/backstretch.min.js"></script>
-
-
+    <script src="~/Content/CMS/Script/backstretch.min.js"></script>
 </head>
 
 <body>
@@ -19,7 +19,6 @@
         <div id="login-wraper">
             <form class="form login-form">
                 <legend>Sign in to <span class="blue">MyApp</span></legend>
-
                 <div class="body">
                     <label>Username</label>
                     @Html.TextBoxFor(m => m.UserName)
@@ -28,24 +27,21 @@
                     @Html.TextBoxFor(m => m.PassWord)
                     @Html.ValidationMessageFor(m => m.PassWord, "", new { @class = "text-danger" })
                 </div>
-                <span>@Html.LabelFor(m=>m.Message)</span>
+                @if (!string.IsNullOrEmpty(Model.Message))
+                {
+                    <span>@Html.LabelFor(m => m.Message)</span>
+                }
                 <div class="footer">
                     <label class="checkbox inline">
                         <input type="checkbox" id="inlineCheckbox1" value="option1"> Remember me
                     </label>
-
                     <button type="submit" class="btn btn-success">Login</button>
                 </div>
-
             </form>
         </div>
-
     </div>
-
-
 </body>
-
-</html>
+@*</html>*@
 <script>
     jQuery(document).ready(function ($) {
 
