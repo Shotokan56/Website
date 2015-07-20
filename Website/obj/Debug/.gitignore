@@ -7,3 +7,4 @@
 *.csproj.FileListAbsolute.txt
 /Website.csproj.FileListAbsolute.txt
 *.csproj.GenerateResource.Cache
+/Website.dll.config
