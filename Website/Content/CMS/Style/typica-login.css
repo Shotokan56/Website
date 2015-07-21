@@ -7,6 +7,10 @@ html {
   height: 100%;
 }
 
+.text-danger {
+      color: red;    
+  }
+
 /* line 13, ../sass/typica-login.scss */
 body {
   background: url(/Content/images/bg1.png) no-repeat center center fixed;
@@ -106,7 +110,7 @@ body {
   margin-left: -235px;
   padding: 25px;
   width: 420px;
-  height: 320px;
+  height: auto;
   background: white;
   text-align: center;
 }
@@ -380,9 +384,5 @@ footer.navbar-fixed-bottom {
   #register-form .btn {
     display: block;
     margin: 0 auto;
-  }
-
-  input[type="text"] {
-      height: 30px!important; 
   }
 }

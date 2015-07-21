@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Web;
+﻿using System.Linq;
 using System.Web.Mvc;
 using Resources;
 using Website.Areas.CMS.Models;
@@ -13,7 +8,7 @@ using AutoMapper;
 
 namespace Website.Areas.CMS.Controllers
 {
-    public class LoginController : BaseController
+    public class LoginController : Controller
     {
         public WebAPPEntities db = new WebAPPEntities();
         //
@@ -30,7 +25,7 @@ namespace Website.Areas.CMS.Controllers
             ModelState.Clear();
             if (!Validate(userVm))
             {
-                ModelState.AddModelError("Message", TextMessage.LoginController_Validate_NotValid);
+                return View("Login", userVm);
             }
             
             var objDbUser = db.Users.FirstOrDefault(o => o.UserName == userVm.UserName);
@@ -47,14 +42,13 @@ namespace Website.Areas.CMS.Controllers
             if (!Hashing.VerifyHashedPassword(objDbUser.PassWord, userVm.PassWord))
             {
                 ModelState.AddModelError("Message", TextMessage.LoginController_Validate_NotValid);
+                return View("Login", userVm);
             }
-
-            if (ModelState.IsValid)
+            else
             {
-                Session["user"] = objDbUser;
+                Session.Add("User", objDbUser);
                 return RedirectToAction("index", "Home");
             }
-            return View("Login", userVm);
         }
 
         private bool Validate(UserViewModel userVm)
@@ -62,14 +56,14 @@ namespace Website.Areas.CMS.Controllers
             
             if (string.IsNullOrEmpty(userVm.UserName) || string.IsNullOrWhiteSpace(userVm.UserName))
             {
-                ModelState.AddModelError("UserName", TextMessage.LoginController_Validate_UserName);
+                ModelState.AddModelError("Message", TextMessage.LoginController_Validate_UserName);
             }
 
             if (string.IsNullOrEmpty(userVm.PassWord) || string.IsNullOrWhiteSpace(userVm.PassWord))
             {
-                ModelState.AddModelError("UserName", TextMessage.LoginController_Validate_PassWord);
+                ModelState.AddModelError("Message", TextMessage.LoginController_Validate_PassWord);
             }
-            return true;
+            return ModelState.IsValid;
         }
     }
 }

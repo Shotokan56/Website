@@ -7,31 +7,29 @@
 
     <!-- styles -->
     <link href="~/Content/CMS/Script/bootstrap.min.css" rel="stylesheet" />
+    @*<link href="~/Content/bootstrap-3.3.2-dist/css/bootstrap.min.css" rel="stylesheet" />*@
     <link href="~/Content/CMS/Style/bootstrap-responsive.min.css" rel="stylesheet" />
     <link href="~/Content/CMS/Style/typica-login.css" rel="stylesheet" />
 
     <script src="~/Scripts/jquery-1.11.1.js"></script>
     <script src="~/Content/CMS/Script/backstretch.min.js"></script>
-    
+
 </head>
 
 <body>
     <div class="container">
         <div id="login-wraper">
-            @*<form class="form login-form">*@
-            @using (Html.BeginForm("Verify", "Login", FormMethod.Post, new {enctype = "multipart/form-data", @class = "form login-form"}))
+            @using (Html.BeginForm("Verify", "Login", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form login-form" }))
             {
                 <legend>Sign in to <span class="blue">MyApp</span></legend>
                 <div class="body">
                     <label>Username</label>
-                    @Html.TextBoxFor(m => m.UserName, new {@Style = "height: 30px;"})
-                    @Html.ValidationMessageFor(m => m.UserName, "", new {@class = "text-danger"})
+                    @Html.TextBoxFor(m => m.UserName, new { @Style = "height: 30px;" })
                     <label>Password</label>
-                    @Html.TextBoxFor(m => m.PassWord, new {@Style = "height: 30px;"})
-                    @Html.ValidationMessageFor(m => m.PassWord, "", new {@class = "text-danger"})
+                    @Html.TextBoxFor(m => m.PassWord, new { @Style = "height: 30px;" })
                 </div>
-                
-               @Html.ValidationMessageFor(m => m.Message, "", new { @class = "text-danger" })
+
+                <div> @Html.ValidationMessageFor(m => m.Message, "", new { @class = "text-danger" })</div>
                 <div class="footer">
                     <label class="checkbox inline">
                         <input type="checkbox" id="inlineCheckbox1" value="option1"> Remember me
@@ -39,7 +37,6 @@
                     <button type="submit" class="btn btn-success">Login</button>
                 </div>
             }
-            @*</form>*@
         </div>
     </div>
 </body>

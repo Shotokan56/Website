@@ -12,7 +12,7 @@ namespace Website.Common
         // GET: /Base/
         public BaseController()
         {
-            
+           
         }
 	}
 }
