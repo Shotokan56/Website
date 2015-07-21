@@ -185,6 +185,7 @@
     <Compile Include="Areas\CMS\Models\UserViewModel.cs" />
     <Compile Include="Areas\GUI\Controllers\HomeController.cs" />
     <Compile Include="Areas\GUI\GUIAreaRegistration.cs" />
+    <Compile Include="Common\BaseController.cs" />
     <Compile Include="Common\Hashing.cs" />
     <Compile Include="Common\Enum.cs" />
     <Compile Include="Common\ExceptionViewer.cs" />
@@ -1767,6 +1768,7 @@
     <Folder Include="Content\Kendo\js\" />
     <Folder Include="Content\Kendo\styles\" />
     <Folder Include="Scripts\Kendo\styles\" />
+    <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -1807,7 +1809,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>1258</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:1259/</IISUrl>
+          <IISUrl>http://localhost:1989/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

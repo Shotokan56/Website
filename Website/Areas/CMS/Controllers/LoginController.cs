@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Web;
@@ -12,15 +13,15 @@ using AutoMapper;
 
 namespace Website.Areas.CMS.Controllers
 {
-    public class LoginController : Controller
+    public class LoginController : BaseController
     {
         public WebAPPEntities db = new WebAPPEntities();
         //
         // GET: /CMS/Login/
-        public ActionResult Index()
+
+        public ActionResult Index(UserViewModel userVm)
         {
-            var userVM = new UserViewModel();
-            return View("Login", userVM); 
+            return View("Login", userVm); 
         }
 
         [HttpPost]
@@ -30,23 +31,29 @@ namespace Website.Areas.CMS.Controllers
             if (!Validate(userVm))
             {
                 ModelState.AddModelError("Message", TextMessage.LoginController_Validate_NotValid);
-                return View("Login",userVm);
             }
             
-            var objDbUser = db.Users.First(o => o.UserName == userVm.UserName);
+            var objDbUser = db.Users.FirstOrDefault(o => o.UserName == userVm.UserName);
 
             if (objDbUser == null)
+            {
                 ModelState.AddModelError("Message", TextMessage.LoginController_Validate_NotValid);
+                return View("Login", userVm);
+            }
 
             //Mapper.CreateMap<User, UserViewModel>();
             //var userViewModel = Mapper.Map<User>(user);
 
-            if (!Hashing.VerifyHashedPassword(Hashing.HashPassword(objDbUser.PassWord), userVm.PassWord))
+            if (!Hashing.VerifyHashedPassword(objDbUser.PassWord, userVm.PassWord))
             {
                 ModelState.AddModelError("Message", TextMessage.LoginController_Validate_NotValid);
             }
 
-            ModelState.AddModelError("Message", "ok");
+            if (ModelState.IsValid)
+            {
+                Session["user"] = objDbUser;
+                return RedirectToAction("index", "Home");
+            }
             return View("Login", userVm);
         }
 

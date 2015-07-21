@@ -18,27 +18,28 @@
 <body>
     <div class="container">
         <div id="login-wraper">
-            <form class="form login-form">
+            @*<form class="form login-form">*@
+            @using (Html.BeginForm("Verify", "Login", FormMethod.Post, new {enctype = "multipart/form-data", @class = "form login-form"}))
+            {
                 <legend>Sign in to <span class="blue">MyApp</span></legend>
                 <div class="body">
                     <label>Username</label>
-                    @Html.TextBoxFor(m => m.UserName, new { @Style = "height: 30px;" })
-                    @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
+                    @Html.TextBoxFor(m => m.UserName, new {@Style = "height: 30px;"})
+                    @Html.ValidationMessageFor(m => m.UserName, "", new {@class = "text-danger"})
                     <label>Password</label>
-                    @Html.TextBoxFor(m => m.PassWord, new { @Style = "height: 30px;" })
-                    @Html.ValidationMessageFor(m => m.PassWord, "", new { @class = "text-danger" })
+                    @Html.TextBoxFor(m => m.PassWord, new {@Style = "height: 30px;"})
+                    @Html.ValidationMessageFor(m => m.PassWord, "", new {@class = "text-danger"})
                 </div>
-                @if (!string.IsNullOrEmpty(Model.Message))
-                {
-                    <span>@Html.LabelFor(m => m.Message)</span>
-                }
+                
+               @Html.ValidationMessageFor(m => m.Message, "", new { @class = "text-danger" })
                 <div class="footer">
                     <label class="checkbox inline">
                         <input type="checkbox" id="inlineCheckbox1" value="option1"> Remember me
                     </label>
                     <button type="submit" class="btn btn-success">Login</button>
                 </div>
-            </form>
+            }
+            @*</form>*@
         </div>
     </div>
 </body>
