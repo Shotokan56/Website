@@ -32,7 +32,8 @@
                 <div> @Html.ValidationMessageFor(m => m.Message, "", new { @class = "text-danger" })</div>
                 <div class="footer">
                     <label class="checkbox inline">
-                        <input type="checkbox" id="inlineCheckbox1" value="option1"> Remember me
+                        @*<input type="checkbox" id="inlineCheckbox1" value="option1"> Remember me*@
+                        @Html.CheckBoxFor(m => m.RememberMe, new { })Remember me
                     </label>
                     <button type="submit" class="btn btn-success">Login</button>
                 </div>

@@ -12,7 +12,8 @@ namespace Website.Areas.GUI.Controllers
         // GET: /GUI/Home/
         public ActionResult Index()
         {
-            return View();
+            //return View();
+            return Redirect("CMS/Login");
         }
 
         public ActionResult Index2()

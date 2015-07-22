@@ -54,6 +54,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.DirectoryServices" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
@@ -186,6 +187,7 @@
     <Compile Include="Areas\GUI\Controllers\HomeController.cs" />
     <Compile Include="Areas\GUI\GUIAreaRegistration.cs" />
     <Compile Include="Common\BaseController.cs" />
+    <Compile Include="Common\CustomAuthorizeUserAttribute.cs" />
     <Compile Include="Common\Hashing.cs" />
     <Compile Include="Common\Enum.cs" />
     <Compile Include="Common\ExceptionViewer.cs" />
@@ -795,6 +797,7 @@
     <Content Include="Content\bootstrap-3.3.2-dist\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Content\bootstrap-3.3.2-dist\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Content\bootstrap-3.3.2-dist\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Views\ViewError.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -1782,7 +1785,6 @@
     <Folder Include="Content\Kendo\js\" />
     <Folder Include="Content\Kendo\styles\" />
     <Folder Include="Scripts\Kendo\styles\" />
-    <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

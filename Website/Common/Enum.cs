@@ -1,9 +1,5 @@
-﻿using System;
-using System.Linq;
-using System.Collections.Generic;
-using System.Web;
-using System.Web.Mvc;
-using System.Configuration;
+﻿using System.Runtime.Serialization;
+
 
 namespace Website.Common
 {
@@ -11,5 +7,13 @@ namespace Website.Common
     {
         public const int HoatDong = 1;
         public const int KhongHoatDong = 2;
+    }
+
+    public enum SecurityRoles
+    {
+        [EnumMember] 
+        Admin,
+        [EnumMember]
+        Member,
     }
 }
