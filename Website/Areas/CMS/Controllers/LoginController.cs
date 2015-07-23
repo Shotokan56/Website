@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using System.Security.Principal;
 using System.Web;
 using System.Web.Mvc;
 using Resources;
@@ -20,8 +19,13 @@ namespace Website.Areas.CMS.Controllers
 
         public ActionResult Index(UserViewModel userVm)
         {
-            userVm.UserName = "1";
+            var appLogin = Request.Cookies["AppLogin"];
             userVm.PassWord = "1";
+            userVm.RememberMe = true;
+            if (appLogin != null)
+            {
+                userVm.UserName = appLogin.Values["UserName"];
+            }
             return View("Login", userVm);
         }
 
@@ -53,10 +57,13 @@ namespace Website.Areas.CMS.Controllers
             else
             {
                 Session.Add("User", objDbUser);
-                FormsAuthentication.SetAuthCookie(objDbUser.UserName, userVm.RememberMe);
-
-               
-
+                if (userVm.RememberMe)
+                {
+                    var cookie = new HttpCookie("AppLogin");
+                    cookie.Values.Add("UserName", userVm.UserName);
+                    cookie.Expires = DateTime.Now.AddDays(15);
+                    Response.Cookies.Add(cookie);
+                }
                 return RedirectToAction("index", "Home");
             }
         }

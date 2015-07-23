@@ -27,7 +27,7 @@ namespace Website.Common
                 }
                 else
                 {
-                    var result = objUser.Roles.Split('|').ToList();
+                    var result = objUser.Roles.Split(',').ToList();
                     return result;
                 }
             }
@@ -41,7 +41,7 @@ namespace Website.Common
                 }
                 else
                 {
-                    var result = objUser.Roles.Split('|').ToList();
+                    var result = objUser.Roles.Split(',').ToList();
                     return result;
                 }
         }
