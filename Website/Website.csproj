@@ -214,6 +214,12 @@
       <DependentUpon>appData.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\Schema1_User.cs">
+      <DependentUpon>appData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Schema2_User.cs">
+      <DependentUpon>appData.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\User.cs">
       <DependentUpon>appData.tt</DependentUpon>
     </Compile>
