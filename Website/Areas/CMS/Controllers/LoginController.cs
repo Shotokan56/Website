@@ -13,7 +13,7 @@ namespace Website.Areas.CMS.Controllers
 {
     public class LoginController : Controller
     {
-        public WebAPPEntities db = new WebAPPEntities();
+        private WebAPPEntities db = new WebAPPEntities();
         //
         // GET: /CMS/Login/
 

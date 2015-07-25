@@ -5,8 +5,31 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="WebAPPModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'WebAPP.dbo.User' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Label">
+          <Key>
+            <PropertyRef Name="Label_ID" />
+          </Key>
+          <Property Name="Label_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LabelKey" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="LabelName" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="Language_ID" Type="int" Nullable="false" />
+          <Property Name="Page_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Language">
+          <Key>
+            <PropertyRef Name="Language_ID" />
+          </Key>
+          <Property Name="Language_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LanguageName" Type="nvarchar" MaxLength="250" />
+          <Property Name="LanguageCode" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Page">
+          <Key>
+            <PropertyRef Name="Page_ID" />
+          </Key>
+          <Property Name="Page_ID" Type="int" Nullable="false" />
+          <Property Name="PageName" Type="nvarchar" MaxLength="250" />
+        </EntityType>
         <EntityType Name="User">
           <Key>
             <PropertyRef Name="UserId" />
@@ -18,15 +41,10 @@ warning 6002: The table/view 'WebAPP.dbo.User' does not have a primary key defin
           <Property Name="Roles" Type="nvarchar" MaxLength="500" />
         </EntityType>
         <EntityContainer Name="WebAPPModelStoreContainer">
-          <EntitySet Name="User" EntityType="Self.User" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [User].[UserId] AS [UserId], 
-    [User].[UserName] AS [UserName], 
-    [User].[PassWord] AS [PassWord], 
-    [User].[Lock] AS [Lock], 
-    [User].[Roles] AS [Roles]
-    FROM [dbo].[User] AS [User]</DefiningQuery>
-          </EntitySet>
+          <EntitySet Name="Label" EntityType="Self.Label" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Language" EntityType="Self.Language" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Page" EntityType="Self.Page" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -44,7 +62,35 @@ warning 6002: The table/view 'WebAPP.dbo.User' does not have a primary key defin
         </EntityType>
         <EntityContainer Name="WebAPPEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Users" EntityType="Self.User" />
+          <EntitySet Name="Labels" EntityType="WebAPPModel.Label" />
+          <EntitySet Name="Languages" EntityType="WebAPPModel.Language" />
+          <EntitySet Name="Pages" EntityType="WebAPPModel.Page" />
         </EntityContainer>
+        <EntityType Name="Label">
+          <Key>
+            <PropertyRef Name="Label_ID" />
+          </Key>
+          <Property Name="Label_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LabelKey" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LabelName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Language_ID" Type="Int32" Nullable="false" />
+          <Property Name="Page_ID" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Language">
+          <Key>
+            <PropertyRef Name="Language_ID" />
+          </Key>
+          <Property Name="Language_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LanguageName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="LanguageCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Page">
+          <Key>
+            <PropertyRef Name="Page_ID" />
+          </Key>
+          <Property Name="Page_ID" Type="Int32" Nullable="false" />
+          <Property Name="PageName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -59,6 +105,34 @@ warning 6002: The table/view 'WebAPP.dbo.User' does not have a primary key defin
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="PassWord" ColumnName="PassWord" />
                 <ScalarProperty Name="Lock" ColumnName="Lock" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Labels">
+            <EntityTypeMapping TypeName="WebAPPModel.Label">
+              <MappingFragment StoreEntitySet="Label">
+                <ScalarProperty Name="Page_ID" ColumnName="Page_ID" />
+                <ScalarProperty Name="Language_ID" ColumnName="Language_ID" />
+                <ScalarProperty Name="LabelName" ColumnName="LabelName" />
+                <ScalarProperty Name="LabelKey" ColumnName="LabelKey" />
+                <ScalarProperty Name="Label_ID" ColumnName="Label_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Languages">
+            <EntityTypeMapping TypeName="WebAPPModel.Language">
+              <MappingFragment StoreEntitySet="Language">
+                <ScalarProperty Name="LanguageCode" ColumnName="LanguageCode" />
+                <ScalarProperty Name="LanguageName" ColumnName="LanguageName" />
+                <ScalarProperty Name="Language_ID" ColumnName="Language_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pages">
+            <EntityTypeMapping TypeName="WebAPPModel.Page">
+              <MappingFragment StoreEntitySet="Page">
+                <ScalarProperty Name="PageName" ColumnName="PageName" />
+                <ScalarProperty Name="Page_ID" ColumnName="Page_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

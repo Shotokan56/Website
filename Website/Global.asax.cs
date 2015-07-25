@@ -11,22 +11,6 @@ namespace Website
 {
     public class MvcApplication : System.Web.HttpApplication
     {
-        #region Các biến danh mục
-
-        /// <summary>
-        /// Lấy ID role admin
-        /// </summary>
-        //public static string RoleAdmin_ID()
-        //{
-        //    var db = new WebsiteEntities();
-        //    var role = db.AspNetRoles.FirstOrDefault(o => o.Name.Equals("Admin"));
-        //    if (role != null)
-        //        return role.Id;
-        //    return null;
-        //}
-
-        #endregion Các biến danh mục
-
         protected void Application_Start()
         {
             //Thread.CurrentThread.CurrentCulture = new CultureInfo("vi-VN");

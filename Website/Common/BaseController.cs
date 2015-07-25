@@ -46,4 +46,15 @@ namespace Website.Common
                 }
         }
 	}
+    
+    public class UI : System.Attribute
+    {
+        private readonly WebAPPEntities db = new WebAPPEntities();
+
+        public List<Label> GetLabelForPage(int languaeId, int pageId)
+        {
+            var result = db.Labels.Where(o => o.Language_ID == languaeId && o.Page_ID == pageId).ToList();
+            return result;
+        }
+    }
 }

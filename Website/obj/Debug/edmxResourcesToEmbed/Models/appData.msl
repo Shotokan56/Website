@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="WebAPPModelStoreContainer" CdmEntityContainer="WebAPPEntities">
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="WebAPPModel.User">
+        <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="Roles" ColumnName="Roles" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="PassWord" ColumnName="PassWord" />
+          <ScalarProperty Name="Lock" ColumnName="Lock" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Labels">
+      <EntityTypeMapping TypeName="WebAPPModel.Label">
+        <MappingFragment StoreEntitySet="Label">
+          <ScalarProperty Name="Page_ID" ColumnName="Page_ID" />
+          <ScalarProperty Name="Language_ID" ColumnName="Language_ID" />
+          <ScalarProperty Name="LabelName" ColumnName="LabelName" />
+          <ScalarProperty Name="LabelKey" ColumnName="LabelKey" />
+          <ScalarProperty Name="Label_ID" ColumnName="Label_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Languages">
+      <EntityTypeMapping TypeName="WebAPPModel.Language">
+        <MappingFragment StoreEntitySet="Language">
+          <ScalarProperty Name="LanguageCode" ColumnName="LanguageCode" />
+          <ScalarProperty Name="LanguageName" ColumnName="LanguageName" />
+          <ScalarProperty Name="Language_ID" ColumnName="Language_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Pages">
+      <EntityTypeMapping TypeName="WebAPPModel.Page">
+        <MappingFragment StoreEntitySet="Page">
+          <ScalarProperty Name="PageName" ColumnName="PageName" />
+          <ScalarProperty Name="Page_ID" ColumnName="Page_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -173,6 +173,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_GlobalResources\LabelResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LabelResources.resx</DependentUpon>
+    </Compile>
     <Compile Include="App_GlobalResources\TextMessage.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -214,10 +219,13 @@
       <DependentUpon>appData.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\Schema1_User.cs">
+    <Compile Include="Models\Label.cs">
       <DependentUpon>appData.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Schema2_User.cs">
+    <Compile Include="Models\Language.cs">
+      <DependentUpon>appData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Page.cs">
       <DependentUpon>appData.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\User.cs">
@@ -1807,6 +1815,10 @@
       <Generator>GlobalResourceProxyGenerator</Generator>
       <LastGenOutput>TextMessage.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+    </Content>
+    <Content Include="App_GlobalResources\LabelResources.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>LabelResources.Designer.cs</LastGenOutput>
     </Content>
     <EmbeddedResource Include="App_GlobalResources\ModelBinders.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

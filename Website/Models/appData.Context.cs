@@ -26,5 +26,8 @@ namespace Website.Models
         }
     
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<Label> Labels { get; set; }
+        public virtual DbSet<Language> Languages { get; set; }
+        public virtual DbSet<Page> Pages { get; set; }
     }
 }

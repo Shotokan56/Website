@@ -16,4 +16,18 @@ namespace Website.Common
         [EnumMember]
         Member,
     }
+    public enum Languages
+    {
+        [EnumMember]
+        VietNam = 1,
+        [EnumMember]
+        EngLish = 2,
+    }
+    public enum Pages
+    {
+        [EnumMember]
+        Login = 1,
+        [EnumMember]
+        HomeCms = 2,
+    }
 }

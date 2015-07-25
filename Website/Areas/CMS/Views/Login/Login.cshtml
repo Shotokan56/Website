@@ -1,6 +1,12 @@
 ﻿
 <head>
+    @using Resources    @using Website.Common
     @model Website.Areas.CMS.Models.UserViewModel
+    @{
+        var ui = new UI();
+        var lstLabel = ui.GetLabelForPage((int)Languages.VietNam, (int)Pages.Login);
+  
+    }
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LOGIN SYSTEM</title>
@@ -23,7 +29,7 @@
             {
                 <legend>Sign in to <span class="blue">MyApp</span></legend>
                 <div class="body">
-                    <label>Username</label>
+                    <label>@lstLabel.First(o=>o.LabelKey == LabelResources.UserName).LabelName</label>
                     @Html.TextBoxFor(m => m.UserName, new { @Style = "height: 30px;" })
                     <label>Password</label>
                     @Html.PasswordFor(m => m.PassWord, new { @Style = "height: 30px;" })
