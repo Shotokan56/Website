@@ -12,6 +12,7 @@ namespace Website.Areas.CMS.Controllers
         //
         // GET: /CMS/Home/
         [SessionExpire]
+        [CustomAuthorizeUser(Users = "Admin1")]
         public ActionResult Index()
         {
             return View();

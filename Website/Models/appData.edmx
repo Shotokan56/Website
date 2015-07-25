@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="WebAPPModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="WebAPPModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <!--Errors Found During Generation:
 warning 6002: The table/view 'WebAPP.dbo.User' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="User">
@@ -15,6 +15,31 @@ warning 6002: The table/view 'WebAPP.dbo.User' does not have a primary key defin
           <Property Name="UserName" Type="nvarchar" MaxLength="250" />
           <Property Name="PassWord" Type="nvarchar" MaxLength="250" />
           <Property Name="Lock" Type="bit" />
+          <Property Name="Roles" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'WebAPP.Schema1.User' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="User1">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="250" />
+          <Property Name="PassWord" Type="nvarchar" MaxLength="250" />
+          <Property Name="Lock" Type="bit" />
+          <Property Name="Roles" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'WebAPP.Schema2.User' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="User2">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="250" />
+          <Property Name="PassWord" Type="nvarchar" MaxLength="250" />
+          <Property Name="Lock" Type="bit" />
+          <Property Name="Roles" Type="nvarchar" MaxLength="500" />
         </EntityType>
         <EntityContainer Name="WebAPPModelStoreContainer">
           <EntitySet Name="User" EntityType="Self.User" store:Type="Tables" store:Schema="dbo">
@@ -22,12 +47,30 @@ warning 6002: The table/view 'WebAPP.dbo.User' does not have a primary key defin
     [User].[UserId] AS [UserId], 
     [User].[UserName] AS [UserName], 
     [User].[PassWord] AS [PassWord], 
-    [User].[Lock] AS [Lock]
+    [User].[Lock] AS [Lock], 
+    [User].[Roles] AS [Roles]
     FROM [dbo].[User] AS [User]</DefiningQuery>
           </EntitySet>
+          <EntitySet Name="User1" EntityType="Self.User1" store:Type="Tables" store:Schema="Schema1" store:Name="User">
+            <DefiningQuery>SELECT 
+    [User1].[UserId] AS [UserId], 
+    [User1].[UserName] AS [UserName], 
+    [User1].[PassWord] AS [PassWord], 
+    [User1].[Lock] AS [Lock], 
+    [User1].[Roles] AS [Roles]
+    FROM [Schema1].[User] AS [User1]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="User2" EntityType="Self.User2" store:Type="Tables" store:Schema="Schema2" store:Name="User">
+            <DefiningQuery>SELECT 
+    [User2].[UserId] AS [UserId], 
+    [User2].[UserName] AS [UserName], 
+    [User2].[PassWord] AS [PassWord], 
+    [User2].[Lock] AS [Lock], 
+    [User2].[Roles] AS [Roles]
+    FROM [Schema2].[User] AS [User2]</DefiningQuery>
+          </EntitySet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="WebAPPModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -39,10 +82,33 @@ warning 6002: The table/view 'WebAPP.dbo.User' does not have a primary key defin
           <Property Name="UserName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="PassWord" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="Lock" Type="Boolean" />
+          <Property Name="Roles" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityContainer Name="WebAPPEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Users" EntityType="Self.User" />
+          <EntitySet Name="Schema1_User" EntityType="WebAPPModel.Schema1_User" />
+          <EntitySet Name="Schema2_User" EntityType="WebAPPModel.Schema2_User" />
         </EntityContainer>
+        <EntityType Name="Schema1_User">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="PassWord" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Lock" Type="Boolean" />
+          <Property Name="Roles" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Schema2_User">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="PassWord" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Lock" Type="Boolean" />
+          <Property Name="Roles" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -52,10 +118,33 @@ warning 6002: The table/view 'WebAPP.dbo.User' does not have a primary key defin
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="WebAPPModel.User">
               <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="Roles" ColumnName="Roles" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="PassWord" ColumnName="PassWord" />
                 <ScalarProperty Name="Lock" ColumnName="Lock" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Schema1_User">
+            <EntityTypeMapping TypeName="WebAPPModel.Schema1_User">
+              <MappingFragment StoreEntitySet="User1">
+                <ScalarProperty Name="Roles" ColumnName="Roles" />
+                <ScalarProperty Name="Lock" ColumnName="Lock" />
+                <ScalarProperty Name="PassWord" ColumnName="PassWord" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Schema2_User">
+            <EntityTypeMapping TypeName="WebAPPModel.Schema2_User">
+              <MappingFragment StoreEntitySet="User2">
+                <ScalarProperty Name="Roles" ColumnName="Roles" />
+                <ScalarProperty Name="Lock" ColumnName="Lock" />
+                <ScalarProperty Name="PassWord" ColumnName="PassWord" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -1,10 +1,13 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
+using System.Web;
 using System.Web.Mvc;
 using Resources;
 using Website.Areas.CMS.Models;
 using Website.Common;
 using Website.Models;
 using AutoMapper;
+using System.Web.Security;
 
 namespace Website.Areas.CMS.Controllers
 {
@@ -16,7 +19,14 @@ namespace Website.Areas.CMS.Controllers
 
         public ActionResult Index(UserViewModel userVm)
         {
-            return View("Login", userVm); 
+            var appLogin = Request.Cookies["AppLogin"];
+            userVm.PassWord = "1";
+            userVm.RememberMe = true;
+            if (appLogin != null)
+            {
+                userVm.UserName = appLogin.Values["UserName"];
+            }
+            return View("Login", userVm);
         }
 
         [HttpPost]
@@ -27,7 +37,7 @@ namespace Website.Areas.CMS.Controllers
             {
                 return View("Login", userVm);
             }
-            
+
             var objDbUser = db.Users.FirstOrDefault(o => o.UserName == userVm.UserName);
 
             if (objDbUser == null)
@@ -39,7 +49,7 @@ namespace Website.Areas.CMS.Controllers
             //Mapper.CreateMap<User, UserViewModel>();
             //var userViewModel = Mapper.Map<User>(user);
 
-            if (!Hashing.VerifyHashedPassword(objDbUser.PassWord, userVm.PassWord))
+            if (!Hashing.VerifyHashedPassword(objDbUser.PassWord, userVm.PassWord) || string.IsNullOrEmpty(objDbUser.Roles))
             {
                 ModelState.AddModelError("Message", TextMessage.LoginController_Validate_NotValid);
                 return View("Login", userVm);
@@ -47,13 +57,22 @@ namespace Website.Areas.CMS.Controllers
             else
             {
                 Session.Add("User", objDbUser);
+                if (userVm.RememberMe)
+                {
+                    var cookie = new HttpCookie("AppLogin");
+                    cookie.Values.Add("UserName", userVm.UserName);
+                    cookie.Expires = DateTime.Now.AddDays(15);
+                    Response.Cookies.Add(cookie);
+                }
                 return RedirectToAction("index", "Home");
             }
         }
+        
+       
 
         private bool Validate(UserViewModel userVm)
         {
-            
+
             if (string.IsNullOrEmpty(userVm.UserName) || string.IsNullOrWhiteSpace(userVm.UserName))
             {
                 ModelState.AddModelError("Message", TextMessage.LoginController_Validate_UserName);
