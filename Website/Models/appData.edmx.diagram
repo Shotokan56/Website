@@ -6,8 +6,6 @@
     <edmx:Diagrams>
       <Diagram DiagramId="31e9a0aa501e46ffa02d45c54e94b709" Name="Diagram1">
         <EntityTypeShape EntityType="WebAPPModel.User" Width="1.5" PointX="0.5" PointY="0.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="WebAPPModel.Schema1_User" Width="1.5" PointX="3.75" PointY="0.75" />
-        <EntityTypeShape EntityType="WebAPPModel.Schema2_User" Width="1.5" PointX="0.75" PointY="3.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

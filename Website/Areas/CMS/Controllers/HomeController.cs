@@ -7,12 +7,12 @@ using Website.Common;
 
 namespace Website.Areas.CMS.Controllers
 {
+    [SessionExpire]
     public class HomeController : BaseController
     {
         //
         // GET: /CMS/Home/
-        [SessionExpire]
-        [CustomAuthorizeUser(Users = "Admin1")]
+        [CustomAuthorizeUser(Users = "Admin")]
         public ActionResult Index()
         {
             return View();

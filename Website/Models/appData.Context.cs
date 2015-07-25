@@ -26,7 +26,5 @@ namespace Website.Models
         }
     
         public virtual DbSet<User> Users { get; set; }
-        public virtual DbSet<Schema1_User> Schema1_User { get; set; }
-        public virtual DbSet<Schema2_User> Schema2_User { get; set; }
     }
 }
