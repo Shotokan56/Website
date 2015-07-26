@@ -117,8 +117,23 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AppName" xml:space="preserve">
+    <value>AppName</value>
+  </data>
+  <data name="LoginText" xml:space="preserve">
+    <value>LoginText</value>
+  </data>
   <data name="PassWord" xml:space="preserve">
     <value>PassWord</value>
+  </data>
+  <data name="Remember" xml:space="preserve">
+    <value>Remember</value>
+  </data>
+  <data name="SignInTo" xml:space="preserve">
+    <value>SignInTo</value>
+  </data>
+  <data name="UserManagement" xml:space="preserve">
+    <value>UserManagement</value>
   </data>
   <data name="UserName" xml:space="preserve">
     <value>UserName</value>

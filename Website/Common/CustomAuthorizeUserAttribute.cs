@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.Ajax.Utilities;
+using Website.Areas.CMS.Models;
 using Website.Models;
 
 namespace Website.Common
@@ -19,7 +20,7 @@ namespace Website.Common
             var roles = Users.Split(',');
             if (HttpContext.Current.Session["User"] != null)
             {
-                var userRole = basectl.GetRolesForUser((User)HttpContext.Current.Session["User"]);
+                var userRole = basectl.GetRolesForUser((UserViewModel)HttpContext.Current.Session["User"]);
                 if (roles.Any(o => userRole.Any(i => i == o)))
                     return true;
             }

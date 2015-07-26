@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web;
+using Website.Common;
 
 namespace Website.Areas.CMS.Models
 {
@@ -18,10 +20,14 @@ namespace Website.Areas.CMS.Models
             
             public string Message { get; set; }
             public bool RememberMe { get; set; }
+
+            public int LanguaeId { get; set; }
             public UserViewModel()
             {
                 RememberMe = false;
-            } 
+                //LanguaeId = (int)Languages.EngLish;
+                LanguaeId = int.Parse(ConfigurationManager.AppSettings["Default_Languae"]);// default is English
+            }
     }
 
     

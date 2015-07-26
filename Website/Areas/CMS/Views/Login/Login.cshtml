@@ -4,8 +4,8 @@
     @model Website.Areas.CMS.Models.UserViewModel
     @{
         var ui = new UI();
-        var lstLabel = ui.GetLabelForPage((int)Languages.VietNam, (int)Pages.Login);
-  
+        var lstLabel = ui.GetLabelForPage(Model.LanguaeId, (int)Pages.Login);
+
     }
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -27,11 +27,14 @@
         <div id="login-wraper">
             @using (Html.BeginForm("Verify", "Login", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form login-form" }))
             {
-                <legend>Sign in to <span class="blue">MyApp</span></legend>
+                <legend>
+                    @lstLabel.First(o => o.LabelKey == LabelResources.SignInTo).LabelName
+                    <span class="blue">@lstLabel.First(o => o.LabelKey == LabelResources.AppName).LabelName</span>
+                </legend>
                 <div class="body">
-                    <label>@lstLabel.First(o=>o.LabelKey == LabelResources.UserName).LabelName</label>
+                    <label>@lstLabel.First(o => o.LabelKey == LabelResources.UserName).LabelName</label>
                     @Html.TextBoxFor(m => m.UserName, new { @Style = "height: 30px;" })
-                    <label>Password</label>
+                    <label>@lstLabel.First(o => o.LabelKey == LabelResources.PassWord).LabelName</label>
                     @Html.PasswordFor(m => m.PassWord, new { @Style = "height: 30px;" })
                 </div>
 
@@ -39,9 +42,9 @@
                 <div class="footer">
                     <label class="checkbox inline">
                         @*<input type="checkbox" id="inlineCheckbox1" value="option1"> Remember me*@
-                        @Html.CheckBoxFor(m => m.RememberMe, new { })Remember me
+                        @Html.CheckBoxFor(m => m.RememberMe, new { })@lstLabel.First(o => o.LabelKey == LabelResources.Remember).LabelName
                     </label>
-                    <button type="submit" class="btn btn-success">Login</button>
+                    <button type="submit" class="btn btn-success">@lstLabel.First(o => o.LabelKey == LabelResources.LoginText).LabelName</button>
                 </div>
             }
         </div>

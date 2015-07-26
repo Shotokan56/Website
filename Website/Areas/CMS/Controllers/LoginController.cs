@@ -56,7 +56,8 @@ namespace Website.Areas.CMS.Controllers
             }
             else
             {
-                Session.Add("User", objDbUser);
+                userVm.Roles = objDbUser.Roles;
+                Session.Add("User", userVm);
                 if (userVm.RememberMe)
                 {
                     var cookie = new HttpCookie("AppLogin");
@@ -67,9 +68,14 @@ namespace Website.Areas.CMS.Controllers
                 return RedirectToAction("index", "Home");
             }
         }
-        
-       
 
+        [HttpPost]
+        public ActionResult Logout()
+        {
+            Session.Remove("User");
+            return Index(new UserViewModel());
+        }
+        
         private bool Validate(UserViewModel userVm)
         {
 

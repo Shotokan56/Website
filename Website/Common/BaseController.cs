@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Website.Areas.CMS.Models;
 using Website.Models;
 
 namespace Website.Common
@@ -33,7 +34,7 @@ namespace Website.Common
             }
         }
 
-        public List<string> GetRolesForUser(User objUser)
+        public List<string> GetRolesForUser(UserViewModel objUser)
         {
                 if (objUser == null || string.IsNullOrEmpty(objUser.Roles))
                 {

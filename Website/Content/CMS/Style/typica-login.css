@@ -260,7 +260,7 @@ footer.white {
 /* login form */
 /* line 17, D:/DropBox/bootstrap/typica-login/sass/includes/_fonts.scss */
 .login-form legend {
-  font-family: 'Lato', Helvetica, sans-serif;
+  font-family: "Comic Sans MS", cursive, sans-serifsans-serif;
   font-size: 36px;
   font-weight: 300;
   color: #333333;
@@ -269,7 +269,7 @@ footer.white {
 
 /* line 24, D:/DropBox/bootstrap/typica-login/sass/includes/_fonts.scss */
 .login-form label {
-  font-family: 'Lato', Helvetica, sans-serif;
+  font-family: "Times New Roman", Times, serif;
   font-size: 20px;
   color: #333333;
   font-weight: 300;
@@ -278,7 +278,7 @@ footer.white {
 /* register form */
 /* line 32, D:/DropBox/bootstrap/typica-login/sass/includes/_fonts.scss */
 #register-form legend {
-  font-family: 'Lato', Helvetica, sans-serif;
+  font-family: "Comic Sans MS", cursive, sans-serif;
   font-size: 36px;
   font-weight: 300;
   color: #333333;
