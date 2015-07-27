@@ -1,32 +1,29 @@
-﻿@using Website.Areas.CMS.Models
+﻿@using Resources
+@using Website.Areas.CMS.Models
+@using Website.Common
 <!doctype html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
     <title>System Admin</title>
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
-    
+
     <link href="~/Content/CMS/Style/stylesheets/fonts.googleapis.com.css" rel="stylesheet" />
     <link href="~/Content/CMS/Script/lib/bootstrap/css/bootstrap.css" rel="stylesheet" />
     <link href="~/Content/CMS/Script/lib/font-awesome/css/font-awesome.css" rel="stylesheet" />
     <link href="~/Content/CMS/Style/stylesheets/theme.css" rel="stylesheet" />
     <link href="~/Content/CMS/Style/stylesheets/premium.css" rel="stylesheet" />
-    
+
     <script src="~/Content/CMS/Script/lib/jquery-1.11.1.min.js"></script>
     <script src="~/Content/CMS/Script/lib/jQuery-Knob/js/jquery.knob.js"></script>
     <script src="~/Content/CMS/Script/lib/bootstrap/js/bootstrap.js"></script>
-@{
-    var user =  (UserViewModel)HttpContext.Current.Session["User"];
-}
+    @{
+        var user = (UserViewModel)HttpContext.Current.Session["User"];
+        var ui = new UI();
+        var lstLabel = ui.GetLabelForPage(user.LanguaeId, (int)Pages.Layout);
+    }
 </head>
 <body class=" theme-blue">
-    <!-- Le fav and touch icons -->
-    @*<link rel="shortcut icon" href="../assets/ico/favicon.ico">
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">*@
-
     <div class="navbar navbar-default" role="navigation">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
@@ -49,9 +46,9 @@
                     <ul class="dropdown-menu">
                         <li><a href="./">My Account</a></li>
                         @*<li class="divider"></li>
-                        <li><a href="./">Users</a></li>
-                        <li><a href="./">Security</a></li>
-                        <li><a tabindex="-1" href="./">Payments</a></li>*@
+                            <li><a href="./">Users</a></li>
+                            <li><a href="./">Security</a></li>
+                            <li><a tabindex="-1" href="./">Payments</a></li>*@
                         <li class="divider"></li>
                         <li><a tabindex="-1" href="~/CMS/Login/Logout">Logout</a></li>
                     </ul>
@@ -59,26 +56,44 @@
             </ul>
         </div>
     </div>
-
+   
     <div class="sidebar-nav">
         <ul>
+            @*=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=User Management+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+*@
             <li>
                 <a href="#" data-target=".dashboard-menu" class="nav-header" data-toggle="collapse">
-                    <i class="fa fa-fw fa-user"></i>Dashboard<i class="fa fa-collapse"></i>
+                    <i class="fa fa-fw fa-user"></i>
+                    @lstLabel.First(o => o.LabelKey == LabelResources.UserManagement).LabelName
+                    <i class="fa fa-collapse"></i>
                 </a>
             </li>
             @*-------------------------------------*@
             <li>
                 <ul class="dashboard-menu nav nav-list collapse in">
-                    <li><a href="index.html"><span class="fa fa-caret-right"></span> Main</a></li>
-                    <li><a href="users.html"><span class="fa fa-caret-right"></span> User List</a></li>
-                    <li><a href="user.html"><span class="fa fa-caret-right"></span> User Profile</a></li>
-                    <li><a href="media.html"><span class="fa fa-caret-right"></span> Media</a></li>
-                    <li><a href="calendar.html"><span class="fa fa-caret-right"></span> Calendar</a></li>
+                    <li>
+                        <a href="#">
+                            <span class="fa fa-caret-right"></span>
+                            @lstLabel.First(o => o.LabelKey == LabelResources.UserList).LabelName
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <a href="#">
+                            <span class="fa fa-caret-right"></span>
+                            @lstLabel.First(o => o.LabelKey == LabelResources.NewUser).LabelName
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#">
+                            <span class="fa fa-caret-right"></span>
+                            @lstLabel.First(o => o.LabelKey == LabelResources.RoleManagement).LabelName
+                        </a>
+                    </li>
                 </ul>
             </li>
             @*-------------------------------------*@
-                <li>
+            <li>
                 <a href="#" class="nav-header">
                     <i class="fa fa-fw fa-comment"></i> Faq
                 </a>
@@ -88,7 +103,7 @@
     <div class="content">
         @RenderBody()
     </div>
-    
+
 
     <style type="text/css">
         #line-chart {
@@ -102,17 +117,17 @@
             color: #fff;
         }
     </style>
-    
+
     <script type="text/javascript">
         $("[rel=tooltip]").tooltip();
         $(function () {
             $('.demo-cancel-click').click(function () { return false; });
         });
-   
+
         $(function () {
             $(".knob").knob();
         });
-  
+
         $(function () {
             var match = document.cookie.match(new RegExp('color=([^;]+)'));
             if (match) var color = match[1];
@@ -126,7 +141,7 @@
             $('[data-popover="true"]').popover({ html: true });
 
         });
-    
+
         $(function () {
             var uls = $('.sidebar-nav > ul > *').clone();
             uls.addClass('visible-xs');

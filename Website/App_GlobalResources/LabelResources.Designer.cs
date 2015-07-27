@@ -79,6 +79,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to NewUser.
+        /// </summary>
+        internal static string NewUser {
+            get {
+                return ResourceManager.GetString("NewUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to PassWord.
         /// </summary>
         internal static string PassWord {
@@ -97,11 +106,29 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to RoleManagement.
+        /// </summary>
+        internal static string RoleManagement {
+            get {
+                return ResourceManager.GetString("RoleManagement", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to SignInTo.
         /// </summary>
         internal static string SignInTo {
             get {
                 return ResourceManager.GetString("SignInTo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to UserList.
+        /// </summary>
+        internal static string UserList {
+            get {
+                return ResourceManager.GetString("UserList", resourceCulture);
             }
         }
         

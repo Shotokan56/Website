@@ -17,8 +17,8 @@ namespace Website.Areas.CMS
         {
             context.MapRoute(
                 "CMS_default",
-                "CMS/{controller}/{action}",
-                new { controller = "Login", action = "Index" }
+                "CMS/{controller}/{action}/{id}",
+                new {  action = "Index", id = UrlParameter.Optional }
             );
         }
     }

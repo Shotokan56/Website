@@ -69,7 +69,6 @@ namespace Website.Areas.CMS.Controllers
             }
         }
 
-        [HttpPost]
         public ActionResult Logout()
         {
             Session.Remove("User");

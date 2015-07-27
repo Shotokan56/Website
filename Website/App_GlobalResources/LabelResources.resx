@@ -123,14 +123,23 @@
   <data name="LoginText" xml:space="preserve">
     <value>LoginText</value>
   </data>
+  <data name="NewUser" xml:space="preserve">
+    <value>NewUser</value>
+  </data>
   <data name="PassWord" xml:space="preserve">
     <value>PassWord</value>
   </data>
   <data name="Remember" xml:space="preserve">
     <value>Remember</value>
   </data>
+  <data name="RoleManagement" xml:space="preserve">
+    <value>RoleManagement</value>
+  </data>
   <data name="SignInTo" xml:space="preserve">
     <value>SignInTo</value>
+  </data>
+  <data name="UserList" xml:space="preserve">
+    <value>UserList</value>
   </data>
   <data name="UserManagement" xml:space="preserve">
     <value>UserManagement</value>

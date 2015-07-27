@@ -29,5 +29,7 @@ namespace Website.Common
         Login = 1,
         [EnumMember]
         HomeCms = 2,
+        [EnumMember]
+        Layout = 3,
     }
 }
