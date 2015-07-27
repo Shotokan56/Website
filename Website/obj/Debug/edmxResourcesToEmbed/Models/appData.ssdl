@@ -30,9 +30,9 @@
       <PropertyRef Name="UserId" />
     </Key>
     <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="UserName" Type="nvarchar" MaxLength="250" />
-    <Property Name="PassWord" Type="nvarchar" MaxLength="250" />
-    <Property Name="Lock" Type="bit" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="PassWord" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="Lock" Type="bit" Nullable="false" />
     <Property Name="Roles" Type="nvarchar" MaxLength="500" />
   </EntityType>
   <EntityContainer Name="WebAPPModelStoreContainer">

@@ -2882,7 +2882,7 @@ input[type=search] {
 }
 
 input[type=checkbox], input[type=radio] {
-    margin: 4px 0 0;
+    margin: 8px 0px 0px 0px;
     margin-top: 1px \9;
     line-height: normal;
 }
@@ -3328,7 +3328,7 @@ select[multiple].form-group-lg .form-control, textarea.form-group-lg .form-contr
 
 @media (min-width:768px) {
     .form-horizontal .control-label {
-        padding-top: 7px;
+        padding-top: 5px;
         margin-bottom: 0;
         text-align: right;
     }

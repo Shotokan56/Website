@@ -120,11 +120,14 @@
   <data name="AppName" xml:space="preserve">
     <value>AppName</value>
   </data>
+  <data name="CompanyNameLayout" xml:space="preserve">
+    <value>CompanyNameLayout</value>
+  </data>
   <data name="LoginText" xml:space="preserve">
     <value>LoginText</value>
   </data>
-  <data name="NewUser" xml:space="preserve">
-    <value>NewUser</value>
+  <data name="NewUserText" xml:space="preserve">
+    <value>NewUserText</value>
   </data>
   <data name="PassWord" xml:space="preserve">
     <value>PassWord</value>

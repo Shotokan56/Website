@@ -8,20 +8,18 @@
     <title>System Admin</title>
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
 
-    @*<link href="~/Content/CMS/Style/stylesheets/fonts.googleapis.com.css" rel="stylesheet" />*@
-    @*<link href="~/Content/CMS/Script/lib/bootstrap/css/bootstrap.css" rel="stylesheet" />*@
-    <link href="~/Content/bootstrap-3.3.2-dist/css/bootstrap.min.css" rel="stylesheet" />
+    @*<link href="~/Content/bootstrap-3.3.2-dist/css/bootstrap.min.css" rel="stylesheet" />
     <link href="~/Content/bootstrap-3.3.2-dist/css/bootstrap-theme.min.css" rel="stylesheet" />
     <link href="~/Content/CMS/Style/Style.Cms.css" rel="stylesheet" />
 
     <link href="~/Content/CMS/Script/lib/font-awesome/css/font-awesome.css" rel="stylesheet" />
     <link href="~/Content/CMS/Style/stylesheets/theme.css" rel="stylesheet" />
-    @*<link href="~/Content/CMS/Style/stylesheets/premium.css" rel="stylesheet" />*@
 
     <script src="~/Content/CMS/Script/lib/jquery-1.11.1.min.js"></script>
     <script src="~/Content/CMS/Script/lib/jQuery-Knob/js/jquery.knob.js"></script>
-    <script src="~/Content/CMS/Script/lib/bootstrap/js/bootstrap.js"></script>
-
+    <script src="~/Content/CMS/Script/lib/bootstrap/js/bootstrap.js"></script>*@
+    @Styles.Render("~/bundles/style")
+    @Scripts.Render("~/bundles/script")
 
     @{
         var user = (UserViewModel)HttpContext.Current.Session["User"];
@@ -39,7 +37,10 @@
                 <span class="icon-bar"></span>
             </button>
             <a class="" href="index.html">
-                <span class="navbar-brand"><span class="fa fa-paper-plane"></span> Aircraft</span>
+                <span class="navbar-brand">
+                    <span class="fa fa-paper-plane"></span>
+                    @lstLabel.First(o => o.LabelKey == LabelResources.CompanyNameLayout).LabelName
+                </span>
             </a>
         </div>
         <div class="navbar-collapse collapse" style="height: 1px;">
@@ -62,7 +63,7 @@
             </ul>
         </div>
     </div>
-   
+
     <div class="sidebar-nav">
         <ul>
             @*=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=User Management+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+*@
@@ -82,11 +83,11 @@
                             @lstLabel.First(o => o.LabelKey == LabelResources.UserList).LabelName
                         </a>
                     </li>
-                    
+
                     <li>
                         <a href="~/CMS/UserManagement/NewUser">
                             <span class="fa fa-caret-right"></span>
-                            @lstLabel.First(o => o.LabelKey == LabelResources.NewUser).LabelName
+                            @lstLabel.First(o => o.LabelKey == LabelResources.NewUserText).LabelName
                         </a>
                     </li>
 

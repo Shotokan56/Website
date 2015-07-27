@@ -70,6 +70,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to CompanyNameLayout.
+        /// </summary>
+        internal static string CompanyNameLayout {
+            get {
+                return ResourceManager.GetString("CompanyNameLayout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to LoginText.
         /// </summary>
         internal static string LoginText {
@@ -79,11 +88,11 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to NewUser.
+        ///   Looks up a localized string similar to NewUserText.
         /// </summary>
-        internal static string NewUser {
+        internal static string NewUserText {
             get {
-                return ResourceManager.GetString("NewUser", resourceCulture);
+                return ResourceManager.GetString("NewUserText", resourceCulture);
             }
         }
         

@@ -5,9 +5,9 @@
       <PropertyRef Name="UserId" />
     </Key>
     <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="UserName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-    <Property Name="PassWord" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-    <Property Name="Lock" Type="Boolean" />
+    <Property Name="UserName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PassWord" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Lock" Type="Boolean" Nullable="false" />
     <Property Name="Roles" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityContainer Name="WebAPPEntities" annotation:LazyLoadingEnabled="true">

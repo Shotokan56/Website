@@ -17,7 +17,7 @@ namespace Website.Models
         public int UserId { get; set; }
         public string UserName { get; set; }
         public string PassWord { get; set; }
-        public Nullable<bool> Lock { get; set; }
+        public bool Lock { get; set; }
         public string Roles { get; set; }
     }
 }

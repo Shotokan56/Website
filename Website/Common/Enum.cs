@@ -11,7 +11,7 @@ namespace Website.Common
 
     public enum SecurityRoles
     {
-        [EnumMember] 
+        [EnumMember]
         Admin,
         [EnumMember]
         Member,
@@ -31,5 +31,9 @@ namespace Website.Common
         HomeCms = 2,
         [EnumMember]
         Layout = 3,
+        [EnumMember]
+        NewUser = 4,
+        [EnumMember]
+        ListUser = 5,
     }
 }
