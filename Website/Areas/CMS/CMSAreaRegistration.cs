@@ -1,5 +1,6 @@
 ﻿using System.Web.Mvc;
 using System.Web.Optimization;
+using System.Web.UI;
 
 namespace Website.Areas.CMS
 {
@@ -18,7 +19,7 @@ namespace Website.Areas.CMS
             context.MapRoute(
                 "CMS_default",
                 "CMS/{controller}/{action}/{id}",
-                new {  action = "Index", id = UrlParameter.Optional }
+                new { controller ="Login", action = "Index", id = UrlParameter.Optional }
             );
         }
     }
