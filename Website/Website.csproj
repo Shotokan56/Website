@@ -253,6 +253,7 @@
     <Content Include="Content\CMS\Script\bootstrap.js" />
     <Content Include="Content\CMS\Script\bootstrap.min.css" />
     <Content Include="Content\CMS\Script\jquery.js" />
+    <Content Include="Content\CMS\Script\Layout.js" />
     <Content Include="Content\CMS\Script\lib\bootstrap\css\bootstrap-theme.css" />
     <Content Include="Content\CMS\Script\lib\bootstrap\css\bootstrap-theme.min.css" />
     <Content Include="Content\CMS\Script\lib\bootstrap\css\bootstrap.css" />
@@ -359,6 +360,7 @@
     <Content Include="Content\CMS\Script\lib\jquery.masonry.min.js" />
     <Content Include="Content\CMS\Script\lib\jquery.peity.min.js" />
     <Content Include="Content\CMS\Style\bootstrap-responsive.min.css" />
+    <Content Include="Content\CMS\Style\Layout.css" />
     <Content Include="Content\CMS\Style\stylesheets\elements.css" />
     <Content Include="Content\CMS\Style\stylesheets\fonts.googleapis.com.css" />
     <Content Include="Content\CMS\Style\stylesheets\isotope.css" />
@@ -533,6 +535,7 @@
     <Content Include="Areas\CMS\Views\UserManagement\ListUser.cshtml" />
     <Content Include="Areas\CMS\Views\UserManagement\NewUser.cshtml" />
     <Content Include="Content\CMS\Style\Style.Cms.css" />
+    <Content Include="Areas\CMS\Views\UserManagement\NewUserPatial.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

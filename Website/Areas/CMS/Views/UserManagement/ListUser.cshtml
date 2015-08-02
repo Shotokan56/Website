@@ -7,8 +7,10 @@
 
 <h2>ListUser</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
+<p class="pull-right">
+    @Html.ActionLink("Create New", "NewUserPatial", "UserManagement", null, new { @class = "btn btn-success modal-link", @datamodal = "" })
+    @*<a class="btn btn-primary pull-right" data-modal="" href="/CMS/UserManagement/NewUserPatial" title="Add">abc</a>*@
+
 </p>
 <table class="table">
     <tr>
@@ -27,26 +29,38 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.UserName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PassWord)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Lock)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Roles)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.UserId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.UserId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.UserId })
-        </td>
-    </tr>
-}
-
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PassWord)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Lock)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Roles)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.UserId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.UserId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.UserId })
+            </td>
+        </tr>
+    }
 </table>
+
+
+
+<script type="text/javascript">
+    $(function () {
+        $(".modal-link").on("click", function (e) {
+            $("#modal-dialog").removeClass();
+            $("#modal-dialog").addClass("modal-dialog");
+            $("#modal-dialog").addClass("size50");
+        });
+    });
+</script>

@@ -8,26 +8,22 @@
     <title>System Admin</title>
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
 
-    @*<link href="~/Content/bootstrap-3.3.2-dist/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="~/Content/bootstrap-3.3.2-dist/css/bootstrap-theme.min.css" rel="stylesheet" />
-    <link href="~/Content/CMS/Style/Style.Cms.css" rel="stylesheet" />
-
-    <link href="~/Content/CMS/Script/lib/font-awesome/css/font-awesome.css" rel="stylesheet" />
-    <link href="~/Content/CMS/Style/stylesheets/theme.css" rel="stylesheet" />
-
-    <script src="~/Content/CMS/Script/lib/jquery-1.11.1.min.js"></script>
-    <script src="~/Content/CMS/Script/lib/jQuery-Knob/js/jquery.knob.js"></script>
-    <script src="~/Content/CMS/Script/lib/bootstrap/js/bootstrap.js"></script>*@
     @Styles.Render("~/bundles/style")
     @Scripts.Render("~/bundles/script")
+
+    <script src="~/Content/CMS/Script/Layout.js"></script>
+    <link href="~/Content/CMS/Style/Layout.css" rel="stylesheet" />
 
     @{
         var user = (UserViewModel)HttpContext.Current.Session["User"];
         var ui = new UI();
         var lstLabel = ui.GetLabelForPage(user.LanguaeId, (int)Pages.Layout);
+        var success = @ViewBag.Success;
     }
 </head>
 <body class=" theme-blue">
+    @*<input type="hidden" value="@ViewBag.Success" id="Success" />*@
+    @Html.Hidden("Success", (object)success)
     <div class="navbar navbar-default" role="navigation">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
@@ -108,53 +104,55 @@
         </ul>
     </div>
     <div class="content">
+        <div class="alert alert-success right" id="success-alert" style="position: absolute; display: none">
+            <strong>Success! </strong>
+        </div>
         @RenderBody()
     </div>
 
-
-    <style type="text/css">
-        #line-chart {
-            height: 300px;
-            width: 800px;
-            margin: 0px auto;
-            margin-top: 1em;
-        }
-
-        .navbar-default .navbar-brand, .navbar-default .navbar-brand:hover {
-            color: #fff;
-        }
-    </style>
-
-    <script type="text/javascript">
-        $("[rel=tooltip]").tooltip();
-        $(function () {
-            $('.demo-cancel-click').click(function () { return false; });
-        });
-
-        $(function () {
-            $(".knob").knob();
-        });
-
-        $(function () {
-            var match = document.cookie.match(new RegExp('color=([^;]+)'));
-            if (match) var color = match[1];
-            if (color) {
-                $('body').removeClass(function (index, css) {
-                    return (css.match(/\btheme-\S+/g) || []).join(' ')
-                })
-                $('body').addClass('theme-' + color);
-            }
-
-            $('[data-popover="true"]').popover({ html: true });
-
-        });
-
-        $(function () {
-            var uls = $('.sidebar-nav > ul > *').clone();
-            uls.addClass('visible-xs');
-            $('#main-menu').append(uls.clone());
-        });
-    </script>
-
+    <!-- modal placeholder-->
+   
+    <div id='myModal' class='modal fade in'>
+        <div id="modal-dialog" class="modal-dialog">
+            <div class="modal-content">
+                <div id='myModalContent'></div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
+
+
+<script type="text/javascript">
+  $(function () {
+        $.ajaxSetup({ cache: false });
+        $("a[datamodal]").on("click", function (e) {
+            $('#myModalContent').load(this.href, function () {
+                $('#myModal').modal({
+                    keyboard: true
+                }, 'show');
+                bindForm(this);
+            });
+            return false;
+        });
+    });
+
+    function bindForm(dialog) {
+        $('form', dialog).submit(function () {
+            $.ajax({
+                url: this.action,
+                type: this.method,
+                data: $(this).serialize(),
+                success: function (result) {
+                    if (result.success) {
+                        $('#myModal').modal('hide');
+                    } else {
+                        $('#myModalContent').html(result);
+                        bindForm(dialog);
+                    }
+                }
+            });
+            return false;
+        });
+    }
+</script>

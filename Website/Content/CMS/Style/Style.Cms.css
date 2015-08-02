@@ -21,3 +21,14 @@
     content: "*" !important;
     color: red;
 }
+
+/*add space after label of field is not require*/
+.control-label:not(.required):after {
+    content: "\00a0" !important;
+}
+
+
+.content-middle {
+    width: 80%;
+    left: 10%;
+}
