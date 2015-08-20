@@ -536,6 +536,7 @@
     <Content Include="Areas\CMS\Views\UserManagement\NewUser.cshtml" />
     <Content Include="Content\CMS\Style\Style.Cms.css" />
     <Content Include="Areas\CMS\Views\UserManagement\NewUserPatial.cshtml" />
+    <Content Include="Areas\CMS\Views\UserManagement\ListUserPatial.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

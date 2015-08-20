@@ -1,7 +1,7 @@
 ﻿    @using Resources
     @using Website.Areas.CMS.Models
     @using Website.Common
-    @model Website.Models.User
+    @model Website.Models.RegisterAccountViewModel
 
     @{
         ViewBag.Title = "NewUser";
@@ -14,11 +14,12 @@
         @lstLabel.First(o => o.LabelKey == LabelResources.NewUserText).LabelName
     </h2>
 
-    @using (Html.BeginForm("Create", "UserManagement", FormMethod.Post, new { enctype = "multipart/form-data" }))
-    {
+    @using (Html.BeginForm("CreateAndEdit", "UserManagement", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div id="wrap">
         @Html.AntiForgeryToken()
         <hr />
-        @Html.Hidden("modal")
+        @Html.HiddenFor(model => model.UserId)
         <div id="small-form" class="form-horizontal">
             @Html.ValidationSummary(true)
             <div class="form-group">
@@ -44,11 +45,13 @@
                     @Html.ValidationMessageFor(model => model.Lock, string.Empty, new { @class = "text-danger" })
                 </div>
             </div>
-
+            <div> @Html.ValidationMessageFor(m => m.Message, "", new { @class = "text-danger" })</div>
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Create" class="btn btn-primary btn-sm pull-right" />
+                    <input type="submit" value="Save" class="btn btn-primary btn-sm pull-right" />
+                    @*<input class="btn btn-primary" type="submit" value="Add" />*@
                 </div>
             </div>
         </div>
-    }
+    </div>
+}
