@@ -3,6 +3,7 @@
     Layout = "~/Areas/CMS/Views/Shared/_Layout_CMS.cshtml";
 }
 
+
 <h2>ListUser</h2>
 
 <p class="pull-right">
@@ -11,15 +12,28 @@
 <div id="lstReplace">
     @{ Html.RenderAction("RenderListUser", "UserManagement"); }
 </div>
-<div id ="pager"></div>
+<div id ="pager">
+  
+</div>
 
 
 <script type="text/javascript">
+    //Set size popup
     $(function () {
         $(".modal-link").on("click", function (e) {
             $("#modal-dialog").removeClass();
             $("#modal-dialog").addClass("modal-dialog");
             $("#modal-dialog").addClass("size50");
         });
+    });
+
+    //Pager
+    $(function () {
+        var options = {
+            currentPage: 1,
+            totalPages: 10
+        }
+
+        $('#pager').bootstrapPaginator(options);
     });
 </script>

@@ -10,8 +10,6 @@ namespace Website.Areas.CMS.Controllers
     [SessionExpire]
     public class HomeController : BaseController
     {
-        //
-        // GET: /CMS/Home/
         [CustomAuthorizeUser(Users = "Admin")]
         public ActionResult Index()
         {

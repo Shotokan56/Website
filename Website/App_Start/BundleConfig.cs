@@ -23,6 +23,19 @@ namespace Website
                        "~/Scripts/modernizr-2.6.2.js",
                        "~/Scripts/respond.js"
                        ));
+
+            bundles.Add(new ScriptBundle("~/bundles/BootstrapPaginatorStyle").Include(
+                      "~/Content/BootstrapPaginator/css/bootstrap-responsive.css",
+                      "~/Content/BootstrapPaginator/css/pagination.css",
+                      "~/Content/BootstrapPaginator/css/documentation.css",
+                      "~/Content/BootstrapPaginator/css/highlight.js/sunburst.css"
+                      ));
+
+            bundles.Add(new ScriptBundle("~/bundles/BootstrapPaginatorJs").Include(
+                      "~/Content/BootstrapPaginator/src/bootstrap-paginator.js",
+                      "~/Content/BootstrapPaginator/lib/highlight.pack.js",
+                      "~/Content/BootstrapPaginator/lib/jquery.history.js"
+                      ));
         }
     }
 }
